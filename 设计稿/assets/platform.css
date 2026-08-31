@@ -268,7 +268,6 @@ button.chip.active { border-color: var(--brand); color: var(--brand-deep); backg
 .hospital-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .hospital-meta span { padding: 6px 9px; border-radius: 8px; color: #3e615a; background: var(--surface); font-size: 12px; font-weight: 750; }
 .hospital-card p { margin: 13px 0 0; color: var(--ink-soft); line-height: 1.6; }
-.hospital-rank { display: grid; min-width: 74px; min-height: 74px; align-self: start; place-items: center; border-radius: 20px; color: var(--brand-deep); background: linear-gradient(135deg, rgba(165,209,202,.35), rgba(197,155,85,.36)); font-size: 12px; font-weight: 850; text-align: center; }
 .empty-state { display: none; padding: 40px; border: 1px dashed var(--line); border-radius: var(--radius-lg); color: var(--ink-soft); text-align: center; }
 
 .result-panel { min-height: 300px; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: #fff; box-shadow: var(--shadow-small); }
@@ -368,7 +367,6 @@ input[type="range"] { width: 100%; margin: 15px 0 3px; accent-color: var(--brand
   .hero-actions .button { width: 100%; }
   .grid-4 { grid-template-columns: 1fr; }
   .hospital-card { grid-template-columns: 1fr; }
-  .hospital-rank { min-width: 62px; min-height: 62px; width: 62px; }
   .tabs { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
 }
 
@@ -403,3 +401,13 @@ html[lang="zh-CN"] label { font-weight: 650; }
 html[lang="zh-CN"] .card p,
 html[lang="zh-CN"] .hospital-card p,
 html[lang="zh-CN"] .notice { line-height: 1.75; }
+
+
+/* City-first hospital discovery */
+.city-discovery{background:#f1f6f6}.city-discovery .section-head{margin-bottom:30px}.city-discovery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.city-discovery-card{position:relative;min-height:390px;padding:0;overflow:hidden;border:0;border-radius:24px;color:#fff;background:#073f3b;text-align:left;cursor:pointer;box-shadow:0 16px 42px rgba(5,55,48,.13);transition:transform .3s ease,box-shadow .3s ease}
+.city-discovery-card:before{position:absolute;z-index:1;inset:30% 0 0;content:"";background:linear-gradient(transparent,rgba(4,34,31,.96))}.city-discovery-card img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease}.city-discovery-card>span{position:absolute;z-index:2;right:0;bottom:0;left:0;padding:25px}
+.city-discovery-card small,.city-discovery-card strong,.city-discovery-card em,.city-discovery-card b{display:block}.city-discovery-card small{color:#d7b66f;font-size:11px;font-weight:850;letter-spacing:.12em}.city-discovery-card strong{margin:5px 0 7px;font-size:30px}.city-discovery-card em{min-height:42px;color:rgba(255,255,255,.74);font-size:13px;font-style:normal;line-height:1.55}.city-discovery-card b{margin-top:14px;font-size:13px}
+.city-discovery-card:hover,.city-discovery-card.active{transform:translateY(-8px) scale(1.014);box-shadow:0 28px 65px rgba(5,55,48,.22)}.city-discovery-card:hover img,.city-discovery-card.active img{transform:scale(1.055)}.city-source{margin:16px 0 0;color:var(--ink-soft);font-size:11px}.city-source a{color:var(--brand);text-decoration:underline;text-underline-offset:3px}
+.hospital-card{transition:transform .26s ease,box-shadow .26s ease,border-color .26s ease}.hospital-card:hover{transform:translateY(-6px) scale(1.008);border-color:rgba(15,92,85,.28);box-shadow:0 23px 52px rgba(5,55,48,.14)}.hospital-arrow{display:grid;width:48px;height:48px;align-self:center;place-items:center;border-radius:50%;color:var(--brand-deep);background:#dbeae7;font-size:20px;font-weight:900;transition:transform .24s ease}.hospital-card:hover .hospital-arrow{transform:translateX(5px);background:#c8dfda}
+@media(max-width:780px){.city-discovery-grid{grid-template-columns:1fr}.city-discovery-card{min-height:330px}.hospital-arrow{width:42px;height:42px}}

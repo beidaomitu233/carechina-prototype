@@ -52,15 +52,16 @@ await evaluate(`document.getElementById('cases').scrollIntoView()`);
 await sleep(800);
 await evaluate(`document.getElementById('support').scrollIntoView()`);
 await sleep(650);
-await evaluate(`document.getElementById('top').scrollIntoView()`);
-await sleep(250);
+await evaluate(`document.documentElement.style.scrollBehavior='auto';scrollTo(0,0)`);
+await sleep(450);
 
 const desktop = await evaluate(`(() => {
   const tasks=[...document.querySelectorAll('#start .task-card')];
   const cases=[...document.querySelectorAll('#cases .case-card')];
-  const imgs=[...document.querySelectorAll('#cases img,.support-visual img')];
+  const imgs=[...document.querySelectorAll('#cases img,.support-visual img,#network img')];
   const banned=['rgb(239, 232, 220)','rgb(247, 246, 242)'];
   const nodes=[...document.querySelectorAll('body *')];
+  const flow=[...document.querySelectorAll('main>section[id]')].map(x=>x.id);
   const bannedComputed=nodes.some(node=>{const s=getComputedStyle(node);return banned.includes(s.backgroundColor)||banned.includes(s.color)});
   return {
     lang:document.documentElement.lang,
@@ -71,6 +72,9 @@ const desktop = await evaluate(`(() => {
     caseCount:cases.length,
     imagesReady:imgs.every(x=>x.complete&&x.naturalWidth>0),
     hasCost:!!document.getElementById('cost-planner'),
+    hasConsult:!!document.getElementById('assessmentForm'),
+    removed:!document.getElementById('matching')&&!document.getElementById('partners'),
+    flow,
     bannedComputed,
     titleWeight:getComputedStyle(document.querySelector('.home-hero h1')).fontWeight,
     titleLineHeight:getComputedStyle(document.querySelector('.home-hero h1')).lineHeight,
@@ -81,8 +85,9 @@ assert(desktop.lang === 'zh-CN', 'Homepage is not Chinese-first');
 assert(desktop.overflow <= 1, 'Desktop homepage has horizontal overflow');
 assert(desktop.taskCount === 4 && desktop.taskTags.every((tag) => tag === 'A'), 'Task cards are not full-card links');
 assert(JSON.stringify(desktop.taskLinks) === JSON.stringify(['hospitals.html','care-plan.html','#cost-planner','tcm-wellness.html']), 'Task destinations are incorrect');
-assert(desktop.caseCount === 3 && desktop.imagesReady, 'Official hospital case images failed to load');
-assert(desktop.hasCost && !desktop.bannedComputed, 'Embedded estimator or palette check failed');
+assert(desktop.caseCount === 3 && desktop.imagesReady, 'Treatment case or city images failed to load');
+assert(desktop.hasCost && desktop.hasConsult && desktop.removed && !desktop.bannedComputed, 'Merged consultation, removed modules, or palette check failed');
+assert(JSON.stringify(desktop.flow) === JSON.stringify(['top','start','specialties','network','journey','support','assessment','cases','faq']), 'Patient-flow section order is incorrect');
 assert(desktop.visibleTitle.includes('来华就医'), 'Chinese homepage copy is not visible');
 await shot('设计稿/qa/mature-home-desktop.jpg');
 
@@ -93,10 +98,20 @@ const budget = await evaluate(`(() => {
   scenario.value='complex'; scenario.dispatchEvent(new Event('input',{bubbles:true}));
   days.value='40'; days.dispatchEvent(new Event('input',{bubbles:true}));
   const after=document.getElementById('budgetTotal').textContent;
-  document.getElementById('cost-planner').scrollIntoView();
+  document.documentElement.style.scrollBehavior='auto';document.getElementById('assessment').scrollIntoView();
   return {before,after,days:document.getElementById('budgetDaysValue').textContent};
 })()`);
 assert(budget.before !== budget.after && budget.days === '40' && budget.after.includes('¥'), 'Budget estimator does not react');
+const consultation = await evaluate(`(() => {
+  const need=document.getElementById('need');
+  need.value='surgery';need.dispatchEvent(new Event('change',{bubbles:true}));
+  document.getElementById('country').value='Saudi Arabia';
+  document.getElementById('contact').value='patient@example.com';
+  document.getElementById('condition').value='Planned cardiac review';
+  document.getElementById('assessmentForm').requestSubmit();
+  return {synced:document.getElementById('budgetScenario').value,message:document.getElementById('formMessage').classList.contains('show')};
+})()`);
+assert(consultation.synced === 'surgery' && consultation.message, 'Consultation form and budget scenario are not connected');
 await sleep(350);
 await shot('设计稿/qa/mature-budget-desktop.jpg');
 
@@ -106,11 +121,21 @@ const subpage = await evaluate(`(() => ({
   overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
   costLink:[...document.querySelectorAll('a')].find(x=>x.dataset.zh==='费用估算')?.getAttribute('href'),
   brand:getComputedStyle(document.documentElement).getPropertyValue('--brand').trim(),
-  title:document.querySelector('.page-hero h1').textContent.trim()
+  title:document.querySelector('.page-hero h1').textContent.trim(),
+  cityCards:document.querySelectorAll('[data-city-jump]').length,
+  researchLabels:document.querySelectorAll('.hospital-rank').length
 }))()`);
 assert(subpage.lang === 'zh-CN' && subpage.costLink === 'index.html#cost-planner', 'Subpage language or cost route is not unified');
 assert(subpage.brand === '#0f5c55' && subpage.overflow <= 1, 'Subpage palette or responsive width is incorrect');
 assert(subpage.title.length > 0, 'Subpage Chinese title is missing');
+assert(subpage.cityCards === 3 && subpage.researchLabels === 0, 'City-first hospital discovery or label removal failed');
+await evaluate(`document.documentElement.style.scrollBehavior='auto';document.querySelector('.city-discovery').scrollIntoView()`);
+await sleep(250);
+await shot('设计稿/qa/mature-hospitals-city.jpg');
+const cityClick = await evaluate(`(() => {document.querySelector('[data-city-jump=\"Chengdu\"]').click();return {city:document.getElementById('city-filter').value,count:document.getElementById('result-count').textContent};})()`);
+assert(cityClick.city === 'Chengdu' && cityClick.count.includes('1'), 'City card does not filter the hospital list');
+await sleep(250);
+await shot('设计稿/qa/mature-hospitals-filter.jpg');
 
 await call('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
 await go('index.html');
@@ -123,13 +148,13 @@ const mobile = await evaluate(`(() => {
     menuOpen:document.querySelector('.mobile-panel').classList.contains('open'),
     taskColumns:getComputedStyle(document.querySelector('.task-grid-four')).gridTemplateColumns,
     caseColumns:getComputedStyle(cases).gridTemplateColumns,
-    budgetColumns:getComputedStyle(document.querySelector('.budget-shell')).gridTemplateColumns,
+    consultColumns:getComputedStyle(document.querySelector('.consult-grid')).gridTemplateColumns,
     budgetWidth:budget.getBoundingClientRect().width
   };
 })()`);
 assert(mobile.overflow <= 1 && mobile.menuOpen, 'Mobile navigation or horizontal width failed');
-assert(!mobile.taskColumns.includes(' ') && !mobile.caseColumns.includes(' ') && !mobile.budgetColumns.includes(' '), 'Mobile grids did not collapse to one column');
-await evaluate(`closeMenu(); document.getElementById('start').scrollIntoView()`);
+assert(!mobile.taskColumns.includes(' ') && !mobile.caseColumns.includes(' ') && !mobile.consultColumns.includes(' '), 'Mobile grids did not collapse to one column');
+await evaluate(`closeMenu(); document.documentElement.style.scrollBehavior='auto'; document.getElementById('start').scrollIntoView()`);
 await sleep(300);
 await shot('设计稿/qa/mature-home-mobile.jpg');
 
