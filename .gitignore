@@ -2,7 +2,9 @@
 设计稿/qa/*.png
 设计稿/qa/*.jpg
 设计稿/qa/edge-profile/
+设计稿/qa/*-profile/
 设计稿/qa/care-plan-inline.js
+设计稿/各版本样式截图/
 
 # Windows metadata
 Thumbs.db
