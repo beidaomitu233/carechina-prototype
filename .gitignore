@@ -1,0 +1,9 @@
+# Browser QA output (keep reusable scripts)
+设计稿/qa/*.png
+设计稿/qa/*.jpg
+设计稿/qa/edge-profile/
+设计稿/qa/care-plan-inline.js
+
+# Windows metadata
+Thumbs.db
+Desktop.ini
