@@ -46,7 +46,7 @@ await call('Page.enable');
 await call('Runtime.enable');
 await call('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
 await go('index.html');
-await evaluate(`localStorage.removeItem('carechina-language'); location.reload()`);
+await evaluate(`localStorage.removeItem('carechina-language'); localStorage.removeItem('carechina-theme'); location.reload()`);
 await sleep(900);
 await evaluate(`document.getElementById('cases').scrollIntoView()`);
 await sleep(800);
@@ -58,7 +58,7 @@ await sleep(450);
 const desktop = await evaluate(`(() => {
   const tasks=[...document.querySelectorAll('#start .task-card')];
   const cases=[...document.querySelectorAll('#cases .case-card')];
-  const imgs=[...document.querySelectorAll('#cases img,.support-visual img,#network img')];
+  const imgs=[...document.querySelectorAll('#cases img,.support-visual img,#network img,#specialties img,#journey img')];
   const banned=['rgb(239, 232, 220)','rgb(247, 246, 242)'];
   const nodes=[...document.querySelectorAll('body *')];
   const flow=[...document.querySelectorAll('main>section[id]')].map(x=>x.id);
@@ -73,6 +73,8 @@ const desktop = await evaluate(`(() => {
     imagesReady:imgs.every(x=>x.complete&&x.naturalWidth>0),
     hasCost:!!document.getElementById('cost-planner'),
     hasConsult:!!document.getElementById('assessmentForm'),
+    hasTheme:!!document.getElementById('themeFab')&&document.body.dataset.theme==='clinic',
+    mosaic:getComputedStyle(document.querySelector('.visual-mosaic')).gridTemplateAreas,
     removed:!document.getElementById('matching')&&!document.getElementById('partners'),
     flow,
     bannedComputed,
@@ -86,10 +88,16 @@ assert(desktop.overflow <= 1, 'Desktop homepage has horizontal overflow');
 assert(desktop.taskCount === 4 && desktop.taskTags.every((tag) => tag === 'A'), 'Task cards are not full-card links');
 assert(JSON.stringify(desktop.taskLinks) === JSON.stringify(['hospitals.html','care-plan.html','#cost-planner','tcm-wellness.html']), 'Task destinations are incorrect');
 assert(desktop.caseCount === 3 && desktop.imagesReady, 'Treatment case or city images failed to load');
-assert(desktop.hasCost && desktop.hasConsult && desktop.removed && !desktop.bannedComputed, 'Merged consultation, removed modules, or palette check failed');
+assert(desktop.hasCost && desktop.hasConsult && desktop.hasTheme && desktop.removed && !desktop.bannedComputed, 'Merged consultation, theme switcher, removed modules, or palette check failed');
+assert(desktop.mosaic.includes('hospital') && desktop.mosaic.includes('budget'), 'Large-format task mosaic is missing');
 assert(JSON.stringify(desktop.flow) === JSON.stringify(['top','start','specialties','network','journey','support','assessment','cases','faq']), 'Patient-flow section order is incorrect');
 assert(desktop.visibleTitle.includes('来华就医'), 'Chinese homepage copy is not visible');
 await shot('设计稿/qa/mature-home-desktop.jpg');
+for (const id of ['start','specialties','network','journey','support']) {
+  await evaluate(`document.documentElement.style.scrollBehavior='auto';document.getElementById('${id}').scrollIntoView()`);
+  await sleep(300);
+  await shot(`设计稿/qa/upgrade-${id}-desktop.jpg`);
+}
 
 const budget = await evaluate(`(() => {
   const before=document.getElementById('budgetTotal').textContent;
@@ -115,18 +123,28 @@ assert(consultation.synced === 'surgery' && consultation.message, 'Consultation 
 await sleep(350);
 await shot('设计稿/qa/mature-budget-desktop.jpg');
 
+const themeCheck = await evaluate(`(() => {
+  document.getElementById('themeFab').click();
+  document.querySelector('[data-theme-option=\"calm\"]').click();
+  return {theme:document.body.dataset.theme,primary:getComputedStyle(document.body).getPropertyValue('--green').trim(),stored:localStorage.getItem('carechina-theme')};
+})()`);
+assert(themeCheck.theme === 'calm' && themeCheck.primary === '#2a7b80' && themeCheck.stored === 'calm', 'Theme switcher does not update or persist the palette');
+await sleep(300);
+await shot('设计稿/qa/upgrade-theme-panel.jpg');
+
 await go('hospitals.html');
 const subpage = await evaluate(`(() => ({
   lang:document.documentElement.lang,
   overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
   costLink:[...document.querySelectorAll('a')].find(x=>x.dataset.zh==='费用估算')?.getAttribute('href'),
-  brand:getComputedStyle(document.documentElement).getPropertyValue('--brand').trim(),
+  brand:getComputedStyle(document.body).getPropertyValue('--brand').trim(),
+  theme:document.body.dataset.theme,
   title:document.querySelector('.page-hero h1').textContent.trim(),
   cityCards:document.querySelectorAll('[data-city-jump]').length,
   researchLabels:document.querySelectorAll('.hospital-rank').length
 }))()`);
 assert(subpage.lang === 'zh-CN' && subpage.costLink === 'index.html#cost-planner', 'Subpage language or cost route is not unified');
-assert(subpage.brand === '#0f5c55' && subpage.overflow <= 1, 'Subpage palette or responsive width is incorrect');
+assert(subpage.brand === '#2a7b80' && subpage.theme === 'calm' && subpage.overflow <= 1, 'Subpage theme persistence or responsive width is incorrect');
 assert(subpage.title.length > 0, 'Subpage Chinese title is missing');
 assert(subpage.cityCards === 3 && subpage.researchLabels === 0, 'City-first hospital discovery or label removal failed');
 await evaluate(`document.documentElement.style.scrollBehavior='auto';document.querySelector('.city-discovery').scrollIntoView()`);
@@ -137,6 +155,7 @@ assert(cityClick.city === 'Chengdu' && cityClick.count.includes('1'), 'City card
 await sleep(250);
 await shot('设计稿/qa/mature-hospitals-filter.jpg');
 
+await evaluate(`localStorage.setItem('carechina-theme','clinic')`);
 await call('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
 await go('index.html');
 const mobile = await evaluate(`(() => {

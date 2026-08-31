@@ -4,6 +4,7 @@
   const menuButton = document.querySelector("[data-menu-toggle]");
   const nav = document.querySelector("[data-main-nav]");
   const langButton = document.querySelector("[data-lang-toggle]");
+  try { document.body.dataset.theme = localStorage.getItem("carechina-theme") || "clinic"; } catch (_) { document.body.dataset.theme = "clinic"; }
 
   document.querySelectorAll(`[data-nav="${page}"]`).forEach((link) => link.classList.add("active"));
 

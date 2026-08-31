@@ -79,6 +79,10 @@
       renderHospitals();
       document.getElementById('hospital-finder').scrollIntoView({behavior:'smooth',block:'start'});
     }));
+    const initialParams=new URLSearchParams(location.search);
+    const initialCity=initialParams.get('city'),initialSpecialty=initialParams.get('specialty');
+    if(initialCity&&[...city.options].some(x=>x.value===initialCity))city.value=initialCity;
+    if(initialSpecialty&&[...specialty.options].some(x=>x.value===initialSpecialty))specialty.value=initialSpecialty;
     document.addEventListener("carechina:language",renderHospitals); renderHospitals();
   </script>
 </body>

@@ -1,9 +1,9 @@
 :root {
-  --brand: #0f5c55;
-  --brand-dark: #0b4e48;
-  --brand-deep: #12302f;
+  --brand: #007e70;
+  --brand-dark: #00675c;
+  --brand-deep: #00584f;
   --cyan: #a5d1ca;
-  --lime: #c59b55;
+  --lime: #c8a15e;
   --surface: #f2f7f6;
   --paper: #ffffff;
   --ink: #102d29;
@@ -411,3 +411,9 @@ html[lang="zh-CN"] .notice { line-height: 1.75; }
 .city-discovery-card:hover,.city-discovery-card.active{transform:translateY(-8px) scale(1.014);box-shadow:0 28px 65px rgba(5,55,48,.22)}.city-discovery-card:hover img,.city-discovery-card.active img{transform:scale(1.055)}.city-source{margin:16px 0 0;color:var(--ink-soft);font-size:11px}.city-source a{color:var(--brand);text-decoration:underline;text-underline-offset:3px}
 .hospital-card{transition:transform .26s ease,box-shadow .26s ease,border-color .26s ease}.hospital-card:hover{transform:translateY(-6px) scale(1.008);border-color:rgba(15,92,85,.28);box-shadow:0 23px 52px rgba(5,55,48,.14)}.hospital-arrow{display:grid;width:48px;height:48px;align-self:center;place-items:center;border-radius:50%;color:var(--brand-deep);background:#dbeae7;font-size:20px;font-weight:900;transition:transform .24s ease}.hospital-card:hover .hospital-arrow{transform:translateX(5px);background:#c8dfda}
 @media(max-width:780px){.city-discovery-grid{grid-template-columns:1fr}.city-discovery-card{min-height:330px}.hospital-arrow{width:42px;height:42px}}
+
+
+/* Replaceable patient palette shared from the homepage */
+body[data-theme="clinic"]{--brand:#007e70;--brand-dark:#00675c;--brand-deep:#00584f;--cyan:#a6d7d1;--lime:#c8a15e;--surface:#f3f9f8;--ink:#174a45;--ink-soft:#4b6a66}
+body[data-theme="calm"]{--brand:#2a7b80;--brand-dark:#226a6f;--brand-deep:#1c575b;--cyan:#b7dddd;--lime:#8bbeb8;--surface:#f4fafa;--ink:#28575a;--ink-soft:#546c6d}
+body[data-theme="warm"]{--brand:#697354;--brand-dark:#596248;--brand-deep:#4b533d;--cyan:#d4dac5;--lime:#b99357;--surface:#f7f8f3;--ink:#4d553f;--ink-soft:#656b5b}
