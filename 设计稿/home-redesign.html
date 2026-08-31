@@ -14,8 +14,8 @@
       --green-2:#167a70;
       --mint:#e8f3f0;
       --mint-2:#d8ebe6;
-      --ivory:#f7f6f2;
-      --warm:#efe8dc;
+      --surface:#f2f7f6;
+      --surface-2:#eaf3f0;
       --gold:#c59b55;
       --white:#fff;
       --line:rgba(18,48,47,.13);
@@ -85,7 +85,7 @@
     .desktop-nav a{font-size:.84rem;font-weight:700;color:var(--ink-2);white-space:nowrap}
     .desktop-nav a:hover{color:var(--green)}
     .nav-actions{display:flex;align-items:center;gap:10px}
-    .lang{display:flex;align-items:center;gap:3px;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--ivory)}
+    .lang{display:flex;align-items:center;gap:3px;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
     .lang button{border:0;background:transparent;border-radius:999px;min-width:38px;height:36px;padding:0 9px;font-size:.75rem;font-weight:800;cursor:pointer}
     .lang button.active{background:var(--white);color:var(--green);box-shadow:0 3px 12px rgba(18,48,47,.09)}
     .nav-cta{min-height:44px;padding-inline:18px;font-size:.8rem}
@@ -125,7 +125,7 @@
 
     .start{background:var(--white)}
     .task-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .task-card{position:relative;min-height:280px;padding:30px;border:1px solid var(--line);border-radius:var(--radius);background:var(--ivory);overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease)}
+    .task-card{position:relative;min-height:280px;padding:30px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease)}
     .task-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:transparent}
     .task-card:first-child{background:var(--green);color:var(--white)}
     .task-card:first-child p,.task-card:first-child .task-no{color:rgba(255,255,255,.72)}
@@ -134,7 +134,7 @@
     .task-card p{color:var(--ink-2);font-size:.9rem;max-width:330px;margin-bottom:28px}
     .task-card .btn-ghost{position:absolute;left:30px;bottom:28px;font-size:.82rem}
 
-    .specialties{background:var(--ivory)}
+    .specialties{background:var(--surface)}
     .specialty-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);background:var(--white)}
     .specialty{min-height:190px;padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .2s}
     .specialty:hover{background:var(--mint)}
@@ -148,7 +148,7 @@
     .split{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
     .image-stack{position:relative;padding:0 42px 42px 0}
     .image-stack img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:32px;box-shadow:var(--shadow);background:#dfe8e6}
-    .image-tag{position:absolute;right:0;bottom:0;width:245px;padding:20px;border-radius:20px;background:var(--warm);border:8px solid var(--white)}
+    .image-tag{position:absolute;right:0;bottom:0;width:245px;padding:20px;border-radius:20px;background:var(--surface-2);border:8px solid var(--white)}
     .image-tag b{display:block;margin-bottom:4px}
     .image-tag span{display:block;color:var(--ink-2);font-size:.76rem}
     .match-copy h2{max-width:620px}
@@ -188,7 +188,7 @@
     .journey-step h3{font-size:.94rem;letter-spacing:-.01em}
     .journey-step p{color:var(--muted);font-size:.73rem;line-height:1.5;margin:0}
 
-    .support{background:var(--ivory)}
+    .support{background:var(--surface)}
     .support-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .support-card{padding:26px;border:1px solid var(--line);background:var(--white);border-radius:20px}
     .support-card .support-ico{font-size:1.35rem;margin-bottom:20px}
@@ -207,7 +207,7 @@
     .quote-list li{display:flex;justify-content:space-between;gap:18px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.77rem}
     .quote-list li span:last-child{color:var(--green);font-weight:800}
 
-    .faq{background:var(--ivory)}
+    .faq{background:var(--surface)}
     .faq-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:70px;align-items:start}
     .faq-intro{position:sticky;top:128px}
     .faq-list{border-top:1px solid var(--line)}
@@ -234,7 +234,7 @@
     .field{display:grid;gap:7px}
     .field.full{grid-column:1/-1}
     label{font-size:.73rem;font-weight:800}
-    input,select,textarea{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--ivory);color:var(--ink);padding:13px 14px;outline:0;transition:border-color .2s,box-shadow .2s}
+    input,select,textarea{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);padding:13px 14px;outline:0;transition:border-color .2s,box-shadow .2s}
     input:focus,select:focus,textarea:focus{border-color:var(--green-2);box-shadow:0 0 0 3px rgba(22,122,112,.12)}
     textarea{resize:vertical;min-height:108px}
     .form-foot{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px}
@@ -242,7 +242,7 @@
     .form-message{display:none;margin-top:16px;padding:12px 14px;border-radius:12px;background:var(--mint);color:var(--green);font-size:.77rem;font-weight:700}
     .form-message.show{display:block}
 
-    .partners{background:var(--warm);padding:42px 0}
+    .partners{background:var(--surface-2);padding:42px 0}
     .partner-row{display:flex;align-items:center;justify-content:space-between;gap:36px}
     .partner-row h3{margin:0 0 5px;font-size:1.2rem}
     .partner-row p{margin:0;color:var(--ink-2);font-size:.8rem}

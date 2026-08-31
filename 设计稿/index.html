@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,8 +14,8 @@
       --green-2:#167a70;
       --mint:#e8f3f0;
       --mint-2:#d8ebe6;
-      --ivory:#f7f6f2;
-      --warm:#efe8dc;
+      --surface:#f2f7f6;
+      --surface-2:#eaf3f0;
       --gold:#c59b55;
       --white:#fff;
       --line:rgba(18,48,47,.13);
@@ -85,7 +85,7 @@
     .desktop-nav a{font-size:.84rem;font-weight:700;color:var(--ink-2);white-space:nowrap}
     .desktop-nav a:hover{color:var(--green)}
     .nav-actions{display:flex;align-items:center;gap:10px}
-    .lang{display:flex;align-items:center;gap:3px;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--ivory)}
+    .lang{display:flex;align-items:center;gap:3px;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
     .lang button{border:0;background:transparent;border-radius:999px;min-width:38px;height:36px;padding:0 9px;font-size:.75rem;font-weight:800;cursor:pointer}
     .lang button.active{background:var(--white);color:var(--green);box-shadow:0 3px 12px rgba(18,48,47,.09)}
     .nav-cta{min-height:44px;padding-inline:18px;font-size:.8rem}
@@ -125,7 +125,7 @@
 
     .start{background:var(--white)}
     .task-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .task-card{position:relative;min-height:280px;padding:30px;border:1px solid var(--line);border-radius:var(--radius);background:var(--ivory);overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease)}
+    .task-card{position:relative;min-height:280px;padding:30px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease)}
     .task-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:transparent}
     .task-card:first-child{background:var(--green);color:var(--white)}
     .task-card:first-child p,.task-card:first-child .task-no{color:rgba(255,255,255,.72)}
@@ -134,7 +134,7 @@
     .task-card p{color:var(--ink-2);font-size:.9rem;max-width:330px;margin-bottom:28px}
     .task-card .btn-ghost{position:absolute;left:30px;bottom:28px;font-size:.82rem}
 
-    .specialties{background:var(--ivory)}
+    .specialties{background:var(--surface)}
     .specialty-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);background:var(--white)}
     .specialty{min-height:190px;padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .2s}
     .specialty:hover{background:var(--mint)}
@@ -148,7 +148,7 @@
     .split{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
     .image-stack{position:relative;padding:0 42px 42px 0}
     .image-stack img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:32px;box-shadow:var(--shadow);background:#dfe8e6}
-    .image-tag{position:absolute;right:0;bottom:0;width:245px;padding:20px;border-radius:20px;background:var(--warm);border:8px solid var(--white)}
+    .image-tag{position:absolute;right:0;bottom:0;width:245px;padding:20px;border-radius:20px;background:var(--surface-2);border:8px solid var(--white)}
     .image-tag b{display:block;margin-bottom:4px}
     .image-tag span{display:block;color:var(--ink-2);font-size:.76rem}
     .match-copy h2{max-width:620px}
@@ -188,7 +188,7 @@
     .journey-step h3{font-size:.94rem;letter-spacing:-.01em}
     .journey-step p{color:var(--muted);font-size:.73rem;line-height:1.5;margin:0}
 
-    .support{background:var(--ivory)}
+    .support{background:var(--surface)}
     .support-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .support-card{padding:26px;border:1px solid var(--line);background:var(--white);border-radius:20px}
     .support-card .support-ico{font-size:1.35rem;margin-bottom:20px}
@@ -207,7 +207,7 @@
     .quote-list li{display:flex;justify-content:space-between;gap:18px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.77rem}
     .quote-list li span:last-child{color:var(--green);font-weight:800}
 
-    .faq{background:var(--ivory)}
+    .faq{background:var(--surface)}
     .faq-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:70px;align-items:start}
     .faq-intro{position:sticky;top:128px}
     .faq-list{border-top:1px solid var(--line)}
@@ -234,7 +234,7 @@
     .field{display:grid;gap:7px}
     .field.full{grid-column:1/-1}
     label{font-size:.73rem;font-weight:800}
-    input,select,textarea{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--ivory);color:var(--ink);padding:13px 14px;outline:0;transition:border-color .2s,box-shadow .2s}
+    input,select,textarea{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);padding:13px 14px;outline:0;transition:border-color .2s,box-shadow .2s}
     input:focus,select:focus,textarea:focus{border-color:var(--green-2);box-shadow:0 0 0 3px rgba(22,122,112,.12)}
     textarea{resize:vertical;min-height:108px}
     .form-foot{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px}
@@ -242,7 +242,7 @@
     .form-message{display:none;margin-top:16px;padding:12px 14px;border-radius:12px;background:var(--mint);color:var(--green);font-size:.77rem;font-weight:700}
     .form-message.show{display:block}
 
-    .partners{background:var(--warm);padding:42px 0}
+    .partners{background:var(--surface-2);padding:42px 0}
     .partner-row{display:flex;align-items:center;justify-content:space-between;gap:36px}
     .partner-row h3{margin:0 0 5px;font-size:1.2rem}
     .partner-row p{margin:0;color:var(--ink-2);font-size:.8rem}
@@ -318,8 +318,8 @@
     .nav-wrap .brand-copy{font-weight:900;letter-spacing:-.025em}
     .main-nav{display:flex;align-items:center;justify-content:center;gap:6px;margin-left:auto}
     .nav-link{padding:10px 12px;border-radius:999px;color:var(--ink-2);font-size:.8rem;font-weight:800;white-space:nowrap}
-    .nav-link:hover,.nav-link.active{color:var(--green);background:var(--ivory)}
-    .lang-toggle{min-width:48px;height:42px;padding:0 12px;border:1px solid var(--line);border-radius:999px;color:var(--green);background:var(--ivory);font-size:.74rem;font-weight:900;cursor:pointer}
+    .nav-link:hover,.nav-link.active{color:var(--green);background:var(--surface)}
+    .lang-toggle{min-width:48px;height:42px;padding:0 12px;border:1px solid var(--line);border-radius:999px;color:var(--green);background:var(--surface);font-size:.74rem;font-weight:900;cursor:pointer}
 
     .home-hero{position:relative;min-height:min(760px,calc(100vh - 116px));overflow:hidden;color:var(--white);background:linear-gradient(90deg,rgba(7,46,43,.96) 0%,rgba(10,63,58,.86) 39%,rgba(10,54,50,.38) 70%,rgba(10,54,50,.18) 100%),linear-gradient(0deg,rgba(7,46,43,.6),transparent 52%),url("assets/hero-international-care.jpg") center 43%/cover no-repeat}
     .home-hero::after{position:absolute;right:-210px;bottom:-340px;width:620px;height:620px;content:"";border:1px solid rgba(197,155,85,.28);border-radius:50%;box-shadow:0 0 0 84px rgba(197,155,85,.07),0 0 0 170px rgba(255,255,255,.035)}
@@ -355,6 +355,84 @@
     @media(max-width:800px){.home-hero{min-height:690px;background-position:62% center}.home-hero-inner{padding:68px 0 58px;align-items:end}.home-hero h1{font-size:clamp(3rem,13.5vw,5rem)}.task-grid-four{grid-template-columns:1fr}.task-grid-four .task-card{min-height:255px}}
     @media(max-width:560px){.nav-wrap{min-height:70px}.brand-copy{font-size:.88rem}.lang-toggle{min-width:42px;height:38px;padding-inline:8px}.home-hero{min-height:690px}.home-hero .hero-actions .btn{width:100%}.home-hero .hero-proof{display:grid}.photo-credit{display:none}}
 
+    /* Mature prototype: Chinese-first hierarchy, official imagery and task-led interaction */
+    .task-card{display:block;color:inherit;outline:none}
+    .task-card:focus-visible,.case-card:focus-visible,.support-visual:focus-visible{box-shadow:0 0 0 4px rgba(22,122,112,.2),var(--shadow);border-color:var(--green-2)}
+    .task-card::after{position:absolute;right:-52px;bottom:-62px;width:150px;height:150px;content:"";border:1px solid rgba(15,92,85,.12);border-radius:50%;transition:transform .35s var(--ease)}
+    .task-card:hover::after{transform:scale(1.18)}
+    .task-link{position:absolute;left:26px;bottom:25px;display:flex;align-items:center;gap:8px;color:var(--green);font-size:.82rem;font-weight:800}
+    .task-card:first-child .task-link{color:var(--white)}
+    .task-link span:last-child{transition:transform .22s var(--ease)}
+    .task-card:hover .task-link span:last-child{transform:translateX(4px)}
+    .image-source-link{display:block;border-radius:32px;overflow:hidden}
+
+    .cases{background:var(--surface)}
+    .case-grid{display:grid;grid-template-columns:1.16fr .84fr;grid-template-rows:repeat(2,minmax(245px,1fr));gap:18px}
+    .case-card{position:relative;min-height:245px;overflow:hidden;border-radius:26px;background:var(--ink);box-shadow:0 16px 40px rgba(18,48,47,.1)}
+    .case-card-wide{grid-row:1/3;min-height:520px}
+    .case-card img{width:100%;height:100%;object-fit:cover;transition:transform .65s var(--ease),filter .35s var(--ease)}
+    .case-card:hover img{transform:scale(1.035);filter:saturate(1.04)}
+    .case-card::after{position:absolute;inset:0;content:"";background:linear-gradient(180deg,transparent 25%,rgba(6,34,32,.9) 100%)}
+    .case-overlay{position:absolute;z-index:2;right:0;bottom:0;left:0;display:grid;gap:8px;padding:26px;color:var(--white)}
+    .source-pill{justify-self:start;padding:6px 9px;border:1px solid rgba(255,255,255,.24);border-radius:999px;background:rgba(255,255,255,.1);font-size:.62rem;font-weight:750;backdrop-filter:blur(8px)}
+    .case-overlay strong{max-width:520px;font-size:1.28rem;line-height:1.25}
+    .case-card-wide .case-overlay strong{font-size:1.75rem}
+    .case-overlay small{color:rgba(255,255,255,.72);font-size:.73rem}
+    .source-note{margin:18px 0 0;color:var(--muted);font-size:.68rem}
+
+    .support{background:var(--surface-2)}
+    .support-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:42px;align-items:start}
+    .support-visual{position:sticky;top:126px;display:block;overflow:hidden;border-radius:28px;background:var(--ink);box-shadow:var(--shadow)}
+    .support-visual img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .5s var(--ease)}
+    .support-visual:hover img{transform:scale(1.025)}
+    .support-visual>span{position:absolute;right:0;bottom:0;left:0;display:grid;gap:4px;padding:56px 26px 25px;color:white;background:linear-gradient(transparent,rgba(7,42,39,.88))}
+    .support-visual b{font-size:1.05rem;line-height:1.4}
+    .support-visual small{color:rgba(255,255,255,.67);font-size:.66rem}
+    .support-list{border-top:1px solid var(--line)}
+    .support-row{display:grid;grid-template-columns:50px 1fr;gap:18px;padding:22px 8px;border-bottom:1px solid var(--line);transition:background .2s,padding .2s}
+    .support-row:hover{padding-right:18px;padding-left:18px;background:rgba(255,255,255,.58)}
+    .support-row>span{display:grid;width:40px;height:40px;place-items:center;border-radius:12px;color:var(--green);background:var(--white);font-size:.7rem;font-weight:900}
+    .support-row h3{margin:0 0 5px;font-size:1rem}
+    .support-row p{margin:0;color:var(--ink-2);font-size:.77rem;line-height:1.6}
+
+    .cost{background:var(--ink);color:var(--white)}
+    .cost .eyebrow{color:#a8ddd4}
+    .cost .section-head p{color:rgba(255,255,255,.68)}
+    .budget-shell{display:grid;grid-template-columns:.9fr 1.1fr;overflow:hidden;border:1px solid rgba(255,255,255,.13);border-radius:30px;background:rgba(255,255,255,.055)}
+    .budget-controls{padding:34px}
+    .budget-step{display:grid;grid-template-columns:38px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+    .budget-step:first-child{padding-top:0}.budget-step:last-child{padding-bottom:0;border-bottom:0}
+    .budget-step>span{display:grid;width:34px;height:34px;place-items:center;border:1px solid rgba(255,255,255,.17);border-radius:10px;color:#e2c58c;font-size:.67rem;font-weight:900}
+    .budget-controls .field{gap:7px}.budget-controls label{color:rgba(255,255,255,.72)}
+    .budget-controls select{color:var(--white);border-color:rgba(255,255,255,.17);background:#173f3d}
+    .budget-controls select option{color:var(--ink);background:var(--white)}
+    .range-field>div{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .range-field label{font-size:.73rem;font-weight:800}.range-field b{font-size:.8rem}.range-field i{font-style:normal;color:rgba(255,255,255,.58);font-weight:500}
+    .range-field input{padding:0;background:transparent;box-shadow:none;accent-color:#e2c58c}
+    .budget-result{display:flex;min-height:520px;padding:48px;flex-direction:column;justify-content:center;color:var(--ink);background:var(--surface)}
+    .budget-label{color:var(--green);font-size:.68rem;font-weight:900;letter-spacing:.12em}
+    .budget-result>strong{display:block;margin:9px 0 12px;font-size:clamp(2.25rem,4.5vw,4.2rem);line-height:1;letter-spacing:-.05em}
+    .budget-result>p{max-width:530px;margin-bottom:24px;color:var(--ink-2);font-size:.8rem}
+    .budget-lines{display:grid;border-top:1px solid var(--line)}
+    .budget-lines>div{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.76rem}
+    .budget-lines span{color:var(--muted)}.budget-lines b{font-size:.8rem}
+    .budget-cta{align-self:flex-start;margin-top:26px}
+    .cost>.shell>.source-note{color:rgba(255,255,255,.5)}
+
+    html[lang="zh-CN"] body{font-family:"Source Han Sans SC","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+    html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3{font-weight:600;letter-spacing:.005em;line-height:1.28}
+    html[lang="zh-CN"] .home-hero h1{max-width:690px;font-size:clamp(2.85rem,5.3vw,5rem);line-height:1.1;letter-spacing:-.015em}
+    html[lang="zh-CN"] .section-head h2{max-width:720px;font-size:clamp(2rem,3.65vw,3.25rem)}
+    html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .task-no{letter-spacing:.075em;font-weight:700}
+    html[lang="zh-CN"] .lead{font-size:clamp(1rem,1.55vw,1.16rem);font-weight:400}
+    html[lang="zh-CN"] .task-card h3{font-size:1.18rem;line-height:1.45}
+    html[lang="zh-CN"] .task-card p,html[lang="zh-CN"] .support-row p,html[lang="zh-CN"] details p{font-size:.82rem;line-height:1.75}
+    html[lang="zh-CN"] .case-overlay strong{line-height:1.45}
+    html[lang="zh-CN"] .btn,html[lang="zh-CN"] .nav-link{font-weight:650}
+
+    @media(max-width:900px){.case-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.case-card-wide{grid-column:1/-1;grid-row:auto;min-height:430px}.support-layout{grid-template-columns:1fr}.support-visual{position:relative;top:auto}.support-visual img{aspect-ratio:16/9}.budget-shell{grid-template-columns:1fr}.budget-result{min-height:auto}.budget-controls{padding:28px}.budget-result{padding:36px}}
+    @media(max-width:620px){html[lang="zh-CN"] .section-head h2{font-size:1.78rem;line-height:1.35}.case-grid{grid-template-columns:1fr}.case-card-wide{grid-column:auto;min-height:340px}.case-card{min-height:300px}.case-overlay{padding:22px}.case-card-wide .case-overlay strong,.case-overlay strong{font-size:1.2rem}.support-row{grid-template-columns:42px 1fr;gap:12px}.budget-controls,.budget-result{padding:24px}.budget-result>strong{font-size:2.1rem}.budget-lines>div{align-items:flex-start;flex-direction:column;gap:2px}.budget-cta{width:100%}}
+
   </style>
 </head>
 <body>
@@ -376,8 +454,8 @@
       <nav class="main-nav" aria-label="Primary navigation">
         <a class="nav-link active" href="index.html" data-en="Home" data-zh="首页">Home</a>
         <a class="nav-link" href="hospitals.html" data-en="Find a Hospital" data-zh="找医院">Find a Hospital</a>
-        <a class="nav-link" href="care-plan.html" data-en="Care Plan" data-zh="照护方案">Care Plan</a>
-        <a class="nav-link" href="cost-estimate.html" data-en="Cost Estimate" data-zh="费用估算">Cost Estimate</a>
+        <a class="nav-link" href="care-plan.html" data-en="Care Plan" data-zh="诊疗路径">Care Plan</a>
+        <a class="nav-link" href="#cost-planner" data-en="Cost Estimate" data-zh="费用估算">Cost Estimate</a>
         <a class="nav-link" href="tcm-wellness.html" data-en="TCM Wellness" data-zh="中医调养">TCM Wellness</a>
       </nav>
       <div class="nav-actions">
@@ -392,7 +470,7 @@
       <a href="index.html" data-en="Home" data-zh="首页">Home</a>
       <a href="hospitals.html" data-en="Find a Hospital" data-zh="找医院">Find a Hospital</a>
       <a href="care-plan.html" data-en="Care Plan" data-zh="照护方案">Care Plan</a>
-      <a href="cost-estimate.html" data-en="Cost Estimate" data-zh="费用估算">Cost Estimate</a>
+      <a href="#cost-planner" data-en="Cost Estimate" data-zh="费用估算">Cost Estimate</a>
       <a href="tcm-wellness.html" data-en="TCM Wellness" data-zh="中医调养">TCM Wellness</a>
     </nav>
     <a class="btn btn-primary" href="consultation.html" data-en="Start a consultation" data-zh="开始咨询">Start a consultation</a>
@@ -403,8 +481,8 @@
       <div class="shell home-hero-inner">
         <div class="hero-copy reveal">
           <div class="hero-kicker" data-en="Care in China · Coordinated for international patients" data-zh="中国就医 · 面向国际患者的全程协同">Care in China · Coordinated for international patients</div>
-          <h1 data-html-en="Trusted care in China, &lt;span&gt;made clear.&lt;/span&gt;" data-html-zh="来华就医，&lt;span&gt;安心且清晰。&lt;/span&gt;">Trusted care in China, <span>made clear.</span></h1>
-          <p class="lead" data-en="Compare suitable hospitals, understand the care path and prepare a realistic budget—with one bilingual team connecting the steps." data-zh="筛选合适医院、理解诊疗路径、准备合理预算，由一支双语团队连接每个关键环节。">Compare suitable hospitals, understand the care path and prepare a realistic budget—with one bilingual team connecting the steps.</p>
+          <h1 data-html-en="Trusted care in China, &lt;span&gt;made clear.&lt;/span&gt;" data-html-zh="来华就医，&lt;span&gt;先把每一步想清楚。&lt;/span&gt;">Trusted care in China, <span>made clear.</span></h1>
+          <p class="lead" data-en="Compare suitable hospitals, understand the care path and prepare a realistic budget—with one bilingual team connecting the steps." data-zh="从医院匹配、病历评估到预算与来华安排，把每一个关键决定提前说清楚。">Compare suitable hospitals, understand the care path and prepare a realistic budget—with one bilingual team connecting the steps.</p>
           <div class="hero-actions">
             <a class="btn btn-hero" href="consultation.html"><span data-en="Start an assessment" data-zh="开始需求评估">Start an assessment</span><span class="arrow">→</span></a>
             <a class="btn btn-hero-ghost" href="hospitals.html" data-en="Explore hospitals" data-zh="查看医院">Explore hospitals</a>
@@ -412,7 +490,7 @@
           <ul class="hero-proof">
             <li><span class="check">✓</span><span data-en="Bilingual coordination" data-zh="双语协调">Bilingual coordination</span></li>
             <li><span class="check">✓</span><span data-en="Transparent planning" data-zh="透明规划">Transparent planning</span></li>
-            <li><span class="check">✓</span><span data-en="Patient-led decisions" data-zh="患者自主决策">Patient-led decisions</span></li>
+            <li><span class="check">✓</span><span data-en="Patient-led decisions" data-zh="重要决定由患者做出">Patient-led decisions</span></li>
           </ul>
         </div>
       </div>
@@ -431,13 +509,33 @@
     <section class="section start" id="start">
       <div class="shell">
         <div class="section-head reveal">
-          <div><p class="eyebrow" data-en="Choose your next step" data-zh="选择下一步">Choose your next step</p><h2 data-en="What do you need to solve today?" data-zh="今天，你最需要解决什么？">What do you need to solve today?</h2><p data-en="Begin with the patient task that matters now. Each option opens a focused tool instead of another long explanation." data-zh="从当下最重要的患者任务开始。每个选项都会进入一个聚焦工具，而不是另一段冗长说明。">Begin with the patient task that matters now. Each option opens a focused tool instead of another long explanation.</p></div>
+          <div><p class="eyebrow" data-en="Choose your next step" data-zh="选择下一步">Choose your next step</p><h2 data-en="What do you need to solve today?" data-zh="今天，你想先解决哪件事？">What do you need to solve today?</h2><p data-en="Begin with the patient task that matters now. Each option opens a focused tool instead of another long explanation." data-zh="不用先读完整个网站。选择你此刻最关心的问题，直接进入对应工具。">Begin with the patient task that matters now. Each option opens a focused tool instead of another long explanation.</p></div>
         </div>
         <div class="task-grid task-grid-four">
-          <article class="task-card reveal"><span class="card-icon">H</span><span class="task-no">01 · HOSPITAL MATCH</span><h3 data-en="Find the right hospital" data-zh="找到合适医院">Find the right hospital</h3><p data-en="Filter a research-based shortlist by condition, city and service needs." data-zh="按病种、城市和服务需求筛选研究型医院清单。">Filter a research-based shortlist by condition, city and service needs.</p><a class="btn btn-ghost" href="hospitals.html"><span data-en="Start matching" data-zh="开始匹配">Start matching</span><span>→</span></a></article>
-          <article class="task-card reveal"><span class="card-icon">P</span><span class="task-no">02 · CARE PATH</span><h3 data-en="Understand the care path" data-zh="理解诊疗路径">Understand the care path</h3><p data-en="Turn a broad need into records, review, treatment and follow-up steps." data-zh="把模糊需求拆成资料、评估、治疗与随访步骤。">Turn a broad need into records, review, treatment and follow-up steps.</p><a class="btn btn-ghost" href="care-plan.html"><span data-en="Build a pathway" data-zh="生成路径">Build a pathway</span><span>→</span></a></article>
-          <article class="task-card reveal"><span class="card-icon">¥</span><span class="task-no">03 · FULL BUDGET</span><h3 data-en="Plan the full budget" data-zh="规划完整预算">Plan the full budget</h3><p data-en="Estimate medical, stay, translation and contingency ranges together." data-zh="同时估算医疗、住宿、翻译和应急费用区间。">Estimate medical, stay, translation and contingency ranges together.</p><a class="btn btn-ghost" href="cost-estimate.html"><span data-en="Estimate costs" data-zh="估算费用">Estimate costs</span><span>→</span></a></article>
-          <article class="task-card reveal"><span class="card-icon">中</span><span class="task-no">04 · TCM ORIENTATION</span><h3 data-en="Explore TCM safely" data-zh="安全了解中医">Explore TCM safely</h3><p data-en="Prepare informed questions and recognise when clinical care comes first." data-zh="准备有效问诊问题，并识别需要优先就医的情况。">Prepare informed questions and recognise when clinical care comes first.</p><a class="btn btn-ghost" href="tcm-wellness.html"><span data-en="Open wellness guide" data-zh="查看调养指南">Open wellness guide</span><span>→</span></a></article>
+          <a class="task-card reveal" href="hospitals.html" aria-label="Find the right hospital">
+            <span class="card-icon">院</span><span class="task-no" data-en="01 · HOSPITAL MATCH" data-zh="01 · 医院匹配">01 · HOSPITAL MATCH</span>
+            <h3 data-en="Find the right hospital" data-zh="先找到真正适合病情的医院">Find the right hospital</h3>
+            <p data-en="Shortlist hospitals by condition, clinical capability, city and international-patient support." data-zh="结合病情、专科能力、城市与国际患者服务，缩小选择范围。">Shortlist hospitals by condition, clinical capability, city and international-patient support.</p>
+            <span class="task-link"><span data-en="Start matching" data-zh="开始匹配">Start matching</span><span>→</span></span>
+          </a>
+          <a class="task-card reveal" href="care-plan.html" aria-label="Understand the care path">
+            <span class="card-icon">路</span><span class="task-no" data-en="02 · CARE PATH" data-zh="02 · 诊疗路径">02 · CARE PATH</span>
+            <h3 data-en="Understand the care path" data-zh="把来华就医拆成可执行步骤">Understand the care path</h3>
+            <p data-en="See what to prepare before review, travel, treatment and follow-up." data-zh="提前看清评估、资料、出行、治疗与回国随访各阶段。">See what to prepare before review, travel, treatment and follow-up.</p>
+            <span class="task-link"><span data-en="Build a pathway" data-zh="查看诊疗路径">Build a pathway</span><span>→</span></span>
+          </a>
+          <a class="task-card reveal" href="#cost-planner" aria-label="Estimate the full budget">
+            <span class="card-icon">¥</span><span class="task-no" data-en="03 · FULL BUDGET" data-zh="03 · 全程预算">03 · FULL BUDGET</span>
+            <h3 data-en="Plan the full budget" data-zh="先算清整个行程要准备多少钱">Plan the full budget</h3>
+            <p data-en="Combine medical, accommodation, interpretation and contingency ranges." data-zh="把医疗、住宿、翻译与预备金放在同一张预算里。">Combine medical, accommodation, interpretation and contingency ranges.</p>
+            <span class="task-link"><span data-en="Open estimator" data-zh="打开费用估算">Open estimator</span><span>↓</span></span>
+          </a>
+          <a class="task-card reveal" href="tcm-wellness.html" aria-label="Explore TCM safely">
+            <span class="card-icon">中</span><span class="task-no" data-en="04 · TCM ORIENTATION" data-zh="04 · 中医调养">04 · TCM ORIENTATION</span>
+            <h3 data-en="Explore TCM safely" data-zh="在明确边界的前提下了解中医">Explore TCM safely</h3>
+            <p data-en="Prepare useful questions and recognise when hospital assessment comes first." data-zh="先判断是否需要医院评估，再准备更有效的中医问诊问题。">Prepare useful questions and recognise when hospital assessment comes first.</p>
+            <span class="task-link"><span data-en="Open the guide" data-zh="查看调养指南">Open the guide</span><span>→</span></span>
+          </a>
         </div>
       </div>
     </section>
@@ -445,7 +543,7 @@
     <section class="section specialties" id="specialties">
       <div class="shell">
         <div class="section-head reveal">
-          <div><p class="eyebrow" data-en="Priority specialties" data-zh="重点医疗方向">Priority specialties</p><h2 data-en="Begin with the condition, not a long hospital list." data-zh="先从病情出发，而不是面对一长串医院名单。">Begin with the condition, not a long hospital list.</h2><p data-en="The categories below reflect the high-complexity needs identified in the supplied business research. Final suitability is determined by the receiving hospital." data-zh="以下类别来自现有业务调研中的高复杂度需求。是否适合接收与治疗，最终由接收医院判断。">The categories below reflect the high-complexity needs identified in the supplied business research. Final suitability is determined by the receiving hospital.</p></div>
+          <div><p class="eyebrow" data-en="Priority specialties" data-zh="重点医疗方向">Priority specialties</p><h2 data-en="Begin with the condition, not a long hospital list." data-zh="先从病情出发，而不是面对一长串医院名单。">Begin with the condition, not a long hospital list.</h2><p data-en="The categories below reflect the high-complexity needs identified in the supplied business research. Final suitability is determined by the receiving hospital." data-zh="以下方向常见于复杂来华就医需求。能否接收、怎样治疗，最终仍由医院结合病历判断。">The categories below reflect the high-complexity needs identified in the supplied business research. Final suitability is determined by the receiving hospital.</p></div>
           <a class="btn btn-light" href="#assessment" data-en="Ask about another condition" data-zh="咨询其他病情">Ask about another condition</a>
         </div>
         <div class="specialty-grid reveal">
@@ -465,7 +563,7 @@
     <section class="section match" id="matching">
       <div class="shell split">
         <div class="image-stack reveal">
-          <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&amp;fit=crop&amp;w=1200&amp;q=84" alt="Modern hospital corridor" loading="lazy" />
+          <a class="image-source-link" href="https://zxhospital.com/" target="_blank" rel="noreferrer"><img src="assets/hospital-zhongnan-interior.jpg" alt="武汉大学中南医院门诊空间" loading="lazy" /></a>
           <div class="image-tag"><b data-en="Fit before fame" data-zh="匹配优先于名气">Fit before fame</b><span data-en="A famous hospital is useful only when the right team can review and receive the case." data-zh="只有合适的团队能够评估并接收病例，知名医院才真正有意义。">A famous hospital is useful only when the right team can review and receive the case.</span></div>
         </div>
         <div class="match-copy reveal">
@@ -482,10 +580,38 @@
       </div>
     </section>
 
+    <section class="section cases" id="cases">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow" data-en="Official hospital scenes" data-zh="真实医院场景">Official hospital scenes</p>
+            <h2 data-en="See the environment and service context before deciding." data-zh="决定之前，先看看真实的医院与照护场景。">See the environment and service context before deciding.</h2>
+            <p data-en="These are public materials from hospital websites. They help explain possible care settings and do not imply a CareChina partnership." data-zh="以下内容来自医院官网公开资料，用于帮助理解就医环境与服务方式，不代表平台合作关系。">These are public materials from hospital websites. They help explain possible care settings and do not imply a CareChina partnership.</p>
+          </div>
+          <a class="btn btn-light" href="hospitals.html"><span data-en="Compare hospitals" data-zh="进入医院匹配">Compare hospitals</span><span>→</span></a>
+        </div>
+        <div class="case-grid">
+          <a class="case-card case-card-wide reveal" href="https://www.tjh.com.cn/contents/1423/50696.html" target="_blank" rel="noreferrer">
+            <img src="assets/hospital-tongji-international.jpg" alt="华中科技大学同济医学院附属同济医院国际医疗服务空间" loading="lazy" />
+            <span class="case-overlay"><span class="source-pill" data-en="Official source · Tongji Hospital" data-zh="医院官网 · 同济医院">Official source · Tongji Hospital</span><strong data-en="International medical service in one setting" data-zh="国际医疗：从专科预约到全程协同">International medical service in one setting</strong><small data-en="Outpatient, inpatient, surgery, rehabilitation and multilingual support" data-zh="覆盖门诊、住院、手术、康复与多语言服务">Outpatient, inpatient, surgery, rehabilitation and multilingual support</small></span>
+          </a>
+          <a class="case-card reveal" href="https://zxhospital.com/" target="_blank" rel="noreferrer">
+            <img src="assets/hospital-zhongnan-exterior.jpg" alt="武汉大学中南医院院区外景" loading="lazy" />
+            <span class="case-overlay"><span class="source-pill" data-en="Official source · Zhongnan Hospital" data-zh="医院官网 · 中南医院">Official source · Zhongnan Hospital</span><strong data-en="A modern hospital campus in Wuhan" data-zh="现代医院空间与院区环境">A modern hospital campus in Wuhan</strong><small data-en="Review transport, accessibility and the care setting together" data-zh="把交通、无障碍与就医环境一起纳入选择">Review transport, accessibility and the care setting together</small></span>
+          </a>
+          <a class="case-card reveal" href="https://www.whsyy.net/view_11849.html" target="_blank" rel="noreferrer">
+            <img src="assets/case-rehab-care.jpg" alt="武汉市第三医院护理人员协助患者进行康复训练" loading="lazy" />
+            <span class="case-overlay"><span class="source-pill" data-en="Official source · Wuhan Third Hospital" data-zh="医院官网 · 武汉市第三医院">Official source · Wuhan Third Hospital</span><strong data-en="Care continues through rehabilitation" data-zh="治疗之后，护理与康复同样重要">Care continues through rehabilitation</strong><small data-en="A documented ward story published with patient consent" data-zh="医院公开的住院照护记录，原文注明已获患者同意">A documented ward story published with patient consent</small></span>
+          </a>
+        </div>
+        <p class="source-note" data-en="Prototype-use imagery. Publication or commercial reuse requires confirmation from each rights holder." data-zh="图片仅用于页面原型评审；正式发布或商业使用前需向各权利方确认授权。">Prototype-use imagery. Publication or commercial reuse requires confirmation from each rights holder.</p>
+      </div>
+    </section>
+
     <section class="section network" id="network">
       <div class="shell">
         <div class="section-head reveal">
-          <div><p class="eyebrow" data-en="Priority medical networks" data-zh="重点医疗资源网络">Priority medical networks</p><h2 data-en="Start with three cities from the business research." data-zh="先从业务调研中的三座重点城市开始。">Start with three cities from the business research.</h2><p data-en="Wuhan, Chengdu and Guangzhou each offer different clinical strengths and international-patient support. Availability is confirmed case by case." data-zh="武汉、成都、广州拥有不同的临床优势和国际患者服务条件，具体接收情况需逐例确认。">Wuhan, Chengdu and Guangzhou each offer different clinical strengths and international-patient support. Availability is confirmed case by case.</p></div>
+          <div><p class="eyebrow" data-en="Priority medical networks" data-zh="重点城市医疗资源">Priority medical networks</p><h2 data-en="Start with three cities from the business research." data-zh="三座重点城市，各有不同的医疗资源优势。">Start with three cities from the business research.</h2><p data-en="Wuhan, Chengdu and Guangzhou each offer different clinical strengths and international-patient support. Availability is confirmed case by case." data-zh="武汉、成都、广州拥有不同的临床优势和国际患者服务条件，具体接收情况需逐例确认。">Wuhan, Chengdu and Guangzhou each offer different clinical strengths and international-patient support. Availability is confirmed case by case.</p></div>
         </div>
         <div class="city-tabs reveal" role="tablist" aria-label="Medical cities">
           <button class="city-tab active" type="button" data-city="wuhan" role="tab" aria-selected="true">Wuhan 武汉</button>
@@ -518,32 +644,50 @@
 
     <section class="section support" id="support">
       <div class="shell">
-        <div class="section-head reveal"><div><p class="eyebrow" data-en="Support around the medicine" data-zh="围绕医疗的全程支持">Support around the medicine</p><h2 data-en="Your care team treats. Your coordinator connects the rest." data-zh="医院负责诊疗，协调员连接其余环节。">Your care team treats. Your coordinator connects the rest.</h2></div></div>
-        <div class="support-grid reveal">
-          <article class="support-card"><div class="support-ico">文</div><h3 data-en="Medical interpretation" data-zh="医疗翻译">Medical interpretation</h3><p data-en="Support for consultations, tests, admission, discharge and translated records." data-zh="覆盖问诊、检查、入院、出院沟通及医疗资料翻译。">Support for consultations, tests, admission, discharge and translated records.</p></article>
-          <article class="support-card"><div class="support-ico">✈</div><h3 data-en="Visa & travel documents" data-zh="签证与出行文件">Visa & travel documents</h3><p data-en="Coordinate hospital documents and provide a practical application checklist." data-zh="协调医院材料，并提供清晰的办理清单。">Coordinate hospital documents and provide a practical application checklist.</p></article>
-          <article class="support-card"><div class="support-ico">⌂</div><h3 data-en="Arrival & accommodation" data-zh="抵达与住宿">Arrival & accommodation</h3><p data-en="Airport transfer and stay options based on treatment and recovery needs." data-zh="根据治疗与康复需要协调接送和住宿选择。">Airport transfer and stay options based on treatment and recovery needs.</p></article>
-          <article class="support-card"><div class="support-ico">¥</div><h3 data-en="Payment coordination" data-zh="付款协调">Payment coordination</h3><p data-en="Clarify hospital deposits, invoices and institution-sponsored payment steps." data-zh="说明医院押金、账单及机构支付流程。">Clarify hospital deposits, invoices and institution-sponsored payment steps.</p></article>
-          <article class="support-card"><div class="support-ico">☾</div><h3 data-en="Cultural & family needs" data-zh="文化与家属需求">Cultural & family needs</h3><p data-en="Check dietary, prayer, companion and privacy needs with the receiving provider." data-zh="与接收机构确认饮食、祈祷、陪同和隐私需求。">Check dietary, prayer, companion and privacy needs with the receiving provider.</p></article>
-          <article class="support-card"><div class="support-ico">↺</div><h3 data-en="Return-home follow-up" data-zh="回国随访衔接">Return-home follow-up</h3><p data-en="Organise discharge information and help coordinate appropriate remote follow-up." data-zh="整理出院资料，并协助衔接适当的远程随访。">Organise discharge information and help coordinate appropriate remote follow-up.</p></article>
+        <div class="section-head reveal"><div><p class="eyebrow" data-en="Support around the medicine" data-zh="诊疗之外的协同">Support around the medicine</p><h2 data-en="The hospital treats. The coordinator makes the journey workable." data-zh="医院负责治疗，我们把来华就医这件事安排得可执行。">The hospital treats. The coordinator makes the journey workable.</h2><p data-en="International patients often need six practical services to connect around the clinical plan." data-zh="围绕医院给出的诊疗方案，国际患者通常还需要六类现实支持。">International patients often need six practical services to connect around the clinical plan.</p></div></div>
+        <div class="support-layout">
+          <a class="support-visual reveal" href="https://zxhospital.com/" target="_blank" rel="noreferrer">
+            <img src="assets/hospital-zhongnan-interior.jpg" alt="武汉大学中南医院明亮的门诊空间" loading="lazy" />
+            <span><b data-en="A care journey is also a physical journey." data-zh="就医流程，也是一段真实的空间与生活旅程。">A care journey is also a physical journey.</b><small data-en="Official image · Zhongnan Hospital" data-zh="图片来源 · 武汉大学中南医院官网">Official image · Zhongnan Hospital</small></span>
+          </a>
+          <div class="support-list reveal">
+            <article class="support-row"><span>01</span><div><h3 data-en="Medical interpretation" data-zh="医疗翻译与沟通">Medical interpretation</h3><p data-en="Consultation, testing, admission, discharge and translated records." data-zh="覆盖问诊、检查、入出院沟通及关键医疗资料翻译。">Consultation, testing, admission, discharge and translated records.</p></div></article>
+            <article class="support-row"><span>02</span><div><h3 data-en="Visa and hospital documents" data-zh="签证与医院材料">Visa and hospital documents</h3><p data-en="A current checklist and coordination of documents issued by the hospital." data-zh="提供当前办理清单，并协助衔接医院出具的相关材料。">A current checklist and coordination of documents issued by the hospital.</p></div></article>
+            <article class="support-row"><span>03</span><div><h3 data-en="Arrival and accommodation" data-zh="抵达、住宿与陪同">Arrival and accommodation</h3><p data-en="Plan transfers and stays around treatment, mobility and family needs." data-zh="根据治疗安排、行动能力与家属需求规划接送和住宿。">Plan transfers and stays around treatment, mobility and family needs.</p></div></article>
+            <article class="support-row"><span>04</span><div><h3 data-en="Payment coordination" data-zh="押金、账单与支付协调">Payment coordination</h3><p data-en="Clarify deposits, invoice timing and institution-sponsored payment steps." data-zh="提前说明押金、账单节点与机构支付的办理顺序。">Clarify deposits, invoice timing and institution-sponsored payment steps.</p></div></article>
+            <article class="support-row"><span>05</span><div><h3 data-en="Cultural and family needs" data-zh="饮食、宗教与家属需求">Cultural and family needs</h3><p data-en="Confirm diet, prayer, companion and privacy needs before arrival." data-zh="在抵达前确认饮食、祈祷、陪护与隐私方面的需求。">Confirm diet, prayer, companion and privacy needs before arrival.</p></div></article>
+            <article class="support-row"><span>06</span><div><h3 data-en="Return-home follow-up" data-zh="回国后的医疗衔接">Return-home follow-up</h3><p data-en="Organise discharge records and the next appropriate follow-up step." data-zh="整理出院资料，并明确回国后应继续完成的随访事项。">Organise discharge records and the next appropriate follow-up step.</p></div></article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section cost" id="cost">
-      <div class="shell cost-box reveal">
-        <div class="cost-copy">
-          <p class="eyebrow" data-en="Cost clarity, not a false instant price" data-zh="需要费用透明，而不是虚假的即时价格">Cost clarity, not a false instant price</p>
-          <h2 data-en="A useful estimate begins after medical review." data-zh="有参考价值的费用估算，始于医疗评估之后。">A useful estimate begins after medical review.</h2>
-          <p class="lead" data-en="Treatment scope, hospital level, length of stay, complications and support needs all change the total. The website should explain the components, while the hospital provides the medical estimate." data-zh="治疗范围、医院类型、住院时间、并发情况和支持需求都会改变总费用。网站负责解释构成，医疗费用由医院评估后提供。">Treatment scope, hospital level, length of stay, complications and support needs all change the total. The website should explain the components, while the hospital provides the medical estimate.</p>
-          <ul class="cost-points"><li data-en="Hospital and physician fees" data-zh="医院与医生费用">Hospital and physician fees</li><li data-en="Tests, imaging and medicines" data-zh="检查、影像与药品">Tests, imaging and medicines</li><li data-en="Interpreter and coordination" data-zh="翻译与协调服务">Interpreter and coordination</li><li data-en="Travel, stay and local transport" data-zh="出行、住宿与本地交通">Travel, stay and local transport</li></ul>
+    <section class="section cost" id="cost-planner">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div><p class="eyebrow" data-en="Step 3 · Plan a realistic range" data-zh="主流程第 3 步 · 准备预算">Step 3 · Plan a realistic range</p><h2 data-en="Estimate the whole journey, not only the hospital bill." data-zh="先估整个来华行程，再等待医院给出医疗费用。">Estimate the whole journey, not only the hospital bill.</h2><p data-en="Adjust the scenario and travel assumptions. The result is a planning range, while the receiving hospital provides the formal medical estimate after review." data-zh="调整就医场景与行程条件，先得到准备资金的参考区间；正式医疗报价仍需医院评估病历后提供。">Adjust the scenario and travel assumptions. The result is a planning range, while the receiving hospital provides the formal medical estimate after review.</p></div>
         </div>
-        <aside class="quote-card">
-          <h3 data-en="What a pre-travel care brief should include" data-zh="出发前医疗说明应包含什么">What a pre-travel care brief should include</h3>
-          <p data-en="Provided after the receiving hospital has enough information to review the case." data-zh="由接收医院获得足够资料并完成评估后提供。">Provided after the receiving hospital has enough information to review the case.</p>
-          <ul class="quote-list"><li><span data-en="Receiving hospital and team" data-zh="接收医院与团队">Receiving hospital and team</span><span data-en="Confirmed" data-zh="确认">Confirmed</span></li><li><span data-en="Proposed evaluation or treatment" data-zh="建议评估或治疗方向">Proposed evaluation or treatment</span><span data-en="Outlined" data-zh="说明">Outlined</span></li><li><span data-en="Expected duration and key milestones" data-zh="预计时长与关键节点">Expected duration and key milestones</span><span data-en="Estimated" data-zh="估算">Estimated</span></li><li><span data-en="Medical cost range and exclusions" data-zh="医疗费用区间与不含项目">Medical cost range and exclusions</span><span data-en="Itemised" data-zh="分项">Itemised</span></li></ul>
-          <a class="btn btn-primary" href="#assessment"><span data-en="Request a reviewed estimate" data-zh="申请评估后费用估算">Request a reviewed estimate</span><span>→</span></a>
-        </aside>
+        <div class="budget-shell reveal">
+          <form class="budget-controls" id="budgetForm">
+            <div class="budget-step"><span>01</span><div class="field"><label for="budgetScenario" data-en="Medical scenario" data-zh="就医场景">Medical scenario</label><select id="budgetScenario"><option value="evaluation" data-en="Outpatient assessment / second opinion" data-zh="门诊评估 / 第二诊疗意见">Outpatient assessment / second opinion</option><option value="surgery" data-en="Planned surgery" data-zh="计划性手术">Planned surgery</option><option value="complex" data-en="Complex inpatient treatment" data-zh="复杂住院治疗">Complex inpatient treatment</option><option value="rehab" data-en="Rehabilitation programme" data-zh="康复治疗计划">Rehabilitation programme</option></select></div></div>
+            <div class="budget-step"><span>02</span><div class="range-field"><div><label for="budgetDays" data-en="Stay in China" data-zh="预计在华停留">Stay in China</label><b><span id="budgetDaysValue">14</span> <i data-en="days" data-zh="天">days</i></b></div><input id="budgetDays" type="range" min="5" max="60" value="14" /></div></div>
+            <div class="budget-step"><span>03</span><div class="field"><label for="budgetCompanions" data-en="Companions" data-zh="陪同家属人数">Companions</label><select id="budgetCompanions"><option value="0" data-en="No companion" data-zh="无陪同家属">No companion</option><option value="1" selected data-en="1 companion" data-zh="1 位陪同家属">1 companion</option><option value="2" data-en="2 companions" data-zh="2 位陪同家属">2 companions</option></select></div></div>
+            <div class="budget-step"><span>04</span><div class="range-field"><div><label for="budgetInterpreter" data-en="Interpreter support" data-zh="预计需要医疗翻译">Interpreter support</label><b><span id="budgetInterpreterValue">4</span> <i data-en="days" data-zh="天">days</i></b></div><input id="budgetInterpreter" type="range" min="0" max="20" value="4" /></div></div>
+          </form>
+          <aside class="budget-result" aria-live="polite">
+            <span class="budget-label" data-en="PLANNING RANGE · CNY" data-zh="建议准备区间 · 人民币">PLANNING RANGE · CNY</span>
+            <strong id="budgetTotal">¥ 0 – ¥ 0</strong>
+            <p data-en="Use this to prepare, not to choose a treatment. It is not a hospital quote." data-zh="这个区间用于准备资金，不能据此选择治疗，也不等同于医院报价。">Use this to prepare, not to choose a treatment. It is not a hospital quote.</p>
+            <div class="budget-lines">
+              <div><span data-en="Medical reference range" data-zh="医疗费用参考">Medical reference range</span><b id="budgetMedical">—</b></div>
+              <div><span data-en="Stay and local transport" data-zh="住宿与本地交通">Stay and local transport</span><b id="budgetStay">—</b></div>
+              <div><span data-en="Interpretation and coordination" data-zh="翻译与协调支持">Interpretation and coordination</span><b id="budgetSupport">—</b></div>
+              <div><span data-en="Suggested contingency" data-zh="建议预备金">Suggested contingency</span><b id="budgetContingency">—</b></div>
+            </div>
+            <a class="btn btn-hero budget-cta" href="#assessment"><span data-en="Request a reviewed estimate" data-zh="提交病情，申请评估后估算">Request a reviewed estimate</span><span>→</span></a>
+          </aside>
+        </div>
+        <p class="source-note" data-en="Prototype assumptions only. Excludes international flights and unexpected clinical changes. Currency and service policies require live validation before launch." data-zh="本工具仅为原型假设，不含国际机票及病情变化产生的额外费用；正式上线前需接入实时汇率并核验服务政策。">Prototype assumptions only. Excludes international flights and unexpected clinical changes. Currency and service policies require live validation before launch.</p>
       </div>
     </section>
 
@@ -588,7 +732,7 @@
       <div class="footer-grid">
         <div class="footer-brand"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span class="brand-copy"><b data-en="CareChina" data-zh="CareChina">CareChina</b><small data-en="International patient care" data-zh="国际患者医疗服务">International patient care</small></span></a><p data-en="A patient-first concept for coordinating planned medical care in China. The platform is not a hospital and does not provide emergency care or medical diagnosis." data-zh="以患者为中心的来华计划性医疗协调平台概念。平台不是医院，不提供急救或医疗诊断。">A patient-first concept for coordinating planned medical care in China. The platform is not a hospital and does not provide emergency care or medical diagnosis.</p></div>
         <div><h4 data-en="Find care" data-zh="找到医疗">Find care</h4><ul><li><a href="#specialties" data-en="Specialties" data-zh="重点专科">Specialties</a></li><li><a href="#network" data-en="Medical networks" data-zh="医疗资源网络">Medical networks</a></li><li><a href="#matching" data-en="Matching logic" data-zh="匹配逻辑">Matching logic</a></li></ul></div>
-        <div><h4 data-en="Patient support" data-zh="患者支持">Patient support</h4><ul><li><a href="#journey" data-en="How it works" data-zh="就医流程">How it works</a></li><li><a href="#support" data-en="Journey support" data-zh="行程支持">Journey support</a></li><li><a href="#cost" data-en="Cost clarity" data-zh="费用说明">Cost clarity</a></li></ul></div>
+        <div><h4 data-en="Patient support" data-zh="患者支持">Patient support</h4><ul><li><a href="#journey" data-en="How it works" data-zh="就医流程">How it works</a></li><li><a href="#support" data-en="Journey support" data-zh="行程支持">Journey support</a></li><li><a href="#cost-planner" data-en="Cost clarity" data-zh="费用说明">Cost clarity</a></li></ul></div>
         <div><h4 data-en="Important" data-zh="重要说明">Important</h4><ul><li><a href="#faq" data-en="Medical disclaimer" data-zh="医疗免责声明">Medical disclaimer</a></li><li><a href="#faq" data-en="Privacy principles" data-zh="隐私原则">Privacy principles</a></li><li><a href="#partners" data-en="Institutional referrals" data-zh="机构转诊">Institutional referrals</a></li></ul></div>
       </div>
       <div class="footer-bottom"><p>© <span id="year"></span> CareChina. <span data-en="Prototype for product and design review." data-zh="用于产品与设计评审的静态原型。">Prototype for product and design review.</span></p><p data-en="Business research currently focuses on Wuhan, Chengdu, Guangzhou and Saudi outbound-care scenarios." data-zh="当前业务调研重点覆盖武汉、成都、广州及沙特出境就医场景。">Business research currently focuses on Wuhan, Chengdu, Guangzhou and Saudi outbound-care scenarios.</p></div>
@@ -608,7 +752,7 @@
         guangzhou:{kicker:'粤港澳大湾区',title:'广州',text:'中国南部国际门户，国际患者服务经验较成熟，肿瘤、眼科、心血管和移植相关资源突出。',facts:['较早形成国际患者服务体系','多语言与文化支持环境相对成熟','专科医院选择较丰富'],hospitals:[['南方医院','涉外与复杂综合诊疗','综合医院'],['中山大学中山眼科中心','复杂眼科与眼肿瘤','专科医院'],['中山大学附属第一医院','肝病、移植与消化','综合医院'],['广东省人民医院','复杂心血管疾病','综合医院'],['肿瘤专科医院网络','放疗、微创与综合治疗','专科医院']]}
       }
     };
-    let lang='en';
+    let lang='zh';
     const $$=(s,c=document)=>[...c.querySelectorAll(s)];
     function setLanguage(next){
       lang=next;document.documentElement.lang=next==='zh'?'zh-CN':'en';
@@ -617,7 +761,7 @@
       $$('[data-ph-en]').forEach(el=>{el.placeholder=el.dataset[next==='zh'?'phZh':'phEn']});
       $$('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===next));
       renderCity(document.querySelector('.city-tab.active')?.dataset.city||'wuhan');
-      try{localStorage.setItem('srgh-lang',next)}catch(e){}
+      try{localStorage.setItem('carechina-language',next)}catch(e){}
     }
     function renderCity(key){
       const data=cities[lang][key];
@@ -636,9 +780,34 @@
     document.getElementById('assessmentForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('formMessage').classList.add('show')});
     const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
     $$('.reveal').forEach(el=>io.observe(el));
+
+    const budgetScenarios={evaluation:[12000,30000],surgery:[90000,220000],complex:[180000,480000],rehab:[48000,120000]};
+    const money=n=>'¥ '+(Math.round(n/100)*100).toLocaleString('zh-CN');
+    function renderBudget(){
+      const scenario=document.getElementById('budgetScenario')?.value||'evaluation';
+      const days=Number(document.getElementById('budgetDays')?.value||14);
+      const companions=Number(document.getElementById('budgetCompanions')?.value||0);
+      const interpreter=Number(document.getElementById('budgetInterpreter')?.value||0);
+      const medical=budgetScenarios[scenario];
+      const stay=[days*(620+companions*240),days*(1180+companions*480)];
+      const support=[4200+interpreter*760,9800+interpreter*1380];
+      const subtotal=[medical[0]+stay[0]+support[0],medical[1]+stay[1]+support[1]];
+      const contingency=[subtotal[0]*.1,subtotal[1]*.15];
+      const total=[subtotal[0]+contingency[0],subtotal[1]+contingency[1]];
+      document.getElementById('budgetDaysValue').textContent=days;
+      document.getElementById('budgetInterpreterValue').textContent=interpreter;
+      document.getElementById('budgetMedical').textContent=money(medical[0])+' – '+money(medical[1]);
+      document.getElementById('budgetStay').textContent=money(stay[0])+' – '+money(stay[1]);
+      document.getElementById('budgetSupport').textContent=money(support[0])+' – '+money(support[1]);
+      document.getElementById('budgetContingency').textContent=money(contingency[0])+' – '+money(contingency[1]);
+      document.getElementById('budgetTotal').textContent=money(total[0])+' – '+money(total[1]);
+    }
+    ['budgetScenario','budgetDays','budgetCompanions','budgetInterpreter'].forEach(id=>document.getElementById(id)?.addEventListener('input',renderBudget));
+    renderBudget();
+
     document.getElementById('year').textContent=new Date().getFullYear();
     renderCity('wuhan');
-    try{const saved=localStorage.getItem('srgh-lang');if(saved==='zh')setLanguage('zh')}catch(e){}
+    try{const saved=localStorage.getItem('carechina-language');setLanguage(saved==='en'?'en':'zh')}catch(e){setLanguage('zh')}
   </script>
   <script>
     const mergedLangToggle=document.querySelector('[data-lang-toggle]');

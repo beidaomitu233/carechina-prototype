@@ -1,16 +1,18 @@
-const targets = await fetch("http://127.0.0.1:9222/json/list").then((response) => response.json());
-const target = targets.find((item) => item.type === "page");
-if (!target) throw new Error("No debuggable page target found");
+import fs from 'node:fs';
+
+const targets = await fetch('http://127.0.0.1:9222/json/list').then((response) => response.json());
+const target = targets.find((item) => item.type === 'page');
+if (!target) throw new Error('No debuggable page target found');
 
 const socket = new WebSocket(target.webSocketDebuggerUrl);
 await new Promise((resolve, reject) => {
-  socket.addEventListener("open", resolve, { once: true });
-  socket.addEventListener("error", reject, { once: true });
+  socket.addEventListener('open', resolve, { once: true });
+  socket.addEventListener('error', reject, { once: true });
 });
 
 let callId = 0;
 const pending = new Map();
-socket.addEventListener("message", (event) => {
+socket.addEventListener('message', (event) => {
   const message = JSON.parse(event.data);
   if (!message.id || !pending.has(message.id)) return;
   const handlers = pending.get(message.id);
@@ -24,85 +26,112 @@ function call(method, params = {}) {
   socket.send(JSON.stringify({ id, method, params }));
   return new Promise((resolve, reject) => pending.set(id, { resolve, reject }));
 }
-const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
-async function go(path) {
-  await call("Page.navigate", { url: `http://127.0.0.1:4173/${path}` });
-  await sleep(1000);
-}
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function evaluate(expression) {
-  const response = await call("Runtime.evaluate", { expression, returnByValue: true, awaitPromise: true });
+  const response = await call('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true });
   if (response.exceptionDetails) throw new Error(response.exceptionDetails.text);
   return response.result.value;
 }
-function assert(condition, message) {
-  if (!condition) throw new Error(message);
+async function go(path) {
+  await call('Page.navigate', { url: `http://127.0.0.1:4173/${path}` });
+  await sleep(900);
+}
+function assert(value, message) { if (!value) throw new Error(message); }
+async function shot(file) {
+  const result = await call('Page.captureScreenshot', { format: 'jpeg', quality: 78, captureBeyondViewport: false, fromSurface: true });
+  fs.writeFileSync(file, Buffer.from(result.data, 'base64'));
 }
 
-await call("Page.enable");
-await call("Runtime.enable");
-await go("index.html");
+await call('Page.enable');
+await call('Runtime.enable');
+await call('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
+await go('index.html');
+await evaluate(`localStorage.removeItem('carechina-language'); location.reload()`);
+await sleep(900);
+await evaluate(`document.getElementById('cases').scrollIntoView()`);
+await sleep(800);
+await evaluate(`document.getElementById('support').scrollIntoView()`);
+await sleep(650);
+await evaluate(`document.getElementById('top').scrollIntoView()`);
+await sleep(250);
 
 const desktop = await evaluate(`(() => {
-  const icon = document.querySelector('.trust-ico');
-  const iconStyle = getComputedStyle(icon);
-  const taskLinks = [...document.querySelectorAll('.task-grid-four .task-card a')].map((link) => link.getAttribute('href'));
+  const tasks=[...document.querySelectorAll('#start .task-card')];
+  const cases=[...document.querySelectorAll('#cases .case-card')];
+  const imgs=[...document.querySelectorAll('#cases img,.support-visual img')];
+  const banned=['rgb(239, 232, 220)','rgb(247, 246, 242)'];
+  const nodes=[...document.querySelectorAll('body *')];
+  const bannedComputed=nodes.some(node=>{const s=getComputedStyle(node);return banned.includes(s.backgroundColor)||banned.includes(s.color)});
   return {
-    title: document.title,
-    heroImage: getComputedStyle(document.querySelector('.home-hero')).backgroundImage,
-    navLinks: document.querySelectorAll('.main-nav .nav-link').length,
-    taskCards: document.querySelectorAll('.task-grid-four .task-card').length,
-    taskLinks,
-    trust: { width: icon.clientWidth, height: icon.clientHeight, align: iconStyle.alignItems, justify: iconStyle.justifyContent },
-    retainedSections: ['specialties','matching','network','journey','support','cost','faq','assessment'].every((id) => !!document.getElementById(id))
+    lang:document.documentElement.lang,
+    overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+    taskCount:tasks.length,
+    taskTags:tasks.map(x=>x.tagName),
+    taskLinks:tasks.map(x=>x.getAttribute('href')),
+    caseCount:cases.length,
+    imagesReady:imgs.every(x=>x.complete&&x.naturalWidth>0),
+    hasCost:!!document.getElementById('cost-planner'),
+    bannedComputed,
+    titleWeight:getComputedStyle(document.querySelector('.home-hero h1')).fontWeight,
+    titleLineHeight:getComputedStyle(document.querySelector('.home-hero h1')).lineHeight,
+    visibleTitle:document.querySelector('.home-hero h1').textContent.trim()
   };
 })()`);
-assert(desktop.heroImage.includes("hero-international-care.jpg"), "Real hero image is missing");
-assert(desktop.navLinks === 5, "Top navigation does not contain five destinations");
-assert(desktop.taskCards === 4, "Task entry section does not contain four cards");
-assert(JSON.stringify(desktop.taskLinks) === JSON.stringify(["hospitals.html","care-plan.html","cost-estimate.html","tcm-wellness.html"]), "Task links are not mapped to the four tools");
-assert(desktop.trust.align === "center" && desktop.trust.justify === "center", "Trust numbers are not centered");
-assert(desktop.retainedSections, "A home-redesign content section was lost");
+assert(desktop.lang === 'zh-CN', 'Homepage is not Chinese-first');
+assert(desktop.overflow <= 1, 'Desktop homepage has horizontal overflow');
+assert(desktop.taskCount === 4 && desktop.taskTags.every((tag) => tag === 'A'), 'Task cards are not full-card links');
+assert(JSON.stringify(desktop.taskLinks) === JSON.stringify(['hospitals.html','care-plan.html','#cost-planner','tcm-wellness.html']), 'Task destinations are incorrect');
+assert(desktop.caseCount === 3 && desktop.imagesReady, 'Official hospital case images failed to load');
+assert(desktop.hasCost && !desktop.bannedComputed, 'Embedded estimator or palette check failed');
+assert(desktop.visibleTitle.includes('来华就医'), 'Chinese homepage copy is not visible');
+await shot('设计稿/qa/mature-home-desktop.jpg');
 
-const language = await evaluate(`(() => {
-  if (document.documentElement.lang.startsWith('zh')) document.querySelector('[data-lang-toggle]').click();
-  document.querySelector('[data-lang-toggle]').click();
-  return {
-    htmlLang: document.documentElement.lang,
-    toggle: document.querySelector('[data-lang-toggle]').textContent,
-    taskTitle: document.querySelector('#start h2').textContent,
-    heroTitle: document.querySelector('.home-hero h1').textContent.trim()
-  };
+const budget = await evaluate(`(() => {
+  const before=document.getElementById('budgetTotal').textContent;
+  const scenario=document.getElementById('budgetScenario');
+  const days=document.getElementById('budgetDays');
+  scenario.value='complex'; scenario.dispatchEvent(new Event('input',{bubbles:true}));
+  days.value='40'; days.dispatchEvent(new Event('input',{bubbles:true}));
+  const after=document.getElementById('budgetTotal').textContent;
+  document.getElementById('cost-planner').scrollIntoView();
+  return {before,after,days:document.getElementById('budgetDaysValue').textContent};
 })()`);
-assert(language.htmlLang === "zh-CN" && language.toggle === "EN", "Single language toggle did not switch to Chinese");
-assert(language.taskTitle.includes("今天") && language.heroTitle.includes("来华就医"), "Merged sections did not translate together");
+assert(budget.before !== budget.after && budget.days === '40' && budget.after.includes('¥'), 'Budget estimator does not react');
+await sleep(350);
+await shot('设计稿/qa/mature-budget-desktop.jpg');
 
-const legacyInteractions = await evaluate(`(() => {
-  const chengdu = document.querySelector('[data-city="chengdu"]');
-  chengdu.click();
-  const city = document.querySelector('#cityTitle').textContent;
-  const details = document.querySelector('#faq details');
-  details.open = true;
-  return { city, faqOpen: details.open, cityTabs: document.querySelectorAll('.city-tab').length };
-})()`);
-assert(legacyInteractions.city === "成都" && legacyInteractions.cityTabs === 3, "Retained city interaction failed");
-assert(legacyInteractions.faqOpen, "Retained FAQ interaction failed");
+await go('hospitals.html');
+const subpage = await evaluate(`(() => ({
+  lang:document.documentElement.lang,
+  overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+  costLink:[...document.querySelectorAll('a')].find(x=>x.dataset.zh==='费用估算')?.getAttribute('href'),
+  brand:getComputedStyle(document.documentElement).getPropertyValue('--brand').trim(),
+  title:document.querySelector('.page-hero h1').textContent.trim()
+}))()`);
+assert(subpage.lang === 'zh-CN' && subpage.costLink === 'index.html#cost-planner', 'Subpage language or cost route is not unified');
+assert(subpage.brand === '#0f5c55' && subpage.overflow <= 1, 'Subpage palette or responsive width is incorrect');
+assert(subpage.title.length > 0, 'Subpage Chinese title is missing');
 
-await call("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
-await go("index.html");
+await call('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
+await go('index.html');
 const mobile = await evaluate(`(() => {
-  const button = document.querySelector('.menu-btn');
-  button.click();
+  const menu=document.querySelector('.menu-btn'); menu.click();
+  const budget=document.getElementById('cost-planner');
+  const cases=document.querySelector('.case-grid');
   return {
-    overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-    menuWidth: button.getBoundingClientRect().width,
-    languageWidth: document.querySelector('[data-lang-toggle]').getBoundingClientRect().width,
-    panelOpen: document.querySelector('.mobile-panel').classList.contains('open'),
-    taskColumns: getComputedStyle(document.querySelector('.task-grid-four')).gridTemplateColumns
+    overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+    menuOpen:document.querySelector('.mobile-panel').classList.contains('open'),
+    taskColumns:getComputedStyle(document.querySelector('.task-grid-four')).gridTemplateColumns,
+    caseColumns:getComputedStyle(cases).gridTemplateColumns,
+    budgetColumns:getComputedStyle(document.querySelector('.budget-shell')).gridTemplateColumns,
+    budgetWidth:budget.getBoundingClientRect().width
   };
 })()`);
-assert(mobile.overflow <= 1, "Merged mobile page has horizontal overflow");
-assert(mobile.menuWidth > 0 && mobile.languageWidth > 0 && mobile.panelOpen, "Mobile navigation controls failed");
-assert(!mobile.taskColumns.includes(" "), "Task cards do not collapse to one column on mobile");
+assert(mobile.overflow <= 1 && mobile.menuOpen, 'Mobile navigation or horizontal width failed');
+assert(!mobile.taskColumns.includes(' ') && !mobile.caseColumns.includes(' ') && !mobile.budgetColumns.includes(' '), 'Mobile grids did not collapse to one column');
+await evaluate(`closeMenu(); document.getElementById('start').scrollIntoView()`);
+await sleep(300);
+await shot('设计稿/qa/mature-home-mobile.jpg');
 
 socket.close();
-console.log(JSON.stringify({ ok: true, desktop, language, legacyInteractions, mobile }, null, 2));
+console.log(JSON.stringify({ ok: true, desktop, budget, subpage, mobile }, null, 2));
