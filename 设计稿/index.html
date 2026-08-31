@@ -318,6 +318,16 @@
     .main-nav{display:flex;align-items:center;justify-content:center;gap:6px;margin-left:auto}
     .nav-link{padding:10px 12px;border-radius:999px;color:var(--ink-2);font-size:.8rem;font-weight:800;white-space:nowrap}
     .nav-link:hover,.nav-link.active{color:var(--green);background:var(--surface)}
+    .nav-dropdown{position:relative;border:0}
+    .nav-dropdown>summary{position:static;display:flex;padding:10px 12px;align-items:center;gap:6px;list-style:none;cursor:pointer;font-size:.8rem}
+    .nav-dropdown>summary::-webkit-details-marker{display:none}
+    .nav-dropdown>summary::after{position:static;display:inline;width:auto;height:auto;content:"⌄";border:0;border-radius:0;color:inherit;background:none;font-size:.68rem;transition:transform .2s ease}
+    .nav-dropdown[open]>summary::after{transform:rotate(180deg)}
+    .nav-dropdown-menu{position:absolute;top:calc(100% + 12px);right:0;display:grid;width:240px;padding:10px;gap:4px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.98);box-shadow:0 24px 58px rgba(5,55,48,.19)}
+    .nav-dropdown-menu::before{position:absolute;top:-14px;right:0;left:0;height:14px;content:""}
+    .nav-dropdown-menu a{display:grid;padding:12px 13px;border-radius:12px;color:var(--ink);font-size:.78rem;font-weight:800}
+    .nav-dropdown-menu a:hover{color:var(--green);background:var(--surface)}
+    .nav-dropdown-menu small{margin-top:2px;color:var(--muted);font-size:.64rem;font-weight:600}
     .lang-toggle{min-width:48px;height:42px;padding:0 12px;border:1px solid var(--line);border-radius:999px;color:var(--green);background:var(--surface);font-size:.74rem;font-weight:900;cursor:pointer}
 
     .home-hero{position:relative;min-height:min(760px,calc(100vh - 116px));overflow:hidden;color:var(--white);background:linear-gradient(90deg,rgba(7,46,43,.96) 0%,rgba(10,63,58,.86) 39%,rgba(10,54,50,.38) 70%,rgba(10,54,50,.18) 100%),linear-gradient(0deg,rgba(7,46,43,.6),transparent 52%),url("assets/hero-international-care.jpg") center 43%/cover no-repeat}
@@ -528,11 +538,19 @@
         <span class="brand-copy">CareChina<small data-en="International patient service" data-zh="国际患者服务">International patient service</small></span>
       </a>
       <nav class="main-nav" aria-label="Primary navigation">
+        <a class="nav-link active" href="#top" data-en="Home" data-zh="首页">Home</a>
         <a class="nav-link" href="#eligibility" data-en="Can China Help?" data-zh="能否来华">Can China Help?</a>
-        <a class="nav-link" href="#journey" data-en="How It Works" data-zh="服务流程">How It Works</a>
-        <a class="nav-link" href="#specialties" data-en="Hospital Match" data-zh="医院匹配">Hospital Match</a>
-        <a class="nav-link" href="#cases" data-en="Patient Cases" data-zh="救治案例">Patient Cases</a>
-        <a class="nav-link" href="#assessment" data-en="Cost & Appointment" data-zh="费用与预约">Cost & Appointment</a>
+        <a class="nav-link" href="#journey" data-en="Coordinated Care" data-zh="全程服务">Coordinated Care</a>
+        <a class="nav-link" href="hospitals.html" data-en="Find a Hospital" data-zh="找医院">Find a Hospital</a>
+        <a class="nav-link" href="care-plan.html" data-en="Care Path" data-zh="诊疗路径">Care Path</a>
+        <details class="nav-dropdown">
+          <summary class="nav-link" data-en="More Services" data-zh="更多服务">More Services</summary>
+          <div class="nav-dropdown-menu">
+            <a href="cost-estimate.html"><span data-en="Cost Estimate" data-zh="费用估算">Cost Estimate</span><small data-en="Plan the full journey budget" data-zh="规划完整来华预算">Plan the full journey budget</small></a>
+            <a href="tcm-wellness.html"><span data-en="TCM Wellness" data-zh="中医调养">TCM Wellness</span><small data-en="Safety-first consultation guide" data-zh="安全优先的面诊指南">Safety-first consultation guide</small></a>
+            <a href="consultation.html"><span data-en="Consultation Guide" data-zh="咨询说明">Consultation Guide</span><small data-en="Prepare the right first contact" data-zh="了解首次沟通需要什么">Prepare the right first contact</small></a>
+          </div>
+        </details>
       </nav>
       <div class="nav-actions">
         <button class="lang-toggle" type="button" data-lang-toggle aria-label="Switch language">中文</button>
@@ -543,11 +561,15 @@
   </header>
   <div class="mobile-panel" aria-hidden="true">
     <nav aria-label="Mobile navigation">
+      <a href="#top" data-en="Home" data-zh="首页">Home</a>
       <a href="#eligibility" data-en="Can China Help?" data-zh="能否来华">Can China Help?</a>
-      <a href="#journey" data-en="How It Works" data-zh="服务流程">How It Works</a>
-      <a href="#specialties" data-en="Hospital Match" data-zh="医院匹配">Hospital Match</a>
+      <a href="#journey" data-en="Coordinated Care" data-zh="全程服务">Coordinated Care</a>
       <a href="#cases" data-en="Patient Cases" data-zh="救治案例">Patient Cases</a>
-      <a href="#assessment" data-en="Cost & Appointment" data-zh="费用与预约">Cost & Appointment</a>
+      <a href="hospitals.html" data-en="Find a Hospital" data-zh="找医院">Find a Hospital</a>
+      <a href="care-plan.html" data-en="Care Path" data-zh="诊疗路径">Care Path</a>
+      <a href="cost-estimate.html" data-en="Cost Estimate" data-zh="费用估算">Cost Estimate</a>
+      <a href="tcm-wellness.html" data-en="TCM Wellness" data-zh="中医调养">TCM Wellness</a>
+      <a href="consultation.html" data-en="Consultation Guide" data-zh="咨询说明">Consultation Guide</a>
     </nav>
     <a class="btn btn-primary" href="#assessment" data-en="Start a consultation" data-zh="开始咨询">Start a consultation</a>
   </div>
@@ -809,6 +831,7 @@
     function closeMenu(){document.body.classList.remove('menu-open');mobilePanel.classList.remove('open');mobilePanel.setAttribute('aria-hidden','true');menuBtn.setAttribute('aria-expanded','false')}
     menuBtn.addEventListener('click',()=>{const open=!mobilePanel.classList.contains('open');document.body.classList.toggle('menu-open',open);mobilePanel.classList.toggle('open',open);mobilePanel.setAttribute('aria-hidden',String(!open));menuBtn.setAttribute('aria-expanded',String(open))});
     $$('.mobile-panel a').forEach(a=>a.addEventListener('click',closeMenu));
+    document.addEventListener('click',event=>{$$('.nav-dropdown[open]').forEach(dropdown=>{if(!dropdown.contains(event.target))dropdown.removeAttribute('open')})});
     document.getElementById('assessmentForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('formMessage').classList.add('show')});
     const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
     $$('.reveal').forEach(el=>io.observe(el));

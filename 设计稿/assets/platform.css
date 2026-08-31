@@ -128,6 +128,55 @@ img { max-width: 100%; display: block; }
 .nav-link.active { color: var(--brand-dark); background: var(--surface); }
 .nav-link.active { box-shadow: inset 0 0 0 1px rgba(15, 92, 85, .12); }
 
+.nav-dropdown { position: relative; }
+.nav-dropdown > summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  cursor: pointer;
+}
+.nav-dropdown > summary::-webkit-details-marker { display: none; }
+.nav-dropdown > summary::after {
+  content: "⌄";
+  font-size: 12px;
+  transition: transform .2s ease;
+}
+.nav-dropdown[open] > summary::after { transform: rotate(180deg); }
+.nav-dropdown.has-active > summary { color: var(--brand-dark); background: var(--surface); }
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  display: grid;
+  width: 238px;
+  padding: 10px;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 22px 54px rgba(5,55,48,.18);
+}
+.nav-dropdown-menu::before {
+  position: absolute;
+  top: -14px;
+  right: 0;
+  left: 0;
+  height: 14px;
+  content: "";
+}
+.nav-sub-link {
+  display: grid;
+  padding: 12px 13px;
+  border-radius: 12px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 750;
+}
+.nav-sub-link small { margin-top: 2px; color: var(--ink-soft); font-size: 11px; font-weight: 550; }
+.nav-sub-link:hover,
+.nav-sub-link.active { color: var(--brand-deep); background: var(--surface); }
+
 .nav-actions { display: flex; align-items: center; gap: 9px; }
 .lang-toggle {
   min-width: 44px;
@@ -329,6 +378,11 @@ input[type="range"] { width: 100%; margin: 15px 0 3px; accent-color: var(--brand
   .main-nav { display: none; position: absolute; top: 68px; right: 20px; left: 20px; padding: 12px; flex-direction: column; align-items: stretch; border: 1px solid var(--line); border-radius: 18px; background: #fff; box-shadow: var(--shadow); }
   .main-nav.open { display: flex; }
   .nav-link { padding: 13px 14px; }
+  .nav-dropdown > summary { display: none; }
+  .nav-dropdown:not([open]) > .nav-dropdown-menu,
+  .nav-dropdown-menu { position: static; display: grid; width: auto; padding: 4px 0 0 16px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+  .nav-sub-link { padding: 11px 14px; border-left: 2px solid rgba(0,126,112,.16); border-radius: 0 11px 11px 0; }
+  .nav-sub-link small { display: none; }
   .menu-toggle { display: inline-grid; place-items: center; }
   .nav-actions { margin-left: auto; }
   .nav-actions .button { display: none; }
@@ -417,3 +471,101 @@ html[lang="zh-CN"] .notice { line-height: 1.75; }
 body[data-theme="clinic"]{--brand:#007e70;--brand-dark:#00675c;--brand-deep:#00584f;--cyan:#a6d7d1;--lime:#c8a15e;--surface:#f3f9f8;--ink:#174a45;--ink-soft:#4b6a66}
 body[data-theme="calm"]{--brand:#2a7b80;--brand-dark:#226a6f;--brand-deep:#1c575b;--cyan:#b7dddd;--lime:#8bbeb8;--surface:#f4fafa;--ink:#28575a;--ink-soft:#546c6d}
 body[data-theme="warm"]{--brand:#697354;--brand-dark:#596248;--brand-deep:#4b533d;--cyan:#d4dac5;--lime:#b99357;--surface:#f7f8f3;--ink:#4d553f;--ink-soft:#656b5b}
+
+
+/* V03 secondary pages: homepage photography, colour and spatial language */
+body[data-page="hospitals"]{--page-hero-image:url("hospital-zhongnan-exterior.jpg")}
+body[data-page="plan"]{--page-hero-image:url("clinical-patient-care-whsyy.jpg")}
+body[data-page="cost"]{--page-hero-image:url("hospital-tongji-international.jpg")}
+body[data-page="tcm"]{--page-hero-image:url("case-rehab-care.jpg")}
+body[data-page="consultation"]{--page-hero-image:url("hospital-zhongnan-interior.jpg")}
+
+body[data-page] .page-hero {
+  display: grid;
+  min-height: 610px;
+  padding: 88px 0 82px;
+  place-items: center;
+  color: #fff;
+  border-bottom: 0;
+  background:
+    linear-gradient(90deg,rgba(7,46,43,.96) 0%,rgba(10,63,58,.86) 42%,rgba(10,54,50,.48) 72%,rgba(10,54,50,.26) 100%),
+    linear-gradient(0deg,rgba(7,46,43,.68),transparent 56%),
+    var(--page-hero-image) center 44% / cover no-repeat;
+}
+body[data-page] .page-hero::after {
+  right: -190px;
+  bottom: -360px;
+  width: 620px;
+  height: 620px;
+  border-color: rgba(200,161,94,.3);
+  box-shadow: 0 0 0 86px rgba(200,161,94,.07),0 0 0 172px rgba(255,255,255,.035);
+}
+body[data-page] .page-hero .eyebrow { color: #e2c58c; }
+body[data-page] .page-hero h1 { max-width: 720px; color: #fff; }
+body[data-page] .page-hero p.lead { max-width: 640px; color: rgba(255,255,255,.76); }
+body[data-page] .hero-panel {
+  padding: 30px;
+  color: var(--ink);
+  border-color: rgba(255,255,255,.32);
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 28px 80px rgba(0,39,35,.24);
+}
+body[data-page] .hero-panel .mini-flow div { border-color: rgba(16,45,41,.1); background: rgba(255,255,255,.9); }
+body[data-page] .section.soft { background: linear-gradient(180deg,#f3f9f8 0%,#fff 100%); }
+body[data-page] .tool-shell { grid-template-columns: 360px minmax(0,1fr); gap: 30px; }
+body[data-page] .tool-panel { top: 104px; padding: 30px; border-top: 4px solid var(--lime); border-radius: 26px; box-shadow: 0 18px 52px rgba(5,71,52,.11); }
+body[data-page] .result-panel { min-height: 440px; padding: 34px; border-radius: 28px; box-shadow: 0 18px 52px rgba(5,71,52,.1); }
+body[data-page] .grid-3,
+body[data-page] .grid-4 { gap: 20px; }
+body[data-page] .grid-3 .card,
+body[data-page] .grid-4 .card {
+  position: relative;
+  display: flex;
+  min-height: 270px;
+  padding: 30px;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  border-radius: 26px;
+  box-shadow: 0 14px 38px rgba(5,71,52,.08);
+  transition: transform .28s ease,box-shadow .28s ease,border-color .28s ease;
+}
+body[data-page] .grid-3 .card:hover,
+body[data-page] .grid-4 .card:hover { transform: translateY(-7px); border-color: rgba(0,126,112,.28); box-shadow: 0 25px 60px rgba(5,71,52,.15); }
+body[data-page="plan"] .grid-3 .card:first-child,
+body[data-page="cost"] .grid-3 .card:first-child,
+body[data-page="tcm"] .grid-4 .card:first-child {
+  color: #fff;
+  border: 0;
+  background:
+    linear-gradient(180deg,rgba(0,55,50,.18),rgba(0,55,50,.96)),
+    var(--page-hero-image) center / cover no-repeat;
+}
+body[data-page="plan"] .grid-3 .card:first-child p,
+body[data-page="cost"] .grid-3 .card:first-child p,
+body[data-page="tcm"] .grid-4 .card:first-child p { color: rgba(255,255,255,.76); }
+body[data-page="plan"] .grid-3 .card:first-child .card-icon,
+body[data-page="cost"] .grid-3 .card:first-child .card-icon,
+body[data-page="tcm"] .grid-4 .card:first-child .card-icon { color: var(--brand-deep); background: #e2c58c; }
+body[data-page="consultation"] .consult-aside {
+  min-height: 650px;
+  background:
+    linear-gradient(180deg,rgba(0,70,64,.58),rgba(0,70,64,.98)),
+    var(--page-hero-image) center / cover no-repeat !important;
+  box-shadow: 0 22px 60px rgba(5,71,52,.16);
+}
+
+@media (max-width: 1040px) {
+  body[data-page] .page-hero { min-height: 560px; }
+  body[data-page] .tool-shell { grid-template-columns: 310px minmax(0,1fr); }
+}
+@media (max-width: 780px) {
+  body[data-page] .page-hero { min-height: 0; padding: 68px 0 58px; background-position: 62% center; }
+  body[data-page] .page-hero-grid { gap: 42px; }
+  body[data-page] .tool-shell { grid-template-columns: 1fr; }
+  body[data-page] .tool-panel { padding: 24px; }
+  body[data-page] .result-panel { min-height: 360px; padding: 24px; }
+  body[data-page] .grid-3 .card,
+  body[data-page] .grid-4 .card { min-height: 230px; padding: 25px; }
+  body[data-page="consultation"] .consult-aside { min-height: 560px; }
+}

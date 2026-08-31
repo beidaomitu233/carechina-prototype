@@ -159,17 +159,20 @@ await go('hospitals.html');
 const subpage = await evaluate(`(() => ({
   lang:document.documentElement.lang,
   overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
-  costLink:[...document.querySelectorAll('a')].find(x=>x.dataset.zh==='费用估算')?.getAttribute('href'),
+  costLink:document.querySelector('.main-nav a[href="cost-estimate.html"]')?.getAttribute('href'),
   brand:getComputedStyle(document.body).getPropertyValue('--brand').trim(),
   theme:document.body.dataset.theme,
   title:document.querySelector('.page-hero h1').textContent.trim(),
   cityCards:document.querySelectorAll('[data-city-jump]').length,
-  researchLabels:document.querySelectorAll('.hospital-rank').length
+  researchLabels:document.querySelectorAll('.hospital-rank').length,
+  navRoutes:['hospitals.html','care-plan.html','cost-estimate.html','tcm-wellness.html','consultation.html'].every(href=>!!document.querySelector('.main-nav a[href="'+href+'"]')),
+  heroImage:getComputedStyle(document.querySelector('.page-hero')).backgroundImage
 }))()`);
-assert(subpage.lang === 'zh-CN' && subpage.costLink === 'index.html#cost-planner', 'Subpage language or cost route is not unified');
+assert(subpage.lang === 'zh-CN' && subpage.costLink === 'cost-estimate.html', `Subpage language or cost route is not unified: ${JSON.stringify(subpage)}`);
 assert(subpage.brand === '#2a7b80' && subpage.theme === 'calm' && subpage.overflow <= 1, 'Subpage theme persistence or responsive width is incorrect');
 assert(subpage.title.length > 0, 'Subpage Chinese title is missing');
-assert(subpage.cityCards === 3 && subpage.researchLabels === 0, 'City-first hospital discovery or label removal failed');
+assert(subpage.cityCards === 3 && subpage.researchLabels === 0 && subpage.navRoutes && subpage.heroImage.includes('hospital-zhongnan-exterior'), 'City discovery, navigation routes, hero image or label removal failed');
+await shot('设计稿/qa/v03-hospitals-top-desktop.jpg');
 await evaluate(`document.documentElement.style.scrollBehavior='auto';document.querySelector('.city-discovery').scrollIntoView()`);
 await sleep(250);
 await shot('设计稿/qa/mature-hospitals-city.jpg');
@@ -177,6 +180,52 @@ const cityClick = await evaluate(`(() => {document.querySelector('[data-city-jum
 assert(cityClick.city === 'Chengdu' && cityClick.count.includes('1'), 'City card does not filter the hospital list');
 await sleep(250);
 await shot('设计稿/qa/mature-hospitals-filter.jpg');
+
+const secondaryPages = [
+  ['care-plan.html','plan','clinical-patient-care-whsyy'],
+  ['cost-estimate.html','cost','hospital-tongji-international'],
+  ['tcm-wellness.html','tcm','case-rehab-care'],
+  ['consultation.html','consultation','hospital-zhongnan-interior']
+];
+const secondaryResults = [];
+for (const [path,page,imageName] of secondaryPages) {
+  await go(path);
+  const result = await evaluate(`(() => {
+    const page=${JSON.stringify(page)};
+    const dropdown=document.querySelector('.nav-dropdown');
+    return {
+      path:location.pathname,
+      lang:document.documentElement.lang,
+      overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+      heroImage:getComputedStyle(document.querySelector('.page-hero')).backgroundImage,
+      heroColor:getComputedStyle(document.querySelector('.page-hero h1')).color,
+      pageActive:!!document.querySelector('[data-nav="'+page+'"].active'),
+      dropdownActive:['cost','tcm','consultation'].includes(page)?dropdown.classList.contains('has-active'):true,
+      navRoutes:['hospitals.html','care-plan.html','cost-estimate.html','tcm-wellness.html','consultation.html'].every(href=>!!document.querySelector('.main-nav a[href="'+href+'"]'))
+    };
+  })()`);
+  assert(result.lang === 'zh-CN' && result.overflow <= 1, `${path} language or desktop width failed`);
+  assert(result.heroImage.includes(imageName) && result.heroColor === 'rgb(255, 255, 255)', `${path} photographic hero is not applied`);
+  assert(result.pageActive && result.dropdownActive && result.navRoutes, `${path} navigation state or routes failed`);
+  secondaryResults.push(result);
+  await shot(`设计稿/qa/v03-${page}-desktop.jpg`);
+}
+
+await go('care-plan.html');
+const planInteraction = await evaluate(`(() => {const input=document.getElementById('condition');input.value='心脏手术方案评估';document.getElementById('plan-form').requestSubmit();return {title:document.querySelector('#plan-result h2')?.textContent,steps:document.querySelectorAll('#plan-result .plan-step').length,cost:document.querySelector('#plan-result a[href="cost-estimate.html"]')?.textContent};})()`);
+assert(planInteraction.title.includes('心脏') && planInteraction.steps === 6 && planInteraction.cost, 'Care-plan generator failed');
+
+await go('cost-estimate.html');
+const costInteraction = await evaluate(`(() => {const before=document.getElementById('estimate-total').textContent;const days=document.getElementById('days');days.value='33';days.dispatchEvent(new Event('input',{bubbles:true}));return {before,after:document.getElementById('estimate-total').textContent,days:document.getElementById('days-value').textContent};})()`);
+assert(costInteraction.before !== costInteraction.after && costInteraction.days.includes('33'), 'Cost-estimate interaction failed');
+
+await go('tcm-wellness.html');
+const tcmInteraction = await evaluate(`(() => {document.getElementById('wellness-form').requestSubmit();return {title:document.querySelector('#wellness-result h2')?.textContent,boxes:document.querySelectorAll('#wellness-result .safe-box').length};})()`);
+assert(tcmInteraction.title.includes('症状') && tcmInteraction.boxes === 4, 'TCM consultation checklist failed');
+
+await go('consultation.html');
+const consultationTabs = await evaluate(`(() => {document.querySelector('[data-tab-target="institution"]').click();return {active:document.querySelector('.tab.active')?.dataset.tabTarget,panel:document.querySelector('[data-tab-panel="institution"]').classList.contains('active')};})()`);
+assert(consultationTabs.active === 'institution' && consultationTabs.panel, 'Consultation tabs failed');
 
 await evaluate(`localStorage.setItem('carechina-theme','clinic')`);
 await call('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
@@ -205,5 +254,27 @@ await evaluate(`document.documentElement.style.scrollBehavior='auto'; document.g
 await sleep(300);
 await shot('设计稿/qa/v03-journey-mobile.jpg');
 
+const mobileSecondary = [];
+for (const [path,page] of [['hospitals.html','hospitals'],...secondaryPages.map(([path,page])=>[path,page])]) {
+  await go(path);
+  const result = await evaluate(`(() => {
+    document.querySelector('[data-menu-toggle]').click();
+    const nav=document.querySelector('[data-main-nav]');
+    const visibleLinks=[...nav.querySelectorAll('a')].filter(a=>getComputedStyle(a).display!=='none'&&a.getBoundingClientRect().height>0);
+    return {
+      overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+      open:nav.classList.contains('open'),
+      dropdownOpen:document.querySelector('.nav-dropdown').hasAttribute('open'),
+      visibleLinks:visibleLinks.length,
+      routes:['hospitals.html','care-plan.html','cost-estimate.html','tcm-wellness.html','consultation.html'].every(href=>visibleLinks.some(a=>a.getAttribute('href')===href)),
+      heroColumns:getComputedStyle(document.querySelector('.page-hero-grid')).gridTemplateColumns
+    };
+  })()`);
+  assert(result.overflow <= 1 && result.open && result.dropdownOpen && result.visibleLinks >= 8 && result.routes, `${path} mobile navigation or width failed`);
+  assert(!result.heroColumns.includes(' '), `${path} mobile hero did not collapse to one column`);
+  mobileSecondary.push({path,...result});
+  await shot(`设计稿/qa/v03-${page}-mobile.jpg`);
+}
+
 socket.close();
-console.log(JSON.stringify({ ok: true, desktop, budget, subpage, mobile }, null, 2));
+console.log(JSON.stringify({ ok: true, desktop, budget, subpage, secondaryResults, planInteraction, costInteraction, tcmInteraction, consultationTabs, mobile, mobileSecondary }, null, 2));

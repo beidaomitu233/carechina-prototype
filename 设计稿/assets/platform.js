@@ -6,15 +6,33 @@
   const langButton = document.querySelector("[data-lang-toggle]");
   try { document.body.dataset.theme = localStorage.getItem("carechina-theme") || "clinic"; } catch (_) { document.body.dataset.theme = "clinic"; }
 
-  document.querySelectorAll(`[data-nav="${page}"]`).forEach((link) => link.classList.add("active"));
+  document.querySelectorAll(`[data-nav="${page}"]`).forEach((link) => {
+    link.classList.add("active");
+    const dropdown = link.closest(".nav-dropdown");
+    if (dropdown) dropdown.classList.add("has-active");
+  });
 
   if (menuButton && nav) {
     menuButton.addEventListener("click", () => {
       const open = nav.classList.toggle("open");
       menuButton.setAttribute("aria-expanded", String(open));
+      nav.querySelectorAll(".nav-dropdown").forEach((dropdown) => {
+        dropdown.toggleAttribute("open", open && window.matchMedia("(max-width: 1040px)").matches);
+      });
     });
-    nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => nav.classList.remove("open")));
+    nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      nav.querySelectorAll(".nav-dropdown").forEach((dropdown) => dropdown.removeAttribute("open"));
+    }));
   }
+
+  document.addEventListener("click", (event) => {
+    if (nav && nav.classList.contains("open")) return;
+    document.querySelectorAll(".nav-dropdown[open]").forEach((dropdown) => {
+      if (!dropdown.contains(event.target)) dropdown.removeAttribute("open");
+    });
+  });
 
   function setLanguage(lang) {
     root.lang = lang === "zh" ? "zh-CN" : "en";
