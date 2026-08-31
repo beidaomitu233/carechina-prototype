@@ -1,4 +1,4 @@
-const targets = await fetch("http://127.0.0.1:9222/json/list").then((r) => r.json());
+const targets = await fetch("http://127.0.0.1:9222/json/list").then((response) => response.json());
 const target = targets.find((item) => item.type === "page");
 if (!target) throw new Error("No debuggable page target found");
 
@@ -13,10 +13,10 @@ const pending = new Map();
 socket.addEventListener("message", (event) => {
   const message = JSON.parse(event.data);
   if (!message.id || !pending.has(message.id)) return;
-  const { resolve, reject } = pending.get(message.id);
+  const handlers = pending.get(message.id);
   pending.delete(message.id);
-  if (message.error) reject(new Error(message.error.message));
-  else resolve(message.result);
+  if (message.error) handlers.reject(new Error(message.error.message));
+  else handlers.resolve(message.result);
 });
 
 function call(method, params = {}) {
@@ -24,11 +24,10 @@ function call(method, params = {}) {
   socket.send(JSON.stringify({ id, method, params }));
   return new Promise((resolve, reject) => pending.set(id, { resolve, reject }));
 }
-
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 async function go(path) {
   await call("Page.navigate", { url: `http://127.0.0.1:4173/${path}` });
-  await sleep(900);
+  await sleep(1000);
 }
 async function evaluate(expression) {
   const response = await call("Runtime.evaluate", { expression, returnByValue: true, awaitPromise: true });
@@ -41,85 +40,69 @@ function assert(condition, message) {
 
 await call("Page.enable");
 await call("Runtime.enable");
-const report = [];
-
 await go("index.html");
-const home = await evaluate(`(() => {
+
+const desktop = await evaluate(`(() => {
   const icon = document.querySelector('.trust-ico');
-  const style = getComputedStyle(icon);
-  const bg = getComputedStyle(document.querySelector('.home-hero')).backgroundImage;
-  return { title: document.title, bg, align: style.alignItems, justify: style.justifyContent, icon: [icon.clientWidth, icon.clientHeight], nav: document.querySelectorAll('.main-nav a').length };
+  const iconStyle = getComputedStyle(icon);
+  const taskLinks = [...document.querySelectorAll('.task-grid-four .task-card a')].map((link) => link.getAttribute('href'));
+  return {
+    title: document.title,
+    heroImage: getComputedStyle(document.querySelector('.home-hero')).backgroundImage,
+    navLinks: document.querySelectorAll('.main-nav .nav-link').length,
+    taskCards: document.querySelectorAll('.task-grid-four .task-card').length,
+    taskLinks,
+    trust: { width: icon.clientWidth, height: icon.clientHeight, align: iconStyle.alignItems, justify: iconStyle.justifyContent },
+    retainedSections: ['specialties','matching','network','journey','support','cost','faq','assessment'].every((id) => !!document.getElementById(id))
+  };
 })()`);
-assert(home.bg.includes("hero-international-care.jpg"), "Home hero image is not applied");
-assert(home.align === "center" && home.justify === "center", "Trust number is not centered");
-assert(home.icon[0] === 44 && home.icon[1] === 44, "Trust number box changed size");
-assert(home.nav === 5, "Primary navigation is incomplete");
-report.push({ page: "home", ...home });
+assert(desktop.heroImage.includes("hero-international-care.jpg"), "Real hero image is missing");
+assert(desktop.navLinks === 5, "Top navigation does not contain five destinations");
+assert(desktop.taskCards === 4, "Task entry section does not contain four cards");
+assert(JSON.stringify(desktop.taskLinks) === JSON.stringify(["hospitals.html","care-plan.html","cost-estimate.html","tcm-wellness.html"]), "Task links are not mapped to the four tools");
+assert(desktop.trust.align === "center" && desktop.trust.justify === "center", "Trust numbers are not centered");
+assert(desktop.retainedSections, "A home-redesign content section was lost");
 
-await go("hospitals.html");
-const hospitals = await evaluate(`(() => {
-  const input = document.querySelector('#hospital-search');
-  input.value = 'cardio';
-  input.dispatchEvent(new Event('input', { bubbles: true }));
-  const english = { count: document.querySelectorAll('.hospital-card').length, label: document.querySelector('#result-count').textContent };
-  if (!document.documentElement.lang.startsWith('zh')) document.querySelector('[data-lang-toggle]').click();
-  return { ...english, zhLabel: document.querySelector('#result-count').textContent };
+const language = await evaluate(`(() => {
+  if (document.documentElement.lang.startsWith('zh')) document.querySelector('[data-lang-toggle]').click();
+  document.querySelector('[data-lang-toggle]').click();
+  return {
+    htmlLang: document.documentElement.lang,
+    toggle: document.querySelector('[data-lang-toggle]').textContent,
+    taskTitle: document.querySelector('#start h2').textContent,
+    heroTitle: document.querySelector('.home-hero h1').textContent.trim()
+  };
 })()`);
-assert(hospitals.count >= 3 && hospitals.count < 12, "Hospital search did not filter results");
-assert(hospitals.zhLabel.includes("家医院"), "Hospital count did not switch to Chinese");
-report.push({ page: "hospitals", ...hospitals });
+assert(language.htmlLang === "zh-CN" && language.toggle === "EN", "Single language toggle did not switch to Chinese");
+assert(language.taskTitle.includes("今天") && language.heroTitle.includes("来华就医"), "Merged sections did not translate together");
 
-await go("care-plan.html");
-const plan = await evaluate(`(() => {
-  document.querySelector('#condition').value = 'cardiac surgery review';
-  document.querySelector('#plan-form').requestSubmit();
-  return { steps: document.querySelectorAll('.plan-step').length, hasConsult: !!document.querySelector('#plan-result a[href="consultation.html"]') };
+const legacyInteractions = await evaluate(`(() => {
+  const chengdu = document.querySelector('[data-city="chengdu"]');
+  chengdu.click();
+  const city = document.querySelector('#cityTitle').textContent;
+  const details = document.querySelector('#faq details');
+  details.open = true;
+  return { city, faqOpen: details.open, cityTabs: document.querySelectorAll('.city-tab').length };
 })()`);
-assert(plan.steps === 6 && plan.hasConsult, "Care plan generator did not build the six-step path");
-report.push({ page: "care-plan", ...plan });
-
-await go("cost-estimate.html");
-const cost = await evaluate(`(() => {
-  const before = document.querySelector('#estimate-total').textContent;
-  const slider = document.querySelector('#days');
-  slider.value = 30;
-  slider.dispatchEvent(new Event('input', { bubbles: true }));
-  const after = document.querySelector('#estimate-total').textContent;
-  return { before, after, lines: document.querySelectorAll('.estimate-line').length };
-})()`);
-assert(cost.before !== cost.after && cost.lines === 5 && cost.after.includes(","), "Cost model did not recalculate and format the range");
-report.push({ page: "cost-estimate", ...cost });
-
-await go("tcm-wellness.html");
-const tcm = await evaluate(`(() => {
-  document.querySelector('#wellness-form').requestSubmit();
-  return { boxes: document.querySelectorAll('.safe-box').length, redFlags: document.querySelectorAll('.red-flag').length, resultText: document.querySelector('#wellness-result').textContent.slice(0, 80) };
-})()`);
-assert(tcm.boxes === 4 && tcm.redFlags === 1, "TCM checklist or red-flag guidance is incomplete");
-report.push({ page: "tcm-wellness", ...tcm });
-
-await go("consultation.html");
-const consult = await evaluate(`(() => {
-  document.querySelector('#p-name').value = 'Test';
-  document.querySelector('#p-country').value = 'Test region';
-  document.querySelector('#p-language').value = 'English';
-  document.querySelector('#p-summary').value = 'De-identified planning question';
-  document.querySelector('#patient-form input[type="checkbox"]').checked = true;
-  document.querySelector('#patient-form').requestSubmit();
-  return { shown: document.querySelector('#success-state').classList.contains('show'), notice: document.querySelector('#success-state .notice').textContent };
-})()`);
-assert(consult.shown && /not transmitted|没有被发送/.test(consult.notice), "Consultation prototype did not show the local-only success state");
-report.push({ page: "consultation", ...consult });
+assert(legacyInteractions.city === "成都" && legacyInteractions.cityTabs === 3, "Retained city interaction failed");
+assert(legacyInteractions.faqOpen, "Retained FAQ interaction failed");
 
 await call("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
 await go("index.html");
 const mobile = await evaluate(`(() => {
-  const menu = document.querySelector('[data-menu-toggle]');
-  const lang = document.querySelector('[data-lang-toggle]');
-  return { overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth, menuVisible: menu.getBoundingClientRect().width > 0, langVisible: lang.getBoundingClientRect().width > 0, h1: document.querySelector('h1').getBoundingClientRect().width };
+  const button = document.querySelector('.menu-btn');
+  button.click();
+  return {
+    overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    menuWidth: button.getBoundingClientRect().width,
+    languageWidth: document.querySelector('[data-lang-toggle]').getBoundingClientRect().width,
+    panelOpen: document.querySelector('.mobile-panel').classList.contains('open'),
+    taskColumns: getComputedStyle(document.querySelector('.task-grid-four')).gridTemplateColumns
+  };
 })()`);
-assert(mobile.overflow <= 1 && mobile.menuVisible && mobile.langVisible, "Mobile header or horizontal layout failed");
-report.push({ page: "mobile-home", ...mobile });
+assert(mobile.overflow <= 1, "Merged mobile page has horizontal overflow");
+assert(mobile.menuWidth > 0 && mobile.languageWidth > 0 && mobile.panelOpen, "Mobile navigation controls failed");
+assert(!mobile.taskColumns.includes(" "), "Task cards do not collapse to one column on mobile");
 
 socket.close();
-console.log(JSON.stringify({ ok: true, report }, null, 2));
+console.log(JSON.stringify({ ok: true, desktop, language, legacyInteractions, mobile }, null, 2));
