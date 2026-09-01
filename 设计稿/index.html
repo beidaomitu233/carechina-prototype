@@ -519,6 +519,30 @@
     @media(max-width:980px){.eligibility-shell{grid-template-columns:280px 1fr}.eligibility-panel{padding:42px}.coordination-board{grid-template-columns:260px 1fr}.coordination-roles{grid-template-columns:1fr 1fr}.coordination-roles span:nth-child(2){border-right:0}.coordination-roles span:nth-child(-n+2){border-bottom:1px solid rgba(0,126,112,.14)}}
     @media(max-width:680px){.home-hero .hero-copy{background:none}.eligibility-shell{grid-template-columns:1fr}.eligibility-menu{grid-template-columns:1fr 1fr;padding:10px}.eligibility-choice{padding:15px 12px;grid-template-columns:28px 1fr;border:1px solid rgba(255,255,255,.12)}.eligibility-choice.active{transform:none}.eligibility-panel{padding:34px 24px}.eligibility-facts{grid-template-columns:1fr}.eligibility-facts span+span{padding-left:0;border-top:1px solid var(--line);border-left:0}.eligibility-alert{align-items:flex-start;flex-direction:column;gap:5px}.coordination-board{min-height:0;grid-template-columns:1fr}.coordination-nav{display:flex;padding:10px;overflow-x:auto}.coordination-step{min-width:190px;border-right:1px solid rgba(255,255,255,.14);border-bottom:0}.coordination-step.active{transform:none}.coordination-display{display:grid;min-height:760px}.coordination-display>img{height:270px}.coordination-shade{height:270px;background:linear-gradient(180deg,transparent,rgba(0,60,54,.72))}.coordination-panel{position:relative;right:auto;bottom:auto;left:auto;margin-top:250px;padding:26px 18px;background:var(--green)}.coordination-panel h3{font-size:1.65rem}.coordination-roles{grid-template-columns:1fr}.coordination-roles span{min-height:88px;border-right:0;border-bottom:1px solid rgba(0,126,112,.14)!important}.coordination-source{top:240px}.resource-tabs{grid-template-columns:1fr}.resource-tab{padding:15px 18px}.service-start-strip{grid-template-columns:1fr}.service-start-strip span{min-height:88px;border-right:0;border-bottom:1px solid var(--line)}}
 
+    /* Hospital match centre: specialty -> city -> ranked shortlist */
+    .focus-tile{width:100%;border:0;text-align:left;font:inherit;cursor:pointer}
+    .focus-tile.active{color:#fff;background:rgba(200,161,94,.96);box-shadow:0 18px 42px rgba(0,48,43,.2)}
+    .focus-tile.active h3,.focus-tile.active small{color:#fff}
+    .focus-tile:focus-visible,.city-scene:focus-visible,.match-chip:focus-visible,.rank-row:focus-visible{outline:3px solid #efd49c;outline-offset:3px}
+    button.city-scene{display:block;width:100%;padding:0;border:0;color:inherit;text-align:left;font:inherit;cursor:pointer}
+    .city-scene.active{box-shadow:0 0 0 4px var(--gold),0 28px 65px rgba(0,74,65,.22)}
+    .match-explorer{margin-top:20px;padding:36px;scroll-margin-top:104px;color:var(--ink);background:#fff;box-shadow:0 28px 72px rgba(0,48,43,.18)}
+    .match-explorer-head{display:flex;margin-bottom:26px;align-items:flex-start;justify-content:space-between;gap:28px}
+    .match-explorer-head>div{max-width:760px}.match-kicker{display:block;margin-bottom:7px;color:var(--gold);font-size:.66rem;font-weight:900;letter-spacing:.12em}.match-explorer-head h3{margin:0;color:var(--green);font-size:clamp(1.75rem,3vw,3rem);line-height:1.2}.match-explorer-head p{margin:10px 0 0;color:var(--ink-2);font-size:.78rem;line-height:1.7}
+    .match-mode{display:grid;min-width:142px;padding:13px 16px;gap:3px;border-left:3px solid var(--gold);color:var(--green);background:var(--surface)}.match-mode small{color:var(--ink-2);font-size:.6rem;font-weight:750}.match-mode b{font-size:.82rem}
+    .match-controls{display:grid;margin-bottom:28px;padding:22px;grid-template-columns:1fr 1.35fr;gap:24px;background:var(--surface)}
+    .match-control{display:grid;gap:10px}.match-control>span{color:var(--ink-2);font-size:.66rem;font-weight:850;letter-spacing:.06em}.match-chips{display:flex;flex-wrap:wrap;gap:8px}
+    .match-chip{min-height:38px;padding:8px 13px;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);background:#fff;font-size:.72rem;font-weight:800;transition:.2s ease}.match-chip:hover{transform:translateY(-2px);border-color:var(--green);color:var(--green)}.match-chip.active{border-color:var(--green);color:#fff;background:var(--green);box-shadow:0 8px 20px rgba(0,74,65,.16)}
+    .match-list-head{display:flex;padding:0 2px 13px;align-items:end;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line)}.match-list-head strong{color:var(--green);font-size:1.05rem}.match-list-head small{color:var(--ink-2);font-size:.66rem}
+    .match-ranking{display:grid}.rank-item{border-bottom:1px solid var(--line);transition:background .2s ease}.rank-item:last-child{border-bottom:0}.rank-item.open{background:var(--surface)}
+    .rank-row{display:grid;width:100%;padding:18px 12px;grid-template-columns:54px minmax(0,1fr) auto 34px;align-items:center;gap:15px;border:0;color:var(--ink);text-align:left;background:transparent;cursor:pointer;transition:.2s ease}.rank-row:hover{padding-right:18px;padding-left:18px;background:var(--surface)}
+    .rank-no{display:grid;width:44px;height:44px;place-items:center;border-radius:50%;color:var(--green);background:var(--mint);font-size:.72rem;font-weight:900}.rank-item:first-child .rank-no{color:#fff;background:var(--gold)}
+    .rank-name{display:grid;gap:4px}.rank-name b{color:var(--green);font-size:.9rem}.rank-name small{color:var(--ink-2);font-size:.68rem}.rank-position{display:grid;justify-items:end;gap:4px}.rank-position b{color:var(--gold);font-size:.72rem}.rank-position small{color:var(--ink-2);font-size:.62rem}.rank-expand{display:grid;width:30px;height:30px;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--green);font-style:normal;transition:transform .2s ease}.rank-item.open .rank-expand{transform:rotate(45deg)}
+    .rank-detail{display:grid;margin:0 12px 18px 81px;padding:20px 22px;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:22px;color:var(--ink-2);background:#fff;border-left:3px solid var(--gold);box-shadow:0 12px 30px rgba(0,74,65,.08)}.rank-detail p{margin:0;font-size:.72rem;line-height:1.75}.rank-detail-actions{display:flex;align-items:center;gap:12px}.rank-detail-actions small{max-width:150px;color:var(--ink-2);font-size:.6rem;line-height:1.45}
+    .match-footer{display:flex;margin-top:22px;padding-top:20px;align-items:center;justify-content:space-between;gap:26px;border-top:1px solid var(--line)}.match-footer p{max-width:760px;margin:0;color:var(--ink-2);font-size:.64rem;line-height:1.65}.match-footer a:not(.btn){text-decoration:underline;text-underline-offset:3px}
+    @media(max-width:820px){.match-explorer{padding:28px}.match-explorer-head{flex-direction:column}.match-mode{width:100%}.match-controls{grid-template-columns:1fr}.rank-row{grid-template-columns:48px minmax(0,1fr) 30px}.rank-position{grid-column:2;justify-items:start}.rank-expand{grid-column:3;grid-row:1/3}.rank-detail{margin-left:68px;grid-template-columns:1fr}.match-footer{align-items:flex-start;flex-direction:column}}
+    @media(max-width:520px){.match-explorer{padding:23px 18px;scroll-margin-top:82px}.match-controls{margin-inline:-2px;padding:17px}.match-list-head{align-items:flex-start;flex-direction:column;gap:4px}.rank-row{padding:17px 2px;gap:10px}.rank-row:hover{padding-right:4px;padding-left:4px}.rank-no{width:40px;height:40px}.rank-name b{font-size:.82rem}.rank-detail{margin:0 0 16px;padding:18px;grid-template-columns:1fr}.rank-detail-actions{align-items:flex-start;flex-direction:column}.rank-detail-actions .btn{width:auto}}
+
   </style>
 </head>
 <body data-theme="clinic">
@@ -630,8 +654,8 @@
     <section class="section specialties matching" id="specialties">
       <div class="shell">
         <div class="section-head reveal visual-head visual-head-light">
-          <div><p class="eyebrow" data-en="Hospital match" data-zh="医院匹配中心">Hospital match</p><h2 data-en="Choose the clinical direction before the city." data-zh="先按病情找专科，再比较城市与医院。">Choose the clinical direction before the city.</h2><p data-en="Clinical direction and city are two ways to explore the same hospital resources—not two separate steps." data-zh="医疗方向和城市资源，是查看同一批医院的两种方式，不是两个前后割裂的流程。">Clinical direction and city are two ways to explore the same hospital resources—not two separate steps.</p></div>
-          <a class="btn stage-button" href="hospitals.html" data-en="Explore all hospitals" data-zh="查看全部医院">Explore all hospitals</a>
+          <div><p class="eyebrow" data-en="Hospital match" data-zh="医院匹配中心">Hospital match</p><h2 data-en="Choose the specialty, see the top five, then narrow by city." data-zh="先选择病情对应专科，再看前五医院或按城市缩小范围。">Choose the specialty, see the top five, then narrow by city.</h2><p data-en="The specialty sets the clinical direction; city is a second-level filter. The shortlist updates below without taking you away." data-zh="专科决定临床匹配方向，城市是第二层筛选；下方名单会原位更新，不会把你带离当前页面。">The specialty sets the clinical direction; city is a second-level filter. The shortlist updates below without taking you away.</p></div>
+          <a class="btn stage-button" href="hospitals.html" data-en="Open the full hospital directory" data-zh="查看完整医院目录">Open the full hospital directory</a>
         </div>
         <div class="resource-tabs reveal" role="tablist" aria-label="Hospital resource views">
           <button class="resource-tab active" type="button" role="tab" aria-selected="true" data-resource-target="directions"><span>01</span><b data-en="By medical direction" data-zh="按医疗方向">By medical direction</b><small data-en="Recommended starting point" data-zh="推荐从这里开始">Recommended starting point</small></button>
@@ -642,22 +666,35 @@
             <img src="assets/clinical-surgery-whsyy.jpg" alt="武汉市第三医院手术团队进行临床治疗" loading="lazy" />
             <div class="stage-caption"><span data-en="Official clinical scene" data-zh="真实临床场景">Official clinical scene</span><b data-en="Complex care needs the right specialist team." data-zh="复杂治疗，关键是找到合适的专科团队。">Complex care needs the right specialist team.</b></div>
             <div class="specialty-menu">
-              <a class="focus-tile focus-gold" href="hospitals.html?specialty=Oncology#hospital-finder"><span>01</span><h3 data-en="Cancer & blood" data-zh="肿瘤与血液">Cancer & blood</h3><small data-en="MDT · surgery · systemic care" data-zh="多学科 · 手术 · 综合治疗">MDT · surgery · systemic care</small></a>
-              <a class="focus-tile" href="hospitals.html?specialty=Cardiology#hospital-finder"><span>02</span><h3 data-en="Heart & vascular" data-zh="心脏与血管">Heart & vascular</h3><small data-en="Intervention · surgery · review" data-zh="介入 · 外科 · 评估">Intervention · surgery · review</small></a>
-              <a class="focus-tile" href="hospitals.html?specialty=Neurology#hospital-finder"><span>03</span><h3 data-en="Brain & complex care" data-zh="神经与复杂疾病">Brain & complex care</h3><small data-en="Neurosurgery · rare disease" data-zh="神经外科 · 罕见病">Neurosurgery · rare disease</small></a>
-              <a class="focus-tile" href="hospitals.html?specialty=Orthopaedics#hospital-finder"><span>04</span><h3 data-en="Mobility & recovery" data-zh="骨科与康复">Mobility & recovery</h3><small data-en="Joint · spine · rehabilitation" data-zh="关节 · 脊柱 · 康复">Joint · spine · rehabilitation</small></a>
+              <button class="focus-tile active" type="button" data-match-specialty="oncology"><span>01</span><h3 data-en="Cancer & blood" data-zh="肿瘤与血液">Cancer & blood</h3><small data-en="MDT · surgery · systemic care" data-zh="多学科 · 手术 · 综合治疗">MDT · surgery · systemic care</small></button>
+              <button class="focus-tile" type="button" data-match-specialty="cardiology"><span>02</span><h3 data-en="Heart & vascular" data-zh="心脏与血管">Heart & vascular</h3><small data-en="Intervention · surgery · review" data-zh="介入 · 外科 · 评估">Intervention · surgery · review</small></button>
+              <button class="focus-tile" type="button" data-match-specialty="neurology"><span>03</span><h3 data-en="Brain & complex care" data-zh="神经与复杂疾病">Brain & complex care</h3><small data-en="Neurosurgery · rare disease" data-zh="神经外科 · 罕见病">Neurosurgery · rare disease</small></button>
+              <button class="focus-tile" type="button" data-match-specialty="orthopaedics"><span>04</span><h3 data-en="Mobility & recovery" data-zh="骨科与康复">Mobility & recovery</h3><small data-en="Joint · spine · rehabilitation" data-zh="关节 · 脊柱 · 康复">Joint · spine · rehabilitation</small></button>
             </div>
           </div>
           <p class="visual-source"><span data-en="Image source:" data-zh="图片来源：">Image source:</span> <a href="https://www.whsyy.net/" target="_blank" rel="noreferrer" data-en="Wuhan Third Hospital official website" data-zh="武汉市第三医院官网">Wuhan Third Hospital official website</a></p>
         </div>
         <div class="resource-panel" data-resource-panel="cities" hidden>
           <div class="city-gallery">
-            <a class="city-scene city-wuhan" href="hospitals.html?city=Wuhan#hospital-finder"><img src="assets/hospital-zhongnan-exterior.jpg" alt="武汉重点医院院区" loading="lazy" /><span><small data-en="CENTRAL CHINA" data-zh="中国中部">CENTRAL CHINA</small><strong data-en="Wuhan" data-zh="武汉">Wuhan</strong><em data-en="Complex care · Cardiac · International clinic" data-zh="综合疑难 · 心血管 · 国际门诊">Complex care · Cardiac · International clinic</em><b data-en="Explore Wuhan →" data-zh="查看武汉 →">Explore Wuhan →</b></span></a>
-            <a class="city-scene" href="hospitals.html?city=Chengdu#hospital-finder"><img src="assets/city-chengdu-hospital.jpg" alt="四川大学华西医院院区" loading="lazy" /><span><small data-en="WESTERN CHINA" data-zh="中国西部">WESTERN CHINA</small><strong data-en="Chengdu" data-zh="成都">Chengdu</strong><em data-en="Complex care · Dental · Maternal & child" data-zh="复杂重症 · 口腔 · 妇幼">Complex care · Dental · Maternal & child</em><b data-en="Explore Chengdu →" data-zh="查看成都 →">Explore Chengdu →</b></span></a>
-            <a class="city-scene" href="hospitals.html?city=Guangzhou#hospital-finder"><img src="assets/city-guangzhou-hospital.jpg" alt="中山大学肿瘤防治中心院区" loading="lazy" /><span><small data-en="GREATER BAY AREA" data-zh="粤港澳大湾区">GREATER BAY AREA</small><strong data-en="Guangzhou" data-zh="广州">Guangzhou</strong><em data-en="Cancer · Eye care · International services" data-zh="肿瘤 · 眼科 · 国际服务">Cancer · Eye care · International services</em><b data-en="Explore Guangzhou →" data-zh="查看广州 →">Explore Guangzhou →</b></span></a>
+            <button class="city-scene city-wuhan" type="button" data-match-city="Wuhan"><img src="assets/hospital-zhongnan-exterior.jpg" alt="武汉重点医院院区" loading="lazy" /><span><small data-en="CENTRAL CHINA" data-zh="中国中部">CENTRAL CHINA</small><strong data-en="Wuhan" data-zh="武汉">Wuhan</strong><em data-en="Complex care · Cardiac · International clinic" data-zh="综合疑难 · 心血管 · 国际门诊">Complex care · Cardiac · International clinic</em><b data-en="Filter Wuhan hospitals →" data-zh="筛选武汉医院 →">Filter Wuhan hospitals →</b></span></button>
+            <button class="city-scene" type="button" data-match-city="Chengdu"><img src="assets/city-chengdu-hospital.jpg" alt="四川大学华西医院院区" loading="lazy" /><span><small data-en="WESTERN CHINA" data-zh="中国西部">WESTERN CHINA</small><strong data-en="Chengdu" data-zh="成都">Chengdu</strong><em data-en="Complex care · Dental · Maternal & child" data-zh="复杂重症 · 口腔 · 妇幼">Complex care · Dental · Maternal & child</em><b data-en="Filter Chengdu hospitals →" data-zh="筛选成都医院 →">Filter Chengdu hospitals →</b></span></button>
+            <button class="city-scene" type="button" data-match-city="Guangzhou"><img src="assets/city-guangzhou-hospital.jpg" alt="中山大学肿瘤防治中心院区" loading="lazy" /><span><small data-en="GREATER BAY AREA" data-zh="粤港澳大湾区">GREATER BAY AREA</small><strong data-en="Guangzhou" data-zh="广州">Guangzhou</strong><em data-en="Cancer · Eye care · International services" data-zh="肿瘤 · 眼科 · 国际服务">Cancer · Eye care · International services</em><b data-en="Filter Guangzhou hospitals →" data-zh="筛选广州医院 →">Filter Guangzhou hospitals →</b></span></button>
           </div>
           <p class="visual-source"><span data-en="Image sources: official hospital materials; Guangzhou image by SYSUCC, CC BY-SA 4.0." data-zh="图片来自医院官方公开资料；广州图片作者 SYSUCC，CC BY-SA 4.0。">Image sources: official hospital materials; Guangzhou image by SYSUCC, CC BY-SA 4.0.</span></p>
         </div>
+        <section class="match-explorer reveal" id="matchResults" aria-live="polite">
+          <div class="match-explorer-head">
+            <div><span class="match-kicker" data-en="CURRENT MATCH" data-zh="当前匹配">CURRENT MATCH</span><h3 id="matchTitle"></h3><p id="matchSummary"></p></div>
+            <span class="match-mode"><small data-en="LIST MODE" data-zh="列表范围">LIST MODE</small><b id="matchMode"></b></span>
+          </div>
+          <div class="match-controls">
+            <div class="match-control"><span data-en="Switch specialty" data-zh="切换专科">Switch specialty</span><div class="match-chips" id="matchSpecialtyChips"></div></div>
+            <div class="match-control"><span data-en="Filter by city" data-zh="筛选城市">Filter by city</span><div class="match-chips" id="matchCityChips"></div></div>
+          </div>
+          <div class="match-list-head"><strong id="matchListTitle"></strong><small data-en="Open a hospital to see why it appears—without leaving this page." data-zh="点击医院查看入选依据，不会离开本页。">Open a hospital to see why it appears—without leaving this page.</small></div>
+          <div class="match-ranking" id="matchRanking"></div>
+          <div class="match-footer"><p id="matchMethod"></p><a class="btn btn-primary" id="matchFullLink" href="hospitals.html" data-en="Open full hospital directory →" data-zh="查看完整医院目录 →">Open full hospital directory →</a></div>
+        </section>
       </div>
     </section>
 
@@ -783,6 +820,103 @@
         guangzhou:{kicker:'粤港澳大湾区',title:'广州',text:'中国南部国际门户，国际患者服务经验较成熟，肿瘤、眼科、心血管和移植相关资源突出。',facts:['较早形成国际患者服务体系','多语言与文化支持环境相对成熟','专科医院选择较丰富'],hospitals:[['南方医院','涉外与复杂综合诊疗','综合医院'],['中山大学中山眼科中心','复杂眼科与眼肿瘤','专科医院'],['中山大学附属第一医院','肝病、移植与消化','综合医院'],['广东省人民医院','复杂心血管疾病','综合医院'],['肿瘤专科医院网络','放疗、微创与综合治疗','专科医院']]}
       }
     };
+    const matchHospital=(nameZh,nameEn,city,cityZh,rank,focusZh,focusEn,tier='regional')=>({nameZh,nameEn,city,cityZh,rank,focusZh,focusEn,tier});
+    const matchDirections={
+      oncology:{
+        slug:'Oncology',nameZh:'肿瘤与血液',nameEn:'Cancer & blood',source:'https://rank.cn-healthcare.com/fudan/specialty-reputation/year/2023/sid/41',sourceZh:'2023 年复旦版肿瘤科专科声誉榜',sourceEn:'2023 Fudan oncology specialty reputation ranking',
+        summaryZh:'先查看全国头部肿瘤专科，再按城市缩小到可进一步核实的医院候选。',summaryEn:'Start with leading national oncology centres, then narrow the shortlist by city.',
+        hospitals:[
+          matchHospital('中国医学科学院肿瘤医院','Cancer Hospital, Chinese Academy of Medical Sciences','Beijing','北京',1,'肿瘤综合治疗与多学科协作','Comprehensive oncology and multidisciplinary care'),
+          matchHospital('中山大学肿瘤防治中心','Sun Yat-sen University Cancer Center','Guangzhou','广州',2,'肿瘤专病、多学科与综合治疗','Disease-focused oncology and multidisciplinary care'),
+          matchHospital('复旦大学附属肿瘤医院','Fudan University Shanghai Cancer Center','Shanghai','上海',3,'肿瘤外科、病理与综合治疗','Cancer surgery, pathology and combined treatment'),
+          matchHospital('北京大学肿瘤医院','Peking University Cancer Hospital','Beijing','北京',4,'肿瘤综合诊疗与临床研究','Comprehensive oncology and clinical research'),
+          matchHospital('天津医科大学肿瘤医院','Tianjin Medical University Cancer Institute & Hospital','Tianjin','天津',5,'肿瘤专科综合诊疗','Comprehensive specialist oncology'),
+          matchHospital('四川大学华西医院','West China Hospital, Sichuan University','Chengdu','成都',8,'复杂肿瘤与综合医院多学科资源','Complex oncology within a major multidisciplinary centre'),
+          matchHospital('四川省肿瘤医院','Sichuan Cancer Hospital','Chengdu','成都',10,'肿瘤专科诊疗与放射治疗','Specialist oncology and radiotherapy'),
+          matchHospital('华中科技大学同济医学院附属同济医院','Tongji Hospital, Tongji Medical College','Wuhan','武汉',null,'复杂肿瘤与综合治疗','Complex oncology and combined treatment','nominated'),
+          matchHospital('华中科技大学同济医学院附属协和医院','Wuhan Union Hospital','Wuhan','武汉',null,'肿瘤、血液与多学科协作','Oncology, haematology and multidisciplinary care','nominated'),
+          matchHospital('湖北省肿瘤医院','Hubei Cancer Hospital','Wuhan','武汉',null,'区域肿瘤专科资源','Regional specialist oncology'),
+          matchHospital('武汉大学中南医院','Zhongnan Hospital of Wuhan University','Wuhan','武汉',null,'肿瘤外科与综合治疗','Cancer surgery and combined treatment'),
+          matchHospital('武汉大学人民医院','Renmin Hospital of Wuhan University','Wuhan','武汉',null,'综合医院肿瘤诊疗','Oncology within a comprehensive hospital'),
+          matchHospital('南方医科大学南方医院','Nanfang Hospital, Southern Medical University','Guangzhou','广州',null,'复杂肿瘤与综合诊疗','Complex oncology and comprehensive care','nominated'),
+          matchHospital('中山大学附属第一医院','The First Affiliated Hospital, Sun Yat-sen University','Guangzhou','广州',null,'复杂外科与多学科诊疗','Complex surgery and multidisciplinary care','nominated'),
+          matchHospital('广东省人民医院','Guangdong Provincial People’s Hospital','Guangzhou','广州',null,'综合医院肿瘤资源','Oncology within a major comprehensive hospital'),
+          matchHospital('珠江医院','Zhujiang Hospital, Southern Medical University','Guangzhou','广州',null,'肿瘤综合诊疗','Comprehensive oncology')
+        ]
+      },
+      cardiology:{
+        slug:'Cardiology',nameZh:'心脏与血管',nameEn:'Heart & vascular',source:'https://rank.cn-healthcare.com/fudan/specialty-reputation/year/2023/sid/7',sourceZh:'2023 年复旦版心血管病专科声誉榜',sourceEn:'2023 Fudan cardiology specialty reputation ranking',
+        summaryZh:'用公开专科声誉前五建立全国基准，再结合城市、病种与手术需求筛选。',summaryEn:'Use the public national top five as a benchmark, then filter by city and clinical need.',
+        hospitals:[
+          matchHospital('中国医学科学院阜外医院','Fuwai Hospital, Chinese Academy of Medical Sciences','Beijing','北京',1,'复杂心血管疾病、介入与外科','Complex cardiovascular care, intervention and surgery'),
+          matchHospital('复旦大学附属中山医院','Zhongshan Hospital, Fudan University','Shanghai','上海',2,'心血管内外科与复杂病例','Cardiology, cardiac surgery and complex cases'),
+          matchHospital('首都医科大学附属北京安贞医院','Beijing Anzhen Hospital, Capital Medical University','Beijing','北京',3,'心血管介入、外科与急重症','Cardiac intervention, surgery and critical care'),
+          matchHospital('北部战区总医院','General Hospital of Northern Theater Command','Shenyang','沈阳',4,'心血管内科与复杂介入','Cardiology and complex intervention'),
+          matchHospital('浙江大学医学院附属第二医院','The Second Affiliated Hospital, Zhejiang University School of Medicine','Hangzhou','杭州',5,'心血管综合诊疗','Comprehensive cardiovascular care'),
+          matchHospital('广东省人民医院','Guangdong Provincial People’s Hospital','Guangzhou','广州',6,'复杂心血管疾病与心脏外科','Complex cardiovascular care and cardiac surgery'),
+          matchHospital('四川大学华西医院','West China Hospital, Sichuan University','Chengdu','成都',7,'复杂心血管与多学科支持','Complex cardiovascular care with multidisciplinary support'),
+          matchHospital('华中科技大学同济医学院附属协和医院','Wuhan Union Hospital','Wuhan','武汉',null,'心血管内外科与复杂病例','Cardiology, cardiac surgery and complex cases','nominated'),
+          matchHospital('华中科技大学同济医学院附属同济医院','Tongji Hospital, Tongji Medical College','Wuhan','武汉',null,'心血管综合诊疗','Comprehensive cardiovascular care','nominated'),
+          matchHospital('武汉亚洲心脏病医院','Wuhan Asia Heart Hospital','Wuhan','武汉',null,'心血管介入与外科专科服务','Specialist cardiac intervention and surgery'),
+          matchHospital('武汉大学人民医院','Renmin Hospital of Wuhan University','Wuhan','武汉',null,'心血管疾病综合诊疗','Comprehensive cardiovascular care'),
+          matchHospital('武汉大学中南医院','Zhongnan Hospital of Wuhan University','Wuhan','武汉',null,'心血管与重症支持','Cardiovascular and critical-care support'),
+          matchHospital('四川省人民医院','Sichuan Provincial People’s Hospital','Chengdu','成都',null,'心血管与老年综合诊疗','Cardiovascular and geriatric care','nominated'),
+          matchHospital('成都市第三人民医院','Chengdu Third People’s Hospital','Chengdu','成都',null,'区域心血管诊疗','Regional cardiovascular care'),
+          matchHospital('中山大学附属第一医院','The First Affiliated Hospital, Sun Yat-sen University','Guangzhou','广州',null,'复杂心血管与综合支持','Complex cardiovascular care','nominated'),
+          matchHospital('南方医科大学南方医院','Nanfang Hospital, Southern Medical University','Guangzhou','广州',null,'心血管综合诊疗','Comprehensive cardiovascular care','nominated'),
+          matchHospital('中山大学孙逸仙纪念医院','Sun Yat-sen Memorial Hospital','Guangzhou','广州',null,'心血管内外科','Cardiology and cardiac surgery'),
+          matchHospital('珠江医院','Zhujiang Hospital, Southern Medical University','Guangzhou','广州',null,'心血管综合诊疗','Comprehensive cardiovascular care')
+        ]
+      },
+      neurology:{
+        slug:'Neurology',nameZh:'神经与复杂疾病',nameEn:'Brain & complex care',source:'https://rank.cn-healthcare.com/fudan/specialty-reputation/year/2023/sid/14',sourceZh:'2023 年复旦版神经外科专科声誉榜',sourceEn:'2023 Fudan neurosurgery specialty reputation ranking',
+        summaryZh:'本方向以神经外科公开榜单为全国参照；神经内科患者仍需在病例评估后重新分流。',summaryEn:'This direction uses the neurosurgery ranking as its national reference; neurology cases still require clinical routing.',
+        hospitals:[
+          matchHospital('首都医科大学附属北京天坛医院','Beijing Tiantan Hospital, Capital Medical University','Beijing','北京',1,'神经外科、脑血管与复杂脑病','Neurosurgery, cerebrovascular and complex brain care'),
+          matchHospital('复旦大学附属华山医院','Huashan Hospital, Fudan University','Shanghai','上海',2,'神经外科与疑难神经疾病','Neurosurgery and complex neurological disease'),
+          matchHospital('四川大学华西医院','West China Hospital, Sichuan University','Chengdu','成都',3,'复杂神经外科与多学科支持','Complex neurosurgery with multidisciplinary support'),
+          matchHospital('首都医科大学宣武医院','Xuanwu Hospital, Capital Medical University','Beijing','北京',4,'神经外科与脑血管疾病','Neurosurgery and cerebrovascular disease'),
+          matchHospital('浙江大学医学院附属第二医院','The Second Affiliated Hospital, Zhejiang University School of Medicine','Hangzhou','杭州',5,'神经外科综合诊疗','Comprehensive neurosurgery'),
+          matchHospital('华中科技大学同济医学院附属同济医院','Tongji Hospital, Tongji Medical College','Wuhan','武汉',null,'神经外科与复杂综合支持','Neurosurgery and complex multidisciplinary support','nominated'),
+          matchHospital('华中科技大学同济医学院附属协和医院','Wuhan Union Hospital','Wuhan','武汉',null,'神经外科与重症支持','Neurosurgery and critical-care support','nominated'),
+          matchHospital('武汉大学中南医院','Zhongnan Hospital of Wuhan University','Wuhan','武汉',null,'神经外科与脑血管疾病','Neurosurgery and cerebrovascular care'),
+          matchHospital('武汉大学人民医院','Renmin Hospital of Wuhan University','Wuhan','武汉',null,'神经系统疾病综合诊疗','Comprehensive neurological care'),
+          matchHospital('武汉市中心医院','Wuhan Central Hospital','Wuhan','武汉',null,'区域神经专科资源','Regional neurological services'),
+          matchHospital('四川省人民医院','Sichuan Provincial People’s Hospital','Chengdu','成都',null,'神经外科与神经疾病综合诊疗','Neurosurgery and neurological care','nominated'),
+          matchHospital('成都市第三人民医院','Chengdu Third People’s Hospital','Chengdu','成都',null,'区域神经疾病诊疗','Regional neurological care'),
+          matchHospital('中山大学附属第一医院','The First Affiliated Hospital, Sun Yat-sen University','Guangzhou','广州',null,'神经外科与复杂综合诊疗','Neurosurgery and complex comprehensive care','nominated'),
+          matchHospital('南方医科大学南方医院','Nanfang Hospital, Southern Medical University','Guangzhou','广州',null,'神经外科与重症支持','Neurosurgery and critical-care support','nominated'),
+          matchHospital('广东省人民医院','Guangdong Provincial People’s Hospital','Guangzhou','广州',null,'神经系统疾病综合诊疗','Comprehensive neurological care'),
+          matchHospital('珠江医院','Zhujiang Hospital, Southern Medical University','Guangzhou','广州',null,'神经外科综合诊疗','Comprehensive neurosurgery'),
+          matchHospital('中山大学孙逸仙纪念医院','Sun Yat-sen Memorial Hospital','Guangzhou','广州',null,'神经系统疾病诊疗','Neurological care')
+        ]
+      },
+      orthopaedics:{
+        slug:'Orthopaedics',nameZh:'骨科与康复',nameEn:'Mobility & recovery',source:'https://rank.cn-healthcare.com/fudan/specialty-reputation/year/2023/sid/32',sourceZh:'2023 年复旦版骨科专科声誉榜',sourceEn:'2023 Fudan orthopaedics specialty reputation ranking',
+        summaryZh:'先比较全国骨科头部资源，再按城市查看关节、脊柱、创伤与康复候选。',summaryEn:'Compare leading national orthopaedic centres, then filter city options for joints, spine, trauma and recovery.',
+        hospitals:[
+          matchHospital('北京积水潭医院','Beijing Jishuitan Hospital','Beijing','北京',1,'创伤、脊柱、关节与手外科','Trauma, spine, joints and hand surgery'),
+          matchHospital('上海市第六人民医院','Shanghai Sixth People’s Hospital','Shanghai','上海',2,'创伤骨科、关节与修复','Orthopaedic trauma, joints and reconstruction'),
+          matchHospital('中国人民解放军总医院','Chinese PLA General Hospital','Beijing','北京',3,'复杂骨科与综合支持','Complex orthopaedics and comprehensive support'),
+          matchHospital('北京大学第三医院','Peking University Third Hospital','Beijing','北京',4,'运动医学、脊柱与关节','Sports medicine, spine and joints'),
+          matchHospital('北京协和医院','Peking Union Medical College Hospital','Beijing','北京',5,'复杂骨科与多学科诊疗','Complex orthopaedics and multidisciplinary care'),
+          matchHospital('四川大学华西医院','West China Hospital, Sichuan University','Chengdu','成都',6,'复杂骨科与多学科支持','Complex orthopaedics and multidisciplinary support'),
+          matchHospital('华中科技大学同济医学院附属协和医院','Wuhan Union Hospital','Wuhan','武汉',null,'骨科、关节与脊柱疾病','Orthopaedics, joints and spine','nominated'),
+          matchHospital('华中科技大学同济医学院附属同济医院','Tongji Hospital, Tongji Medical College','Wuhan','武汉',null,'复杂骨科与综合支持','Complex orthopaedics and comprehensive support','nominated'),
+          matchHospital('武汉市第四医院','Wuhan Fourth Hospital','Wuhan','武汉',null,'区域骨科专科资源','Regional specialist orthopaedics'),
+          matchHospital('武汉大学人民医院','Renmin Hospital of Wuhan University','Wuhan','武汉',null,'骨科综合诊疗','Comprehensive orthopaedics'),
+          matchHospital('武汉大学中南医院','Zhongnan Hospital of Wuhan University','Wuhan','武汉',null,'骨科与康复协作','Orthopaedic and rehabilitation care'),
+          matchHospital('四川省人民医院','Sichuan Provincial People’s Hospital','Chengdu','成都',null,'骨科与康复综合诊疗','Orthopaedic and rehabilitation care','nominated'),
+          matchHospital('四川省骨科医院','Sichuan Orthopaedic Hospital','Chengdu','成都',null,'运动损伤、骨科与康复','Sports injury, orthopaedics and recovery'),
+          matchHospital('中山大学附属第一医院','The First Affiliated Hospital, Sun Yat-sen University','Guangzhou','广州',null,'骨科与复杂综合支持','Orthopaedics and complex comprehensive support','nominated'),
+          matchHospital('南方医科大学南方医院','Nanfang Hospital, Southern Medical University','Guangzhou','广州',null,'骨科、脊柱与关节诊疗','Orthopaedics, spine and joints','nominated'),
+          matchHospital('中山大学孙逸仙纪念医院','Sun Yat-sen Memorial Hospital','Guangzhou','广州',null,'骨科综合诊疗','Comprehensive orthopaedics'),
+          matchHospital('广东省人民医院','Guangdong Provincial People’s Hospital','Guangzhou','广州',null,'骨科与综合医院支持','Orthopaedics within a comprehensive hospital')
+        ]
+      }
+    };
+    const matchCityLabels={all:{zh:'全国',en:'Nationwide'},Wuhan:{zh:'武汉',en:'Wuhan'},Chengdu:{zh:'成都',en:'Chengdu'},Guangzhou:{zh:'广州',en:'Guangzhou'}};
+    let selectedMatchSpecialty='oncology',selectedMatchCity='all';
     let lang='zh';
     const $$=(s,c=document)=>[...c.querySelectorAll(s)];
     function setLanguage(next){
@@ -792,6 +926,7 @@
       $$('[data-ph-en]').forEach(el=>{el.placeholder=el.dataset[next==='zh'?'phZh':'phEn']});
       $$('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===next));
       renderCity(document.querySelector('.city-tab.active')?.dataset.city||'wuhan');
+      renderMatchResults();
       try{localStorage.setItem('carechina-language',next)}catch(e){}
     }
     function renderCity(key){
@@ -811,7 +946,62 @@
       document.getElementById('cityFacts').innerHTML=data.facts.map(x=>`<li>${x}</li>`).join('');
       document.getElementById('hospitalList').innerHTML=data.hospitals.map(h=>`<div class="hospital-row"><b>${h[0]}</b><span>${h[1]}</span><em>${h[2]}</em></div>`).join('');
     }
+    function matchCopy(zh,en){return lang==='zh'?zh:en}
+    function matchStatus(h){
+      if(h.rank)return matchCopy(`全国声誉 ${String(h.rank).padStart(2,'0')}`,`NATIONAL ${String(h.rank).padStart(2,'0')}`);
+      return h.tier==='nominated'?matchCopy('榜单提名','RANKING NOMINEE'):matchCopy('区域候选','CITY CANDIDATE');
+    }
+    function matchReason(h,d){
+      if(h.rank)return matchCopy(`在${d.sourceZh}中位列全国第 ${h.rank}。这是专科声誉参照，不代表该院一定适合当前病情或可以接诊。`,`Ranked No. ${h.rank} in the ${d.sourceEn}. This is a specialty-reputation reference, not a guarantee of fit or acceptance.`);
+      if(h.tier==='nominated')return matchCopy(`该院进入同一专科榜单提名范围，页面不将其表述为全国前五。仍需根据病历核实亚专科团队、接诊条件与时间。`,`This hospital appears in the same specialty ranking's nominee group and is not presented as a national top-five centre. Subspecialty fit, acceptance and timing still require case review.`);
+      return matchCopy('该院作为此城市的专科候选展示，页面不主张其全国名次。正式匹配需要结合诊断、病历、语言支持和可接诊时间。','This hospital is shown as a city-level specialty candidate, without a claimed national rank. A real match must consider diagnosis, records, language support and availability.');
+    }
+    function scrollToMatch(){document.getElementById('matchResults')?.scrollIntoView({behavior:'smooth',block:'start'})}
+    function renderMatchResults(){
+      const explorer=document.getElementById('matchResults');
+      if(!explorer)return;
+      const d=matchDirections[selectedMatchSpecialty];
+      const nationwide=selectedMatchCity==='all';
+      const shown=(nationwide?d.hospitals.filter(h=>h.rank&&h.rank<=5):d.hospitals.filter(h=>h.city===selectedMatchCity))
+        .sort((a,b)=>(a.rank||999)-(b.rank||999)||(a.tier==='nominated'?-1:1)).slice(0,5);
+      explorer.dataset.matchSpecialty=selectedMatchSpecialty;
+      explorer.dataset.matchCity=selectedMatchCity;
+      document.getElementById('matchTitle').textContent=matchCopy(`${d.nameZh} · ${matchCityLabels[selectedMatchCity].zh}`,`${d.nameEn} · ${matchCityLabels[selectedMatchCity].en}`);
+      document.getElementById('matchSummary').textContent=matchCopy(d.summaryZh,d.summaryEn);
+      document.getElementById('matchMode').textContent=nationwide?matchCopy('全国声誉前五','National top five'):matchCopy('城市候选 · 最多五家','City shortlist · up to five');
+      document.getElementById('matchListTitle').textContent=nationwide?matchCopy('专业水平参考前五','Top five specialty reference'):matchCopy(`${matchCityLabels[selectedMatchCity].zh}专科候选`,`${matchCityLabels[selectedMatchCity].en} specialty shortlist`);
+      document.getElementById('matchSpecialtyChips').innerHTML=Object.entries(matchDirections).map(([key,item])=>`<button class="match-chip${key===selectedMatchSpecialty?' active':''}" type="button" data-match-chip-specialty="${key}" aria-pressed="${key===selectedMatchSpecialty}">${matchCopy(item.nameZh,item.nameEn)}</button>`).join('');
+      document.getElementById('matchCityChips').innerHTML=Object.entries(matchCityLabels).map(([key,item])=>`<button class="match-chip${key===selectedMatchCity?' active':''}" type="button" data-match-chip-city="${key}" aria-pressed="${key===selectedMatchCity}">${item[lang]}</button>`).join('');
+      document.getElementById('matchRanking').innerHTML=shown.length?shown.map((h,index)=>`<article class="rank-item">
+        <button class="rank-row" type="button" aria-expanded="false">
+          <span class="rank-no">${String(index+1).padStart(2,'0')}</span>
+          <span class="rank-name"><b>${matchCopy(h.nameZh,h.nameEn)}</b><small>${matchCopy(h.cityZh,h.city)} · ${matchCopy(h.focusZh,h.focusEn)}</small></span>
+          <span class="rank-position"><b>${matchStatus(h)}</b><small>${h.rank?matchCopy('2023 专科声誉名次','2023 specialty reputation rank'):matchCopy('不等同于全国名次','Not a national rank')}</small></span>
+          <i class="rank-expand" aria-hidden="true">+</i>
+        </button>
+        <div class="rank-detail" hidden><p>${matchReason(h,d)}</p><div class="rank-detail-actions"><a class="btn btn-primary" href="#assessment">${matchCopy('用该方向开启咨询','Start a consultation for this direction')}</a><small>${matchCopy('提交病情后，再核实亚专科、接诊与服务时间。','After you describe the case, subspecialty fit, acceptance and timing can be checked.')}</small></div></div>
+      </article>`).join(''):`<p>${matchCopy('当前原型尚未配置该城市候选，请先查看全国前五。','No city shortlist is configured in this prototype; view the national top five first.')}</p>`;
+      const sourceText=matchCopy(d.sourceZh,d.sourceEn);
+      const method=document.getElementById('matchMethod');
+      method.innerHTML=nationwide
+        ?matchCopy(`排序参考 <a class="match-source-link" target="_blank" rel="noreferrer">${sourceText}</a>；真实匹配还需结合病历、接诊可行性、时间与国际患者服务。`,`Order references the <a class="match-source-link" target="_blank" rel="noreferrer">${sourceText}</a>; a real match must also consider records, acceptance, timing and international-patient services.`)
+        :matchCopy(`城市筛选展示最多 5 家候选；其中“榜单提名”和“区域候选”不等同于全国名次。全国基准参考 <a class="match-source-link" target="_blank" rel="noreferrer">${sourceText}</a>。`,`City filtering shows up to five candidates. “Ranking nominee” and “city candidate” are not national ranks. The national benchmark references the <a class="match-source-link" target="_blank" rel="noreferrer">${sourceText}</a>.`);
+      $$('.match-source-link',method).forEach(link=>{link.href=d.source});
+      const fullLink=document.getElementById('matchFullLink');
+      fullLink.href=`hospitals.html?specialty=${encodeURIComponent(d.slug)}${nationwide?'':`&city=${encodeURIComponent(selectedMatchCity)}`}#hospital-finder`;
+      $$('button[data-match-specialty]').forEach(button=>button.classList.toggle('active',button.dataset.matchSpecialty===selectedMatchSpecialty));
+      $$('button[data-match-city]').forEach(button=>button.classList.toggle('active',button.dataset.matchCity===selectedMatchCity));
+      $$('[data-match-chip-specialty]').forEach(button=>button.addEventListener('click',()=>{selectedMatchSpecialty=button.dataset.matchChipSpecialty;selectedMatchCity='all';renderMatchResults()}));
+      $$('[data-match-chip-city]').forEach(button=>button.addEventListener('click',()=>{selectedMatchCity=button.dataset.matchChipCity;renderMatchResults()}));
+      $$('.rank-row',explorer).forEach(button=>button.addEventListener('click',()=>{
+        const opening=button.getAttribute('aria-expanded')!=='true';
+        $$('.rank-row',explorer).forEach(row=>{row.setAttribute('aria-expanded','false');row.querySelector('.rank-expand').textContent='+';row.nextElementSibling.hidden=true});
+        if(opening){button.setAttribute('aria-expanded','true');button.querySelector('.rank-expand').textContent='−';button.nextElementSibling.hidden=false}
+      }));
+    }
     $$('.lang button').forEach(b=>b.addEventListener('click',()=>setLanguage(b.dataset.lang)));
+    $$('button[data-match-specialty]').forEach(button=>button.addEventListener('click',()=>{selectedMatchSpecialty=button.dataset.matchSpecialty;selectedMatchCity='all';renderMatchResults();scrollToMatch()}));
+    $$('button[data-match-city]').forEach(button=>button.addEventListener('click',()=>{selectedMatchCity=button.dataset.matchCity;renderMatchResults();scrollToMatch()}));
     $$('.city-tab').forEach(b=>b.addEventListener('click',()=>{ $$('.city-tab').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});b.classList.add('active');b.setAttribute('aria-selected','true');renderCity(b.dataset.city)}));
     function bindPanelTabs(buttonSelector,buttonKey,panelSelector,panelKey){
       $$(buttonSelector).forEach(button=>button.addEventListener('click',()=>{

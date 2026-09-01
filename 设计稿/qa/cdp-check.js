@@ -71,6 +71,11 @@ const desktop = await evaluate(`(() => {
     eligibilityCount:eligibilityChoices.length,
     coordinationCount:coordinationSteps.length,
     resourceTabCount:resourceTabs.length,
+    matchRows:document.querySelectorAll('#matchRanking .rank-item').length,
+    matchSpecialtyButtons:document.querySelectorAll('button[data-match-specialty]').length,
+    matchCityButtons:document.querySelectorAll('button[data-match-city]').length,
+    matchSpecialtyChips:document.querySelectorAll('[data-match-chip-specialty]').length,
+    matchCityChips:document.querySelectorAll('[data-match-chip-city]').length,
     caseCount:cases.length,
     imagesReady:imgs.every(x=>x.complete&&x.naturalWidth>0),
     hasCost:!!document.getElementById('cost-planner'),
@@ -88,6 +93,7 @@ const desktop = await evaluate(`(() => {
 assert(desktop.lang === 'zh-CN', 'Homepage is not Chinese-first');
 assert(desktop.overflow <= 1, 'Desktop homepage has horizontal overflow');
 assert(desktop.eligibilityCount === 4 && desktop.coordinationCount === 5 && desktop.resourceTabCount === 2, 'V03 decision controls are incomplete');
+assert(desktop.matchRows === 5 && desktop.matchSpecialtyButtons === 4 && desktop.matchCityButtons === 3 && desktop.matchSpecialtyChips === 4 && desktop.matchCityChips === 4, `Hospital matching controls or national top five are incomplete: ${JSON.stringify(desktop)}`);
 assert(desktop.caseCount === 3 && desktop.imagesReady, 'Treatment case or care images failed to load');
 assert(desktop.hasCost && desktop.hasConsult && desktop.hasTheme && desktop.hasContactWindow && desktop.mergedJourney && !desktop.bannedComputed, 'V03 consultation, theme, merged journey, contact timing, or palette check failed');
 assert(JSON.stringify(desktop.flow) === JSON.stringify(['top','eligibility','journey','specialties','cases','assessment','faq']), 'V03 patient-flow section order is incorrect');
@@ -100,9 +106,13 @@ for (const id of ['eligibility','journey','specialties','cases','assessment']) {
 }
 
 const decisionInteractions = await evaluate(`(() => {
+  const pathBefore=location.pathname;
   document.querySelector('[data-eligibility-target="opinion"]').click();
   document.querySelector('[data-coordination-target="plan"]').click();
+  document.querySelector('button[data-match-specialty="cardiology"]').click();
   document.querySelector('[data-resource-target="cities"]').click();
+  document.querySelector('button[data-match-city="Wuhan"]').click();
+  document.querySelector('#matchRanking .rank-row').click();
   document.querySelector('[data-resource-panel="cities"]').scrollIntoView();
   return {
     eligibility:document.querySelector('.eligibility-choice.active')?.dataset.eligibilityTarget,
@@ -111,16 +121,27 @@ const decisionInteractions = await evaluate(`(() => {
     coordinationPanel:document.querySelector('[data-coordination-panel="plan"]').hidden,
     resource:document.querySelector('.resource-tab.active')?.dataset.resourceTarget,
     resourcePanel:document.querySelector('[data-resource-panel="cities"]').hidden,
-    cityCount:document.querySelectorAll('[data-resource-panel="cities"] .city-scene').length
+    cityCount:document.querySelectorAll('[data-resource-panel="cities"] .city-scene').length,
+    matchSpecialty:document.getElementById('matchResults').dataset.matchSpecialty,
+    matchCity:document.getElementById('matchResults').dataset.matchCity,
+    matchRows:document.querySelectorAll('#matchRanking .rank-item').length,
+    detailOpen:!document.querySelector('#matchRanking .rank-detail').hidden,
+    pathBefore,
+    pathAfter:location.pathname
   };
 })()`);
 assert(decisionInteractions.eligibility === 'opinion' && !decisionInteractions.eligibilityPanel, 'Eligibility decision interaction failed');
 assert(decisionInteractions.coordination === 'plan' && !decisionInteractions.coordinationPanel, 'Coordination-stage interaction failed');
 assert(decisionInteractions.resource === 'cities' && !decisionInteractions.resourcePanel && decisionInteractions.cityCount === 3, 'Hospital resource tabs failed');
+assert(decisionInteractions.matchSpecialty === 'cardiology' && decisionInteractions.matchCity === 'Wuhan' && decisionInteractions.matchRows === 5 && decisionInteractions.detailOpen, 'Specialty, city or inline hospital detail interaction failed');
+assert(decisionInteractions.pathBefore === decisionInteractions.pathAfter, 'Hospital matching filters unexpectedly navigated away from the homepage');
 await sleep(800);
 const cityImagesReady = await evaluate(`[...document.querySelectorAll('[data-resource-panel="cities"] img')].every(img=>img.complete&&img.naturalWidth>0)`);
 assert(cityImagesReady, 'City resource images failed to load after opening the tab');
 await shot('设计稿/qa/v03-resource-cities-desktop.jpg');
+await evaluate(`document.documentElement.style.scrollBehavior='auto';document.getElementById('matchResults').scrollIntoView()`);
+await sleep(350);
+await shot('设计稿/qa/v03-hospital-match-desktop.jpg');
 
 const budget = await evaluate(`(() => {
   const before=document.getElementById('budgetTotal').textContent;
@@ -242,17 +263,23 @@ const mobile = await evaluate(`(() => {
     resourceColumns:getComputedStyle(document.querySelector('.resource-tabs')).gridTemplateColumns,
     caseColumns:getComputedStyle(cases).gridTemplateColumns,
     consultColumns:getComputedStyle(document.querySelector('.consult-grid')).gridTemplateColumns,
+    matchControlColumns:getComputedStyle(document.querySelector('.match-controls')).gridTemplateColumns,
+    matchRows:document.querySelectorAll('#matchRanking .rank-item').length,
     budgetWidth:budget.getBoundingClientRect().width
   };
 })()`);
 assert(mobile.overflow <= 1 && mobile.menuOpen, 'Mobile navigation or horizontal width failed');
 assert(!mobile.eligibilityColumns.includes(' ') && !mobile.coordinationColumns.includes(' ') && !mobile.resourceColumns.includes(' ') && !mobile.caseColumns.includes(' ') && !mobile.consultColumns.includes(' '), 'Mobile V03 grids did not collapse to one column');
+assert(!mobile.matchControlColumns.includes(' ') && mobile.matchRows === 5, 'Mobile hospital matching layout or list failed');
 await evaluate(`closeMenu(); document.documentElement.style.scrollBehavior='auto'; document.getElementById('eligibility').scrollIntoView()`);
 await sleep(300);
 await shot('设计稿/qa/mature-home-mobile.jpg');
 await evaluate(`document.documentElement.style.scrollBehavior='auto'; document.getElementById('journey').scrollIntoView()`);
 await sleep(300);
 await shot('设计稿/qa/v03-journey-mobile.jpg');
+await evaluate(`document.documentElement.style.scrollBehavior='auto'; document.getElementById('matchResults').scrollIntoView(); document.querySelector('#matchRanking .rank-row').click()`);
+await sleep(300);
+await shot('设计稿/qa/v03-hospital-match-mobile.jpg');
 
 const mobileSecondary = [];
 for (const [path,page] of [['hospitals.html','hospitals'],...secondaryPages.map(([path,page])=>[path,page])]) {
