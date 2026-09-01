@@ -4,9 +4,9 @@ CareChina 是面向计划性来华医疗的国际患者协调服务原型。
 
 在线地址：<https://beidaomitu233.github.io/carechina-prototype/>
 
-## 网站结构
+## 发布结构
 
-仓库根目录就是可发布的网站目录，无需构建：
+这是一个只包含可发布网站内容的静态仓库。仓库根目录就是网站根目录，无需安装依赖、编译或复制到 `dist/`：
 
 - `index.html`：首页
 - `hospitals.html`：医院目录
@@ -15,14 +15,22 @@ CareChina 是面向计划性来华医疗的国际患者协调服务原型。
 - `tcm-wellness.html`：中医调养
 - `consultation.html`：咨询说明
 - `assets/`：公共样式、脚本和图片
+- `.github/workflows/pages.yml`：GitHub Pages 自动发布配置
+- `.nojekyll`：让 GitHub Pages 按原始静态文件发布
 
-设计过程、参考资料和本地 QA 工具保留在开发电脑中，并通过 `.gitignore` 排除，不会上传到 GitHub。
+设计过程、调研资料、截图、本地 QA 工具及临时文件只保留在开发电脑中。`.gitignore` 采用发布白名单：默认忽略所有内容，仅放行根目录 HTML、`assets/` 和必要的 GitHub 配置，避免后续误上传。
 
 ## 部署
 
-任何静态托管平台均可直接选择仓库根目录作为发布目录，不需要安装依赖或填写构建命令。
+任何静态托管平台均可直接选择仓库根目录作为发布目录：
+
+- 构建命令：留空
+- 发布目录：`.`（仓库根目录）
+- 入口文件：`index.html`
 
 GitHub Pages 由 `.github/workflows/pages.yml` 自动部署。推送到 `main` 后会自动发布根目录中的最新网站。
+
+如果在其他平台连接本仓库，只需启用“跟随 `main` 分支自动部署”，无需改变目录结构。
 
 ## 本地查看
 

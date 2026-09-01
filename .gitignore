@@ -1,8 +1,19 @@
-# Local-only research, design history and QA tools
-/设计稿/
-/参考资料/
-/.qa-*/
+# Publish-only repository policy
+# Ignore every root item by default, then allow only the static website and the
+# small amount of repository metadata required for source control and Pages.
+/*
 
-# Windows metadata
-Thumbs.db
-Desktop.ini
+# Website source: the repository root is the deployable document root.
+!/*.html
+!/assets/
+
+# GitHub Pages automation and repository documentation.
+!/.github/
+!/.gitignore
+!/.nojekyll
+!/README.md
+
+# Never publish operating-system metadata, including files inside assets/.
+**/Thumbs.db
+**/Desktop.ini
+**/.DS_Store
