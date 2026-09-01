@@ -507,6 +507,33 @@
     @media(max-width:980px){.visual-mosaic{grid-template-columns:1fr 1fr;grid-template-rows:430px 280px 280px;grid-template-areas:"hospital hospital" "path path" "budget tcm"}.specialty-stage{min-height:850px}.specialty-stage>img{width:100%;height:55%}.specialty-stage::after{background:linear-gradient(180deg,transparent 25%,rgba(0,71,64,.98) 57%)}.specialty-menu{right:22px;bottom:22px;left:22px;top:auto;width:auto;height:48%}.stage-caption{top:25px;bottom:auto}.city-gallery{grid-template-columns:1fr 1fr}.city-wuhan{grid-column:1/-1}.support-mosaic{grid-template-columns:1fr 1fr;grid-template-rows:470px 240px 240px;grid-template-areas:"main main" "a b" "c d"}}
     @media(max-width:680px){.section{padding:88px 0}.visual-head{margin-bottom:34px}.visual-head h2{font-size:2rem!important}.visual-mosaic{grid-template-columns:1fr;grid-template-rows:390px repeat(3,240px);grid-template-areas:"hospital" "path" "budget" "tcm"}.tile-hospital .tile-copy{padding:75px 25px 25px}.tile-copy{padding:65px 24px 24px}.specialty-stage{min-height:1120px}.specialty-stage>img{height:34%}.specialty-stage::after{background:linear-gradient(180deg,transparent 15%,rgba(0,71,64,.99) 35%)}.stage-caption{right:20px;left:20px}.specialty-menu{grid-template-columns:1fr;top:38%;height:auto}.focus-tile{min-height:145px;padding:20px}.focus-tile h3{margin:14px 0 4px}.city-gallery{grid-template-columns:1fr}.city-wuhan{grid-column:auto}.city-scene{min-height:390px}.journey-panorama{min-height:870px}.journey-title{top:36px;right:25px;left:25px}.journey-ribbon{grid-template-columns:1fr;right:18px;bottom:18px;left:18px}.journey-ribbon>span{min-height:62px;padding:13px 16px;flex-direction:row;align-items:center;border-right:0;border-bottom:1px solid rgba(0,126,112,.12)}.support-mosaic{grid-template-columns:1fr;grid-template-rows:390px repeat(4,180px);grid-template-areas:"main" "a" "b" "c" "d"}.support-action{padding:24px}.theme-fab{right:16px;bottom:16px}.theme-panel{right:16px;bottom:78px}.home-hero{background-position:50% center}.home-hero-inner{align-items:end}.home-hero .hero-copy{padding:28px 0;background:linear-gradient(90deg,rgba(255,255,255,.9),rgba(255,255,255,.45),transparent)}}
 
+    .capability-strip{position:relative;overflow:hidden;padding:30px 0 18px;color:#fff;background:linear-gradient(120deg,#004f47 0%,#006b60 62%,#007e70 100%)}
+    .capability-strip::before{position:absolute;inset:0;content:"";opacity:.13;background-image:linear-gradient(72deg,transparent 48%,rgba(255,255,255,.7) 49%,transparent 50%),linear-gradient(108deg,transparent 48%,rgba(255,255,255,.7) 49%,transparent 50%);background-size:180px 180px}
+    .capability-grid{position:relative;z-index:1;gap:13px}
+    .capability-metric{display:grid;min-width:0;min-height:142px;padding:23px 24px;grid-template-columns:auto 1fr;align-items:end;gap:18px;border:1px solid rgba(255,255,255,.19);border-radius:25px;background:rgba(255,255,255,.075);backdrop-filter:blur(10px);transition:transform .28s var(--ease),background .28s var(--ease),box-shadow .28s var(--ease)}
+    .capability-metric:hover{transform:translateY(-6px);background:rgba(255,255,255,.12);box-shadow:0 20px 42px rgba(0,45,40,.22)}
+    .capability-metric-accent{border-color:rgba(200,161,94,.52);background:linear-gradient(135deg,rgba(200,161,94,.18),rgba(255,255,255,.08))}
+    .capability-metric>strong{color:#f0d8aa;font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.8rem,4.4vw,4.5rem);font-weight:500;line-height:.9;letter-spacing:-.055em}
+    .capability-metric>strong sup{margin-left:3px;font-family:inherit;font-size:.38em;vertical-align:top}
+    .capability-metric>span{display:grid;min-width:0;gap:6px;padding-bottom:2px}.capability-metric b{color:#fff;font-size:.8rem;line-height:1.45}.capability-metric small{color:rgba(255,255,255,.62);font-size:.64rem;line-height:1.5}
+    .capability-disclaimer{position:relative;z-index:1;margin:12px 0 0;color:rgba(255,255,255,.58);font-size:.61rem;line-height:1.55}
+    .faq-list{display:grid;gap:11px;border-top:0;counter-reset:faq}
+    .faq-list details{overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#fff;counter-increment:faq;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+    .faq-list details:hover{transform:translateY(-3px);background:#fff;box-shadow:0 16px 34px rgba(5,55,48,.09)}
+    .faq-list details[open]{border-color:rgba(0,126,112,.32);box-shadow:0 18px 38px rgba(5,55,48,.1)}
+    .faq-list summary{display:grid;padding:19px 18px;grid-template-columns:38px minmax(0,1fr) 34px;align-items:center;gap:13px;font-size:.88rem}
+    .faq-list summary::before{display:grid;width:38px;height:38px;place-items:center;border-radius:12px;color:var(--green);background:var(--mint);content:counter(faq,decimal-leading-zero);font-size:.63rem;font-weight:900;letter-spacing:.04em}
+    .faq-list summary::after{position:static;grid-column:3;width:32px;height:32px;background:var(--surface)}
+    .faq-list details[open] summary{color:var(--green)}.faq-list details p{padding:0 62px 21px 69px;color:var(--ink-2);font-size:.78rem;line-height:1.75}
+    .faq-consult-link{margin-top:24px}
+    .concierge-fab{position:fixed;z-index:245;right:24px;bottom:88px;display:flex;min-width:218px;height:64px;padding:0 18px 0 10px;align-items:center;gap:11px;border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;background:linear-gradient(135deg,#006c61,#004e47);box-shadow:0 18px 44px rgba(0,64,57,.28);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+    .concierge-fab:hover{transform:translateY(-4px);box-shadow:0 24px 52px rgba(0,64,57,.34)}.concierge-fab>span{display:grid;width:44px;height:44px;place-items:center;border-radius:50%;color:var(--green);background:#fff;font-size:1.05rem}.concierge-fab>b{display:grid;gap:2px;text-align:left}.concierge-fab strong{color:#fff;font-size:.75rem}.concierge-fab small{color:rgba(255,255,255,.65);font-size:.6rem;font-weight:600}
+    .concierge-panel{position:fixed;z-index:260;right:24px;bottom:164px;display:grid;width:min(390px,calc(100vw - 32px));max-height:min(650px,calc(100vh - 190px));grid-template-rows:auto minmax(120px,1fr) auto auto auto;overflow:hidden;visibility:hidden;border:1px solid rgba(0,126,112,.17);border-radius:25px;opacity:0;background:#fff;box-shadow:0 30px 80px rgba(0,58,52,.27);transform:translateY(16px) scale(.97);transform-origin:bottom right;transition:.25s var(--ease)}
+    .concierge-panel.open{visibility:visible;opacity:1;transform:none}.concierge-head{display:grid;padding:18px 18px 16px;grid-template-columns:44px 1fr 34px;align-items:center;gap:11px;color:#fff;background:linear-gradient(125deg,#005d54,#007e70)}.concierge-avatar{display:grid;width:44px;height:44px;place-items:center;border-radius:14px;color:var(--green);background:#fff}.concierge-head small{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.72);font-size:.55rem;font-weight:850;letter-spacing:.08em}.concierge-head small i{width:7px;height:7px;border-radius:50%;background:#8cf0be;box-shadow:0 0 0 4px rgba(140,240,190,.13)}.concierge-head h3{margin:3px 0 0;color:#fff;font-size:.91rem}.concierge-head button{display:grid;width:34px;height:34px;place-items:center;border:1px solid rgba(255,255,255,.17);border-radius:50%;color:#fff;background:rgba(255,255,255,.08);font-size:1.2rem}
+    .concierge-messages{display:flex;min-height:170px;padding:18px;flex-direction:column;gap:10px;overflow:auto;background:linear-gradient(180deg,#f4f8f7,#fff)}.chat-bubble{max-width:88%;padding:11px 13px;border-radius:15px;font-size:.7rem;line-height:1.65}.chat-bubble.assistant{align-self:flex-start;border-bottom-left-radius:4px;color:var(--ink-2);background:#fff;box-shadow:0 7px 20px rgba(0,72,64,.08)}.chat-bubble.user{align-self:flex-end;border-bottom-right-radius:4px;color:#fff;background:var(--green)}
+    .concierge-quick{display:flex;padding:0 14px 12px;gap:7px;overflow-x:auto;scrollbar-width:none}.concierge-quick::-webkit-scrollbar{display:none}.concierge-quick button{flex:0 0 auto;padding:8px 10px;border:1px solid rgba(0,126,112,.16);border-radius:999px;color:var(--green);background:var(--mint);font-size:.62rem;font-weight:800}.concierge-form{display:grid;margin:0 14px 12px;grid-template-columns:1fr 42px;overflow:hidden;border:1px solid rgba(0,126,112,.18);border-radius:14px;background:#fff}.concierge-form input{min-width:0;padding:12px 13px;border:0;outline:0;font:inherit;font-size:.69rem}.concierge-form button{border:0;color:#fff;background:var(--green);font-size:1rem}.concierge-foot{display:flex;padding:0 16px 14px;justify-content:space-between;gap:12px;color:var(--muted);font-size:.55rem}.concierge-foot a{color:var(--green);font-weight:850}
+    @media(max-width:680px){.capability-grid{grid-template-columns:1fr 1fr}.capability-metric{min-height:150px;padding:20px;grid-template-columns:1fr;gap:13px}.capability-metric>strong{font-size:3rem}.faq-grid{grid-template-columns:1fr;gap:32px}.faq-intro{position:static}.faq-list details p{padding:0 20px 19px 69px}.concierge-fab{right:16px;bottom:80px;min-width:0;width:58px;height:58px;padding:7px}.concierge-fab>span{width:44px;height:44px}.concierge-fab>b{display:none}.concierge-panel{right:16px;bottom:150px;width:calc(100vw - 32px);max-height:calc(100vh - 170px)}}
+
     /* v03 product logic: one medical-needs decision chain */
     [hidden]{display:none!important}
     .eligibility{background:#fff}.eligibility .visual-head p{max-width:720px}.eligibility-shell{display:grid;min-height:560px;grid-template-columns:340px 1fr;background:var(--surface);box-shadow:0 28px 70px rgba(0,74,65,.1)}
@@ -623,13 +650,14 @@
       <div class="photo-credit"><span data-en="International care team photo · prototype use:" data-zh="国际医疗团队合照 · 原型使用：">International care team photo · prototype use:</span> <a href="https://hospitals.fosunhealth.com/international/" target="_blank" rel="noreferrer">Fosun Health</a></div>
     </section>
 
-    <section class="trust" aria-label="Service principles">
-      <div class="shell trust-grid">
-        <div class="trust-item"><span class="trust-ico">01</span><span><b data-en="Clarify the care goal" data-zh="明确医疗目标">Clarify the care goal</b><span data-en="Define priorities before matching resources" data-zh="先厘清重点，再匹配资源">Define priorities before matching resources</span></span></div>
-        <div class="trust-item"><span class="trust-ico">02</span><span><b data-en="One coordinator" data-zh="一名协调员贯穿全程">One coordinator</b><span data-en="Connect information, hospital and travel" data-zh="连接资料、医院与来华安排">Connect information, hospital and travel</span></span></div>
-        <div class="trust-item"><span class="trust-ico">03</span><span><b data-en="Specialty before hospital" data-zh="先专科，再医院">Specialty before hospital</b><span data-en="Match medical capability to the real need" data-zh="让医疗能力对应实际需要">Match medical capability to the real need</span></span></div>
-        <div class="trust-item"><span class="trust-ico">04</span><span><b data-en="Confirm before travel" data-zh="确认后再出发">Confirm before travel</b><span data-en="Hospital, appointment and cost come first" data-zh="先确认医院、预约与费用">Hospital, appointment and cost come first</span></span></div>
+    <section class="trust capability-strip" aria-label="CareChina directory coverage">
+      <div class="shell trust-grid capability-grid">
+        <article class="capability-metric"><strong>103</strong><span><b data-en="Hospital resources" data-zh="医院资源">Hospital resources</b><small data-en="Top-tier institutions represented" data-zh="覆盖多家全国百强医院">Top-tier institutions represented</small></span></article>
+        <article class="capability-metric"><strong>22</strong><span><b data-en="Medical cities" data-zh="医疗城市">Medical cities</b><small data-en="Directory coverage across China" data-zh="覆盖全国 22 座城市">Directory coverage across China</small></span></article>
+        <article class="capability-metric"><strong>40<sup>+</sup></strong><span><b data-en="Clinical capabilities" data-zh="专科能力方向">Clinical capabilities</b><small data-en="Across 14 searchable specialties" data-zh="归入 14 个可筛选专科">Across 14 searchable specialties</small></span></article>
+        <article class="capability-metric capability-metric-accent"><strong>4</strong><span><b data-en="No.1 specialty references" data-zh="全国第 1 专科参考">No.1 specialty references</b><small data-en="From recognised reputation tables" data-zh="来自权威专科声誉榜参考">From recognised reputation tables</small></span></article>
       </div>
+      <p class="shell capability-disclaimer" data-en="Prototype directory and ranking references; current cooperation and access require confirmation." data-zh="原型目录与榜单参考数据；当前合作关系与接诊条件仍需确认。">Prototype directory and ranking references; current cooperation and access require confirmation.</p>
     </section>
 
     <section class="section journey coordination" id="journey">
@@ -763,12 +791,16 @@
 
     <section class="section faq" id="faq">
       <div class="shell faq-grid">
-        <div class="faq-intro reveal"><p class="eyebrow" data-en="Before you decide" data-zh="决定之前">Before you decide</p><h2 data-en="Four questions worth confirming first." data-zh="四个问题，决定前先确认。">Four questions worth confirming first.</h2><p class="lead" data-en="Final answers depend on the hospital and your case." data-zh="具体要求仍需结合医院与个案确认。">Final answers depend on the hospital and your case.</p></div>
+        <div class="faq-intro reveal"><p class="eyebrow" data-en="Still have questions?" data-zh="还有疑问？">Still have questions?</p><h2 data-en="Clear answers before you start." data-zh="开始之前，把关键问题问清楚。">Clear answers before you start.</h2><p class="lead" data-en="Use these answers to understand what can begin now, what we coordinate and what still needs hospital confirmation." data-zh="先了解现在能开始什么、我们负责协调什么，以及哪些事项仍需医院确认。">Use these answers to understand what can begin now, what we coordinate and what still needs hospital confirmation.</p><a class="btn btn-primary faq-consult-link" href="#assessment" data-en="Ask your own question" data-zh="咨询我的问题">Ask your own question</a></div>
         <div class="faq-list reveal">
-          <details open><summary data-en="Do I need to choose a hospital first?" data-zh="我需要先选定医院吗？">Do I need to choose a hospital first?</summary><p data-en="No. Start with the condition; compare hospitals after the relevant specialty is clear." data-zh="不需要。先明确病情与专科方向，再比较医院更稳妥。">No. Start with the condition; compare hospitals after the relevant specialty is clear.</p></details>
-          <details><summary data-en="When do I upload medical records?" data-zh="什么时候需要上传病历？">When do I upload medical records?</summary><p data-en="After the first consultation and consent step, through a secure record channel." data-zh="完成首次沟通和隐私授权后，再通过安全通道提交。">After the first consultation and consent step, through a secure record channel.</p></details>
-          <details><summary data-en="Is the estimate a hospital quote?" data-zh="页面预算是医院报价吗？">Is the estimate a hospital quote?</summary><p data-en="No. It is a planning range. A hospital quote follows medical review." data-zh="不是。页面仅用于准备资金，正式费用需医院评估后给出。">No. It is a planning range. A hospital quote follows medical review.</p></details>
-          <details><summary data-en="What if this is an emergency?" data-zh="如果现在是紧急情况怎么办？">What if this is an emergency?</summary><p data-en="Contact local emergency services immediately. This service is for planned care." data-zh="请立即联系所在地急救服务，本平台只处理计划性就医。">Contact local emergency services immediately. This service is for planned care.</p></details>
+          <details open><summary data-en="How quickly can the process begin?" data-zh="多久可以开始沟通？">How quickly can the process begin?</summary><p data-en="You can submit basic details now and choose a contact window. Specialist review and appointment timing begin only after the required records and hospital availability are confirmed." data-zh="现在即可提交基本信息并选择联系时间；专家评估与预约时间需在资料齐全、医院名额确认后确定。">You can submit basic details now and choose a contact window. Specialist review and appointment timing begin only after the required records and hospital availability are confirmed.</p></details>
+          <details><summary data-en="Do I need to choose a hospital first?" data-zh="我需要先选定医院吗？">Do I need to choose a hospital first?</summary><p data-en="No. Start with the medical goal and the relevant specialty. Hospital comparison becomes more useful after the clinical direction is clear." data-zh="不需要。先明确医疗目标与专科方向，再比较医院会更有意义。">No. Start with the medical goal and the relevant specialty. Hospital comparison becomes more useful after the clinical direction is clear.</p></details>
+          <details><summary data-en="How are hospitals matched?" data-zh="医院是如何匹配的？">How are hospitals matched?</summary><p data-en="The shortlist considers specialty capability, your records, city preference, timing and practical constraints. A directory rank is a research reference, not a guarantee of acceptance." data-zh="候选范围会结合专科能力、现有资料、城市偏好、时间与实际限制；目录排名属于研究参考，不代表医院已经同意接诊。">The shortlist considers specialty capability, your records, city preference, timing and practical constraints. A directory rank is a research reference, not a guarantee of acceptance.</p></details>
+          <details><summary data-en="When do I upload medical records?" data-zh="什么时候需要上传病历？">When do I upload medical records?</summary><p data-en="After the first consultation and consent step, through an agreed secure channel. The homepage form does not upload or transmit medical records." data-zh="完成首次沟通与隐私授权后，再通过约定的安全通道提交；首页表单不会上传或传输病历。">After the first consultation and consent step, through an agreed secure channel. The homepage form does not upload or transmit medical records.</p></details>
+          <details><summary data-en="Can you coordinate visas, flights and local travel?" data-zh="可以协助签证、机票和当地行程吗？">Can you coordinate visas, flights and local travel?</summary><p data-en="Travel documents, arrival, interpreting and accommodation can be coordinated after the hospital plan is confirmed. Visa eligibility and entry rules depend on nationality and current policy." data-zh="医院方案确认后，可继续协调出入境文件、抵达接引、翻译与住宿；签证资格与入境规则取决于国籍和当期政策。">Travel documents, arrival, interpreting and accommodation can be coordinated after the hospital plan is confirmed. Visa eligibility and entry rules depend on nationality and current policy.</p></details>
+          <details><summary data-en="Which languages and cultural needs can be supported?" data-zh="可以支持哪些语言与文化需求？">Which languages and cultural needs can be supported?</summary><p data-en="Language interpreting, halal meals, prayer arrangements, family participation and privacy preferences can be recorded and coordinated. Availability must be confirmed for the selected hospital and city." data-zh="可记录并协调语言翻译、清真饮食、礼拜安排、家属参与与隐私偏好；具体可用性需结合医院和城市确认。">Language interpreting, halal meals, prayer arrangements, family participation and privacy preferences can be recorded and coordinated. Availability must be confirmed for the selected hospital and city.</p></details>
+          <details><summary data-en="Is the estimate a hospital quote?" data-zh="页面预算是医院报价吗？">Is the estimate a hospital quote?</summary><p data-en="No. It is a planning range for medical care, stay and support. A formal hospital estimate follows record review and may change with the final treatment plan." data-zh="不是。页面用于规划医疗、停留与服务预算；正式费用需医院评估资料后给出，并可能随最终方案变化。">No. It is a planning range for medical care, stay and support. A formal hospital estimate follows record review and may change with the final treatment plan.</p></details>
+          <details><summary data-en="What if this is an emergency?" data-zh="如果现在是紧急情况怎么办？">What if this is an emergency?</summary><p data-en="Contact local emergency services immediately. CareChina coordinates planned cross-border care and cannot replace emergency response." data-zh="请立即联系所在地急救服务。CareChina 只协调计划性跨境医疗，不能替代急救响应。">Contact local emergency services immediately. CareChina coordinates planned cross-border care and cannot replace emergency response.</p></details>
         </div>
       </div>
     </section>
@@ -796,6 +828,20 @@
       <button class="theme-option" type="button" data-theme-option="warm"><span class="theme-swatches"><i style="background:#697354"></i><i style="background:#FFFFFF"></i><i style="background:#B99357"></i></span><b data-en="Warm care" data-zh="温和照护">Warm care</b><small data-en="Warm and human" data-zh="温暖、自然、有亲和力">Warm and human</small></button>
     </div>
     <p data-en="The selected palette is remembered on this device." data-zh="所选色调会保存在当前设备。">The selected palette is remembered on this device.</p>
+  </aside>
+
+  <button class="concierge-fab" id="conciergeFab" type="button" aria-controls="conciergePanel" aria-expanded="false"><span aria-hidden="true">✦</span><b><strong data-en="Human / AI support" data-zh="人工 / AI 客服">Human / AI support</strong><small data-en="Ask before you start" data-zh="售前咨询">Ask before you start</small></b></button>
+  <aside class="concierge-panel" id="conciergePanel" role="dialog" aria-modal="false" aria-labelledby="conciergeTitle" aria-hidden="true">
+    <div class="concierge-head"><span class="concierge-avatar" aria-hidden="true">✦</span><div><small><i></i><span data-en="AI ONLINE · HUMAN HANDOFF" data-zh="AI 在线 · 可转人工">AI ONLINE · HUMAN HANDOFF</span></small><h3 id="conciergeTitle" data-en="CareChina pre-care support" data-zh="CareChina 售前咨询">CareChina pre-care support</h3></div><button id="conciergeClose" type="button" aria-label="Close support chat">×</button></div>
+    <div class="concierge-messages" id="conciergeMessages" aria-live="polite"><div class="chat-bubble assistant" data-en="Hello. I can explain the care journey, hospital search, records and estimated costs. What would you like to know?" data-zh="你好，我可以介绍来华流程、医院查找、病历准备和费用规划。你想先了解什么？">Hello. I can explain the care journey, hospital search, records and estimated costs. What would you like to know?</div></div>
+    <div class="concierge-quick" aria-label="Quick questions">
+      <button type="button" data-chat-question="eligibility" data-en="Can my care be reviewed?" data-zh="我的医疗需求可以评估吗？">Can my care be reviewed?</button>
+      <button type="button" data-chat-question="hospital" data-en="Help me choose a hospital" data-zh="帮我了解医院选择">Help me choose a hospital</button>
+      <button type="button" data-chat-question="cost" data-en="How are costs estimated?" data-zh="费用如何估算？">How are costs estimated?</button>
+      <button type="button" data-chat-question="human" data-en="Talk to a human" data-zh="转人工咨询">Talk to a human</button>
+    </div>
+    <form class="concierge-form" id="conciergeForm"><input id="conciergeInput" type="text" autocomplete="off" data-ph-en="Type a question…" data-ph-zh="输入你的问题…" placeholder="Type a question…"><button type="submit" aria-label="Send">→</button></form>
+    <div class="concierge-foot"><span data-en="Prototype chat · messages are not transmitted" data-zh="原型对话 · 消息不会被发送">Prototype chat · messages are not transmitted</span><a href="#assessment" data-en="Leave contact details" data-zh="留下联系方式">Leave contact details</a></div>
   </aside>
 
   <script>
@@ -1071,6 +1117,36 @@
     renderBudget();
 
 
+    const conciergeFab=document.getElementById('conciergeFab'),conciergePanel=document.getElementById('conciergePanel'),conciergeClose=document.getElementById('conciergeClose'),conciergeMessages=document.getElementById('conciergeMessages'),conciergeForm=document.getElementById('conciergeForm'),conciergeInput=document.getElementById('conciergeInput');
+    const conciergeReplies={
+      eligibility:{en:'Start with your diagnosis if known, current symptoms and your main goal. We can organise an initial review path; the hospital decides whether it can accept the case after reviewing the required records.',zh:'可以先说明已知诊断、当前症状和最主要的医疗目标。我们会整理初步评估路径；是否能够接诊，仍由医院在审阅所需资料后确认。'},
+      hospital:{en:'You do not need to choose one immediately. Begin with the relevant specialty, then compare clinical capability, city, timing and practical needs in the hospital directory.',zh:'不必立刻选定一家医院。建议先从对应专科开始，再到医院目录比较医疗能力、城市、时间与实际需求。'},
+      cost:{en:'The homepage calculator gives a planning range for care, stay and support. A formal estimate can only follow record review and a proposed treatment plan.',zh:'首页计算器提供医疗、停留与协调服务的资金准备区间。正式费用需要医院审阅资料并形成拟定方案后确认。'},
+      human:{en:'A human coordinator can follow up after you leave your preferred contact and contact time in the consultation form below. This prototype chat does not transmit messages.',zh:'请在下方咨询表单留下首选联系方式与方便沟通的时间，人工协调人员可据此跟进。本原型对话不会发送消息。'}
+    };
+    function addChatBubble(role,en,zh){
+      const bubble=document.createElement('div');
+      bubble.className='chat-bubble '+role;bubble.dataset.en=en;bubble.dataset.zh=zh;bubble.textContent=lang==='zh'?zh:en;
+      conciergeMessages.appendChild(bubble);conciergeMessages.scrollTop=conciergeMessages.scrollHeight;
+    }
+    function toggleConcierge(open){
+      conciergePanel.classList.toggle('open',open);conciergePanel.setAttribute('aria-hidden',String(!open));conciergeFab.setAttribute('aria-expanded',String(open));
+      if(open){toggleThemePanel(false);setTimeout(()=>conciergeInput.focus(),180)}
+    }
+    conciergeFab.addEventListener('click',()=>toggleConcierge(!conciergePanel.classList.contains('open')));
+    conciergeClose.addEventListener('click',()=>toggleConcierge(false));
+    $$('.concierge-quick button').forEach(button=>button.addEventListener('click',()=>{
+      addChatBubble('user',button.dataset.en,button.dataset.zh);
+      const reply=conciergeReplies[button.dataset.chatQuestion];setTimeout(()=>addChatBubble('assistant',reply.en,reply.zh),180);
+    }));
+    conciergeForm.addEventListener('submit',event=>{
+      event.preventDefault();const question=conciergeInput.value.trim();if(!question)return;
+      addChatBubble('user',question,question);conciergeInput.value='';
+      const reply={en:'Thank you — I have noted the question. This prototype cannot send it, so please leave your contact details in Start consultation for a human follow-up.',zh:'谢谢，我已记录这个问题。当前原型不会发送消息，请在“开启咨询”中留下联系方式，以便人工跟进。'};
+      setTimeout(()=>addChatBubble('assistant',reply.en,reply.zh),180);
+    });
+    document.querySelector('.concierge-foot a')?.addEventListener('click',()=>toggleConcierge(false));
+
     const themeFab=document.getElementById('themeFab'),themePanel=document.getElementById('themePanel'),themeClose=document.getElementById('themeClose');
     function applyTheme(name){
       const allowed=['clinic','calm','warm'];name=allowed.includes(name)?name:'clinic';
@@ -1078,12 +1154,13 @@
       $$('.theme-option').forEach(x=>x.classList.toggle('active',x.dataset.themeOption===name));
       try{localStorage.setItem('carechina-theme',name)}catch(e){}
     }
-    function toggleThemePanel(open){themePanel.classList.toggle('open',open);themePanel.setAttribute('aria-hidden',String(!open));themeFab.setAttribute('aria-expanded',String(open))}
+    function toggleThemePanel(open){themePanel.classList.toggle('open',open);themePanel.setAttribute('aria-hidden',String(!open));themeFab.setAttribute('aria-expanded',String(open));if(open)toggleConcierge(false)}
     themeFab.addEventListener('click',()=>toggleThemePanel(!themePanel.classList.contains('open')));
     themeClose.addEventListener('click',()=>toggleThemePanel(false));
     $$('.theme-option').forEach(x=>x.addEventListener('click',()=>applyTheme(x.dataset.themeOption)));
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleThemePanel(false)});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){toggleThemePanel(false);toggleConcierge(false)}});
     document.addEventListener('click',e=>{if(themePanel.classList.contains('open')&&!themePanel.contains(e.target)&&!themeFab.contains(e.target))toggleThemePanel(false)});
+    document.addEventListener('click',e=>{if(conciergePanel.classList.contains('open')&&!conciergePanel.contains(e.target)&&!conciergeFab.contains(e.target))toggleConcierge(false)});
     try{applyTheme(localStorage.getItem('carechina-theme')||'clinic')}catch(e){applyTheme('clinic')}
 
     document.getElementById('year').textContent=new Date().getFullYear();
