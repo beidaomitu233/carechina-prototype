@@ -467,7 +467,7 @@ html[lang="zh-CN"] .notice { line-height: 1.75; }
 @media(max-width:780px){.city-discovery-grid{grid-template-columns:1fr}.city-discovery-card{min-height:330px}.hospital-arrow{width:42px;height:42px}}
 
 
-/* Replaceable patient palette shared from the homepage */
+/* Replaceable care palette shared from the homepage */
 body[data-theme="clinic"]{--brand:#007e70;--brand-dark:#00675c;--brand-deep:#00584f;--cyan:#a6d7d1;--lime:#c8a15e;--surface:#f3f9f8;--ink:#174a45;--ink-soft:#4b6a66}
 body[data-theme="calm"]{--brand:#2a7b80;--brand-dark:#226a6f;--brand-deep:#1c575b;--cyan:#b7dddd;--lime:#8bbeb8;--surface:#f4fafa;--ink:#28575a;--ink-soft:#546c6d}
 body[data-theme="warm"]{--brand:#697354;--brand-dark:#596248;--brand-deep:#4b533d;--cyan:#d4dac5;--lime:#b99357;--surface:#f7f8f3;--ink:#4d553f;--ink-soft:#656b5b}
