@@ -43,12 +43,12 @@
       node.placeholder = node.dataset[`placeholder${lang === "zh" ? "Zh" : "En"}`];
     });
     if (langButton) langButton.textContent = lang === "zh" ? "EN" : "中文";
-    try { localStorage.setItem("carechina-language", lang); } catch (_) {}
+    try { localStorage.setItem("carechina-language-v04", lang); } catch (_) {}
     document.dispatchEvent(new CustomEvent("carechina:language", { detail: { lang } }));
   }
 
   let language = "en";
-  try { language = localStorage.getItem("carechina-language") || "en"; } catch (_) {}
+  try { language = localStorage.getItem("carechina-language-v04") || "en"; } catch (_) {}
   setLanguage(language);
   if (langButton) langButton.addEventListener("click", () => setLanguage(root.lang.startsWith("zh") ? "en" : "zh"));
 
