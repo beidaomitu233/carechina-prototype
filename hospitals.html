@@ -12,90 +12,213 @@
       <a class="brand" href="index.html"><span class="brand-mark"></span><span class="brand-copy">CareChina<small data-en="International medical coordination" data-zh="国际医疗协同">International medical coordination</small></span></a>
       <nav class="main-nav" data-main-nav aria-label="Primary navigation">
         <a class="nav-link" data-nav="home" href="index.html" data-en="Home" data-zh="首页">Home</a>
-        <a class="nav-link" href="index.html#eligibility" data-en="Can China Help?" data-zh="能否来华">Can China Help?</a>
+        <a class="nav-link" href="index.html#eligibility" data-en="Can China Help?" data-zh="来华医疗评估">Can China Help?</a>
         <a class="nav-link" href="index.html#journey" data-en="Coordinated Care" data-zh="全程服务">Coordinated Care</a>
         <a class="nav-link" data-nav="hospitals" href="hospitals.html" data-en="Find a Hospital" data-zh="找医院">Find a Hospital</a>
         <a class="nav-link" data-nav="plan" href="care-plan.html" data-en="Care Path" data-zh="诊疗路径">Care Path</a>
-        <details class="nav-dropdown">
-          <summary class="nav-link" data-en="More Services" data-zh="更多服务">More Services</summary>
-          <div class="nav-dropdown-menu">
-            <a class="nav-sub-link" data-nav="cost" href="cost-estimate.html"><span data-en="Cost Estimate" data-zh="费用估算">Cost Estimate</span><small data-en="Plan the full journey budget" data-zh="规划完整来华预算">Plan the full journey budget</small></a>
-            <a class="nav-sub-link" data-nav="tcm" href="tcm-wellness.html"><span data-en="TCM Wellness" data-zh="中医调养">TCM Wellness</span><small data-en="Safety-first consultation guide" data-zh="安全优先的面诊指南">Safety-first consultation guide</small></a>
-            <a class="nav-sub-link" data-nav="consultation" href="consultation.html"><span data-en="Consultation Guide" data-zh="咨询说明">Consultation Guide</span><small data-en="Prepare the right first contact" data-zh="了解首次沟通需要什么">Prepare the right first contact</small></a>
-          </div>
-        </details>
+        <details class="nav-dropdown"><summary class="nav-link" data-en="More Services" data-zh="更多服务">More Services</summary><div class="nav-dropdown-menu">
+          <a class="nav-sub-link" data-nav="cost" href="cost-estimate.html"><span data-en="Cost Estimate" data-zh="费用估算">Cost Estimate</span><small data-en="Plan the full journey budget" data-zh="规划完整来华预算">Plan the full journey budget</small></a>
+          <a class="nav-sub-link" data-nav="tcm" href="tcm-wellness.html"><span data-en="TCM Wellness" data-zh="中医调养">TCM Wellness</span><small data-en="Safety-first consultation guide" data-zh="安全优先的面诊指南">Safety-first consultation guide</small></a>
+          <a class="nav-sub-link" data-nav="consultation" href="consultation.html"><span data-en="Consultation Guide" data-zh="咨询说明">Consultation Guide</span><small data-en="Prepare the right first contact" data-zh="了解首次沟通需要什么">Prepare the right first contact</small></a>
+        </div></details>
       </nav>
-      <div class="nav-actions"><button class="lang-toggle" data-lang-toggle type="button">中文</button><a class="button small" href="index.html#assessment" data-en="Consult now" data-zh="提交医疗需求">Consult now</a><button class="menu-toggle" data-menu-toggle type="button" aria-expanded="false">☰</button></div>
+      <div class="nav-actions"><button class="lang-toggle" data-lang-toggle type="button">中文</button><a class="button small" href="index.html#assessment" data-en="Consult now" data-zh="开启咨询">Consult now</a><button class="menu-toggle" data-menu-toggle type="button" aria-expanded="false">☰</button></div>
     </div>
   </header>
+
   <main>
-    <section class="page-hero">
+    <section class="page-hero hospital-page-hero">
       <div class="shell page-hero-grid">
-        <div data-reveal><p class="eyebrow" data-en="Hospital explorer" data-zh="医院匹配工具">Hospital explorer</p><h1 data-en="Match expertise to your medical need." data-zh="让医院专长匹配真实医疗需求。">Match expertise to your medical need.</h1><p class="lead" data-en="Explore a research shortlist by specialty, city and cross-border coordination readiness—then request human review before deciding." data-zh="先按病情与城市缩小范围，再结合医院接诊与跨境协同条件进行人工复核。">Explore a research shortlist by specialty, city and cross-border coordination readiness—then request human review before deciding.</p></div>
-        <aside class="hero-panel" data-reveal><h2 data-en="A safer matching order" data-zh="更稳妥的匹配顺序">A safer matching order</h2><div class="mini-flow"><div><b>1</b><span data-en="Clarify diagnosis or symptom" data-zh="明确诊断或主要症状">Clarify diagnosis or symptom</span></div><div><b>2</b><span data-en="Compare specialty capability" data-zh="比较专科能力">Compare specialty capability</span></div><div><b>3</b><span data-en="Confirm case acceptance" data-zh="确认是否接诊">Confirm case acceptance</span></div><div><b>4</b><span data-en="Plan cost and travel" data-zh="规划费用与行程">Plan cost and travel</span></div></div></aside>
+        <div data-reveal><p class="eyebrow" data-en="Hospital matching centre" data-zh="医院匹配中心">Hospital matching centre</p><h1 data-en="Find the right expertise—then confirm the hospital." data-zh="先找到适合的专科能力，再确认医院。">Find the right expertise—then confirm the hospital.</h1><p class="lead" data-en="Explore a reviewed research directory by specialty and city. Open each profile for context, then seek current hospital confirmation before making a decision." data-zh="按专科与城市浏览经过人工整理的研究目录，查看医院简介后，再以医院当前接诊确认作为决定依据。">Explore a reviewed research directory by specialty and city. Open each profile for context, then seek current hospital confirmation before making a decision.</p></div>
+        <aside class="hero-panel hospital-hero-panel" data-reveal>
+          <p class="hospital-hero-label" data-en="RESEARCH DIRECTORY" data-zh="研究目录">RESEARCH DIRECTORY</p>
+          <div class="hospital-hero-stats"><span><strong id="hospital-total">103</strong><small data-en="hospitals" data-zh="家医院">hospitals</small></span><span><strong id="city-total">22</strong><small data-en="cities" data-zh="座城市">cities</small></span><span><strong id="specialty-total">14</strong><small data-en="specialties" data-zh="个专科">specialties</small></span></div>
+          <div class="mini-flow"><div><b>1</b><span data-en="Choose a care direction" data-zh="选择专科方向">Choose a care direction</span></div><div><b>2</b><span data-en="Compare city and expertise" data-zh="比较城市与专长">Compare city and expertise</span></div><div><b>3</b><span data-en="Open the hospital profile" data-zh="查看医院简介">Open the hospital profile</span></div><div><b>4</b><span data-en="Confirm acceptance and plan" data-zh="确认接诊与方案">Confirm acceptance and plan</span></div></div>
+        </aside>
       </div>
     </section>
+
     <section class="section city-discovery">
       <div class="shell">
-        <div class="section-head" data-reveal><div><span class="eyebrow" data-en="Explore by city" data-zh="按城市探索">Explore by city</span><h2 data-en="Choose a medical city before comparing hospitals." data-zh="先选城市，再看医院。">Choose a medical city before comparing hospitals.</h2><p data-en="Each city brings a different mix of specialties, access and international support." data-zh="三座重点城市，分别对应不同的专科组合、交通条件与国际服务基础。">Each city brings a different mix of specialties, access and international support.</p></div></div>
+        <div class="section-head" data-reveal><div><span class="eyebrow" data-en="Three starting cities" data-zh="三座重点城市">Three starting cities</span><h2 data-en="Start with specialist fit, then compare city access." data-zh="先看专科匹配，再比较城市可达性。">Start with specialist fit, then compare city access.</h2><p data-en="These visual city entries are a quick starting point. The full directory below covers 22 cities." data-zh="以下城市入口帮助快速开始，完整目录覆盖 22 座城市。">These visual city entries are a quick starting point. The full directory below covers 22 cities.</p></div></div>
         <div class="city-discovery-grid">
-          <button class="city-discovery-card" type="button" data-city-jump="Wuhan" data-reveal><img src="assets/hospital-zhongnan-exterior.jpg" alt="武汉医院实景" loading="lazy" /><span><small data-en="CENTRAL CHINA" data-zh="中国中部">CENTRAL CHINA</small><strong data-en="Wuhan" data-zh="武汉">Wuhan</strong><em data-en="Complex care · Cardiac · International clinic" data-zh="综合疑难 · 心血管 · 国际门诊">Complex care · Cardiac · International clinic</em><b data-en="View Wuhan hospitals →" data-zh="查看武汉医院 →">View Wuhan hospitals →</b></span></button>
-          <button class="city-discovery-card" type="button" data-city-jump="Chengdu" data-reveal><img src="assets/city-chengdu-hospital.jpg" alt="四川大学华西医院院区" loading="lazy" /><span><small data-en="WESTERN CHINA" data-zh="中国西部">WESTERN CHINA</small><strong data-en="Chengdu" data-zh="成都">Chengdu</strong><em data-en="Complex care · Dental · Maternal & child" data-zh="复杂重症 · 口腔 · 妇幼">Complex care · Dental · Maternal & child</em><b data-en="View Chengdu hospitals →" data-zh="查看成都医院 →">View Chengdu hospitals →</b></span></button>
-          <button class="city-discovery-card" type="button" data-city-jump="Guangzhou" data-reveal><img src="assets/city-guangzhou-hospital.jpg" alt="中山大学肿瘤防治中心院区" loading="lazy" /><span><small data-en="GREATER BAY AREA" data-zh="粤港澳大湾区">GREATER BAY AREA</small><strong data-en="Guangzhou" data-zh="广州">Guangzhou</strong><em data-en="Cancer · Eye care · International services" data-zh="肿瘤 · 眼科 · 国际服务">Cancer · Eye care · International services</em><b data-en="View Guangzhou hospitals →" data-zh="查看广州医院 →">View Guangzhou hospitals →</b></span></button>
+          <button class="city-discovery-card" type="button" data-city-jump="wuhan" data-reveal><img src="assets/hospital-zhongnan-exterior.jpg" alt="武汉大学中南医院院区" loading="lazy"><span><small data-en="CENTRAL CHINA" data-zh="中国中部">CENTRAL CHINA</small><strong data-en="Wuhan" data-zh="武汉">Wuhan</strong><em data-en="Complex care · Cardiac · International clinics" data-zh="综合疑难 · 心血管 · 国际门诊">Complex care · Cardiac · International clinics</em><b data-en="View Wuhan hospitals →" data-zh="查看武汉医院 →">View Wuhan hospitals →</b></span></button>
+          <button class="city-discovery-card" type="button" data-city-jump="chengdu" data-reveal><img src="assets/city-chengdu-hospital.jpg" alt="四川大学华西医院院区" loading="lazy"><span><small data-en="WESTERN CHINA" data-zh="中国西部">WESTERN CHINA</small><strong data-en="Chengdu" data-zh="成都">Chengdu</strong><em data-en="Complex care · Dental · Maternal and child" data-zh="复杂重症 · 口腔 · 妇幼">Complex care · Dental · Maternal and child</em><b data-en="View Chengdu hospitals →" data-zh="查看成都医院 →">View Chengdu hospitals →</b></span></button>
+          <button class="city-discovery-card" type="button" data-city-jump="guangzhou" data-reveal><img src="assets/city-guangzhou-hospital.jpg" alt="中山大学肿瘤防治中心院区" loading="lazy"><span><small data-en="GREATER BAY AREA" data-zh="粤港澳大湾区">GREATER BAY AREA</small><strong data-en="Guangzhou" data-zh="广州">Guangzhou</strong><em data-en="Cancer · Eye care · International services" data-zh="肿瘤 · 眼科 · 国际服务">Cancer · Eye care · International services</em><b data-en="View Guangzhou hospitals →" data-zh="查看广州医院 →">View Guangzhou hospitals →</b></span></button>
         </div>
         <p class="city-source"><span data-en="Image sources:" data-zh="图片来源：">Image sources:</span> <a href="https://zxhospital.com/" target="_blank" rel="noreferrer" data-en="Zhongnan Hospital" data-zh="武汉大学中南医院">Zhongnan Hospital</a> · <a href="https://www.wchscu.cn/ysg/jiwangkailai.html" target="_blank" rel="noreferrer" data-en="West China Hospital" data-zh="四川大学华西医院">West China Hospital</a> · <a href="https://commons.wikimedia.org/wiki/File:中山大学肿瘤防治中心_building.jpg" target="_blank" rel="noreferrer">SYSUCC · CC BY-SA 4.0</a></p>
       </div>
     </section>
-    <section class="section" id="hospital-finder">
+
+    <section class="section hospital-finder-section" id="hospital-finder">
       <div class="shell">
-        <div class="search-row">
-          <div class="field"><label for="hospital-search" data-en="Condition or hospital" data-zh="病种或医院">Condition or hospital</label><input id="hospital-search" type="search" data-placeholder-en="e.g. oncology, cardiac, Beijing" data-placeholder-zh="例如：肿瘤、心血管、北京" placeholder="e.g. oncology, cardiac, Beijing"></div>
-          <div class="field"><label for="city-filter" data-en="City" data-zh="城市">City</label><select id="city-filter"><option value="all" data-en="All cities" data-zh="全部城市">All cities</option><option value="Beijing" data-en="Beijing" data-zh="北京">Beijing</option><option value="Shanghai" data-en="Shanghai" data-zh="上海">Shanghai</option><option value="Guangzhou" data-en="Guangzhou" data-zh="广州">Guangzhou</option><option value="Wuhan" data-en="Wuhan" data-zh="武汉">Wuhan</option><option value="Hangzhou" data-en="Hangzhou" data-zh="杭州">Hangzhou</option><option value="Chengdu" data-en="Chengdu" data-zh="成都">Chengdu</option></select></div>
-          <div class="field"><label for="specialty-filter" data-en="Specialty" data-zh="专科">Specialty</label><select id="specialty-filter"><option value="all" data-en="All specialties" data-zh="全部专科">All specialties</option><option value="Oncology" data-en="Oncology" data-zh="肿瘤">Oncology</option><option value="Cardiology" data-en="Cardiology" data-zh="心血管">Cardiology</option><option value="Neurology" data-en="Neurology" data-zh="神经疾病">Neurology</option><option value="Orthopaedics" data-en="Orthopaedics" data-zh="骨科">Orthopaedics</option><option value="General" data-en="Complex / general" data-zh="综合疑难">Complex / general</option></select></div>
+        <div class="finder-heading" data-reveal><div><p class="eyebrow" data-en="Full hospital directory" data-zh="完整医院目录">Full hospital directory</p><h2 data-en="Filter first. Compare only what matters." data-zh="先筛选，再比较真正相关的医院。">Filter first. Compare only what matters.</h2></div><a class="button secondary small" href="index.html#assessment" data-en="Request a reviewed shortlist" data-zh="申请人工复核清单">Request a reviewed shortlist</a></div>
+        <div class="hospital-filter-panel" data-reveal>
+          <div class="search-row hospital-search-row">
+            <div class="field"><label for="hospital-search" data-en="Care direction or hospital" data-zh="专科方向或医院">Care direction or hospital</label><input id="hospital-search" type="search" data-placeholder-en="e.g. oncology, transplant, Beijing" data-placeholder-zh="例如：肿瘤、器官移植、北京" placeholder="e.g. oncology, transplant, Beijing"></div>
+            <div class="field"><label for="city-filter" data-en="City" data-zh="城市">City</label><select id="city-filter"></select></div>
+          </div>
+          <div class="specialty-filter-block"><div class="specialty-filter-label"><label data-en="Specialty direction" data-zh="专科方向">Specialty direction</label><small data-en="Choose one to narrow the directory." data-zh="选择一个方向，快速缩小范围。">Choose one to narrow the directory.</small></div><div class="hospital-specialty-chips" id="specialty-chips" role="list"></div></div>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:14px"><strong id="result-count">0 hospitals</strong><a class="button secondary small" href="index.html#assessment" data-en="Request a reviewed shortlist" data-zh="申请人工复核清单">Request a reviewed shortlist</a></div>
-        <div class="hospital-list" id="hospital-list"></div><div class="empty-state" id="empty-state" data-en="No hospitals match these filters. Broaden the city or specialty, or request human review." data-zh="没有符合当前筛选的医院。请放宽城市或专科条件，或申请人工复核。">No hospitals match these filters. Broaden the city or specialty, or request human review.</div>
+        <div class="hospital-result-toolbar"><div><strong id="result-count">0 hospitals</strong><small id="result-context"></small></div><button class="hospital-clear" id="clear-filters" type="button" data-en="Clear filters" data-zh="清除筛选">Clear filters</button></div>
+        <div class="hospital-list" id="hospital-list"></div>
+        <div class="empty-state" id="empty-state" data-en="No hospitals match these filters. Try another city, specialty or keyword." data-zh="当前没有匹配结果，请更换城市、专科或关键词。">No hospitals match these filters. Try another city, specialty or keyword.</div>
+        <div class="hospital-load-row"><button class="button secondary" id="load-more" type="button" data-en="Show 12 more" data-zh="再显示 12 家">Show 12 more</button></div>
+        <p class="hospital-research-note" data-en="Research note: the directory was migrated from a manually reviewed legacy prototype. Rankings and capability descriptions are historical research references, not current endorsements. Verify all details with the hospital before use." data-zh="研究说明：目录迁移自经过人工校验的旧版原型。排名与能力描述属于历史研究参考，不代表当前推荐；正式使用前须向医院核验。">Research note: the directory was migrated from a manually reviewed legacy prototype. Rankings and capability descriptions are historical research references, not current endorsements. Verify all details with the hospital before use.</p>
       </div>
     </section>
-    <section class="section soft"><div class="shell cta-band" data-reveal><h2 data-en="A directory is a starting point—not a medical decision." data-zh="医院目录只是起点，不是医疗决策。">A directory is a starting point—not a medical decision.</h2><p data-en="Share de-identified records and practical constraints so the shortlist can be reviewed against your case." data-zh="提供去标识化病历与现实约束，才能基于个案进一步复核医院清单。">Share de-identified records and practical constraints so the shortlist can be reviewed against your case.</p><a class="button" href="index.html#assessment" style="color:var(--brand-deep);background:var(--lime)" data-en="Request case review" data-zh="申请个案复核">Request case review</a></div></section>
+    <section class="section soft"><div class="shell cta-band" data-reveal><h2 data-en="A hospital name is not yet a treatment plan." data-zh="找到医院名称，不等于已经形成诊疗方案。">A hospital name is not yet a treatment plan.</h2><p data-en="The next useful step is to confirm record requirements, case acceptance, appointment timing and a hospital estimate." data-zh="下一步应确认资料要求、是否接诊、预约时间与医院费用预估。">The next useful step is to confirm record requirements, case acceptance, appointment timing and a hospital estimate.</p><a class="button" href="index.html#assessment" style="color:var(--brand-deep);background:var(--lime)" data-en="Start consultation" data-zh="开启咨询">Start consultation</a></div></section>
   </main>
+  <dialog class="hospital-dialog" id="hospital-dialog" aria-labelledby="hospital-dialog-title">
+    <div class="hospital-dialog-shell">
+      <button class="hospital-dialog-close" id="hospital-dialog-close" type="button" aria-label="Close">×</button>
+      <div class="hospital-dialog-head"><div class="hospital-dialog-logo" id="hospital-dialog-logo"></div><div><span class="hospital-dialog-location" id="hospital-dialog-location"></span><h2 id="hospital-dialog-title"></h2><p id="hospital-dialog-rank"></p></div></div>
+      <div class="hospital-dialog-gallery" id="hospital-dialog-gallery"></div>
+      <div class="hospital-dialog-body">
+        <div><small data-en="SPECIALTY PROFILE" data-zh="专科概况">SPECIALTY PROFILE</small><p id="hospital-dialog-dept"></p></div>
+        <div><small data-en="WHY IT APPEARS IN THE DIRECTORY" data-zh="入选研究目录的依据">WHY IT APPEARS IN THE DIRECTORY</small><p id="hospital-dialog-note"></p></div>
+      </div>
+      <div class="hospital-dialog-notice" data-en="Historical research reference. Confirm current departments, international-patient access, appointment availability and costs directly with the hospital." data-zh="以上为历史研究参考。请直接向医院确认当前科室能力、国际患者接诊条件、预约名额与费用。">Historical research reference. Confirm current departments, international-patient access, appointment availability and costs directly with the hospital.</div>
+      <div class="hospital-dialog-actions"><a class="button" id="hospital-official-link" target="_blank" rel="noreferrer" data-en="Visit official hospital website ↗" data-zh="前往医院官网 ↗">Visit official hospital website ↗</a><a class="button secondary" href="index.html#assessment" data-en="Ask a coordinator" data-zh="咨询协调员">Ask a coordinator</a></div>
+    </div>
+  </dialog>
+
   <footer class="site-footer"><div class="shell"><div class="footer-grid"><div><a class="brand" href="index.html"><span class="brand-mark"></span><span class="brand-copy">CareChina</span></a><p data-en="Needs-first planning for medical care in China." data-zh="从医疗需求出发的来华就医规划。">Needs-first planning for medical care in China.</p></div><div><h3 data-en="Next step" data-zh="下一步">Next step</h3><div class="footer-links"><a href="care-plan.html" data-en="Build a care plan" data-zh="规划诊疗路径">Build a care plan</a><a href="cost-estimate.html" data-en="Estimate cost" data-zh="估算费用">Estimate cost</a></div></div><div><h3 data-en="Important" data-zh="重要说明">Important</h3><p data-en="Directory information must be independently verified before use." data-zh="目录信息在使用前必须独立核验。">Directory information must be independently verified before use.</p></div></div><div class="footer-bottom"><span>© 2026 CareChina prototype</span><span data-en="Not medical advice" data-zh="不构成医疗建议">Not medical advice</span></div></div></footer>
+
+  <script src="assets/hospitals-data.js"></script>
   <script src="assets/platform.js"></script>
   <script>
-    const hospitals = [
-      {en:"Peking Union Medical College Hospital",zh:"北京协和医院",city:"Beijing",cityZh:"北京",tags:["General","Oncology","Neurology"],tagsZh:["综合疑难","肿瘤","神经疾病"],noteEn:"Broad multidisciplinary capability for complex and rare conditions.",noteZh:"在复杂疑难与罕见病多学科诊疗方面具有综合能力。"},
-      {en:"Fuwai Hospital, CAMS",zh:"中国医学科学院阜外医院",city:"Beijing",cityZh:"北京",tags:["Cardiology"],tagsZh:["心血管"],noteEn:"Specialist cardiovascular diagnosis, intervention and surgery.",noteZh:"专注心血管疾病诊断、介入与外科治疗。"},
-      {en:"Beijing Tiantan Hospital",zh:"首都医科大学附属北京天坛医院",city:"Beijing",cityZh:"北京",tags:["Neurology"],tagsZh:["神经疾病"],noteEn:"Specialist focus on neurological and neurosurgical conditions.",noteZh:"重点覆盖神经内科与神经外科相关疾病。"},
-      {en:"Shanghai Ruijin Hospital",zh:"上海交通大学医学院附属瑞金医院",city:"Shanghai",cityZh:"上海",tags:["General","Oncology"],tagsZh:["综合疑难","肿瘤"],noteEn:"Large tertiary centre with multidisciplinary clinical services.",noteZh:"大型三甲综合医院，具备多学科临床服务能力。"},
-      {en:"Zhongshan Hospital, Fudan University",zh:"复旦大学附属中山医院",city:"Shanghai",cityZh:"上海",tags:["Cardiology","General"],tagsZh:["心血管","综合疑难"],noteEn:"Comprehensive care with recognised cardiovascular capability.",noteZh:"综合诊疗能力突出，心血管专科具有较强实力。"},
-      {en:"Shanghai Chest Hospital",zh:"上海市胸科医院",city:"Shanghai",cityZh:"上海",tags:["Oncology","Cardiology"],tagsZh:["胸部肿瘤","心血管"],noteEn:"Specialist services for thoracic oncology and cardiothoracic disease.",noteZh:"重点覆盖胸部肿瘤及心胸相关疾病。"},
-      {en:"Sun Yat-sen University Cancer Center",zh:"中山大学肿瘤防治中心",city:"Guangzhou",cityZh:"广州",tags:["Oncology"],tagsZh:["肿瘤"],noteEn:"Dedicated cancer centre with multidisciplinary tumour care.",noteZh:"肿瘤专科中心，覆盖多学科肿瘤诊疗。"},
-      {en:"The First Affiliated Hospital of Sun Yat-sen University",zh:"中山大学附属第一医院",city:"Guangzhou",cityZh:"广州",tags:["General","Orthopaedics"],tagsZh:["综合疑难","骨科"],noteEn:"Comprehensive tertiary hospital with multiple specialist centres.",noteZh:"综合性三甲医院，设有多个优势专科中心。"},
-      {en:"Tongji Hospital, Tongji Medical College",zh:"华中科技大学同济医学院附属同济医院",city:"Wuhan",cityZh:"武汉",tags:["General","Oncology"],tagsZh:["综合疑难","肿瘤"],noteEn:"Major central-China referral centre across complex specialties.",noteZh:"华中地区重要的综合疑难疾病转诊中心。"},
-      {en:"Wuhan Union Hospital",zh:"华中科技大学同济医学院附属协和医院",city:"Wuhan",cityZh:"武汉",tags:["General","Cardiology"],tagsZh:["综合疑难","心血管"],noteEn:"Comprehensive services with cardiovascular and surgical strengths.",noteZh:"综合诊疗能力完善，心血管与外科等专科突出。"},
-      {en:"The First Affiliated Hospital, Zhejiang University",zh:"浙江大学医学院附属第一医院",city:"Hangzhou",cityZh:"杭州",tags:["General","Oncology"],tagsZh:["综合疑难","肿瘤"],noteEn:"Large academic medical centre with international-facing services to verify.",noteZh:"大型学术医学中心，国际服务能力需按个案核实。"},
-      {en:"West China Hospital, Sichuan University",zh:"四川大学华西医院",city:"Chengdu",cityZh:"成都",tags:["General","Oncology","Neurology"],tagsZh:["综合疑难","肿瘤","神经疾病"],noteEn:"Large national referral centre for complex and severe conditions.",noteZh:"面向复杂重症的国家级大型转诊中心。"}
-    ];
-    const list = document.getElementById("hospital-list"), search = document.getElementById("hospital-search"), city = document.getElementById("city-filter"), specialty = document.getElementById("specialty-filter"), count = document.getElementById("result-count"), empty = document.getElementById("empty-state");
-    function renderHospitals(){
-      const zh = document.documentElement.lang.startsWith("zh"), q = search.value.trim().toLowerCase();
-      const shown = hospitals.filter(h => (city.value === "all" || h.city === city.value) && (specialty.value === "all" || h.tags.includes(specialty.value)) && (!q || [h.en,h.zh,h.city,h.cityZh,...h.tags,...h.tagsZh].join(" ").toLowerCase().includes(q)));
-      count.textContent = zh ? `${shown.length} 家医院` : `${shown.length} hospital${shown.length===1?"":"s"}`;
-      list.innerHTML = shown.map(h=>`<article class="hospital-card"><div><h3>${zh?h.zh:h.en}</h3><div class="hospital-meta"><span>${zh?h.cityZh:h.city}</span>${(zh?h.tagsZh:h.tags).map(t=>`<span>${t}</span>`).join("")}</div><p>${zh?h.noteZh:h.noteEn}</p><a class="card-link" href="index.html#assessment">${zh?"申请个案复核":"Request case review"}</a></div><span class="hospital-arrow" aria-hidden="true">→</span></article>`).join("");
-      empty.style.display = shown.length ? "none" : "block";
-    }
-    [search,city,specialty].forEach(el=>el.addEventListener(el===search?"input":"change",renderHospitals));
-    document.querySelectorAll('[data-city-jump]').forEach(card=>card.addEventListener('click',()=>{
-      city.value=card.dataset.cityJump;
-      document.querySelectorAll('[data-city-jump]').forEach(x=>x.classList.toggle('active',x===card));
+    (function(){
+      var hospitals=window.CARECHINA_HOSPITALS||[];
+      var filters=window.CARECHINA_HOSPITAL_FILTERS||{specialties:[],cities:{}};
+      var list=document.getElementById("hospital-list");
+      var search=document.getElementById("hospital-search");
+      var city=document.getElementById("city-filter");
+      var chips=document.getElementById("specialty-chips");
+      var count=document.getElementById("result-count");
+      var context=document.getElementById("result-context");
+      var empty=document.getElementById("empty-state");
+      var loadMore=document.getElementById("load-more");
+      var clear=document.getElementById("clear-filters");
+      var dialog=document.getElementById("hospital-dialog");
+      var selectedSpecialty="all";
+      var visibleCount=12;
+      var activeHospital=null;
+      var verifiedLogos={tj:"assets/hospital-logos/tj.png",uh:"assets/hospital-logos/uh.png",wc:"assets/hospital-logos/wc.png",zy1:"assets/hospital-logos/zy1.png",nh:"assets/hospital-logos/nh.png",gp:"assets/hospital-logos/gp.png",pumch:"assets/hospital-logos/pumch.png",bjt:"assets/hospital-logos/bjt.png"};
+      var verifiedPhotos={
+        tj:[
+          {src:"assets/hospitals/tj-exterior.jpg",en:"Tongji International Medical Services exterior",zh:"同济医院国际医疗部院区"},
+          {src:"assets/hospitals/tj-interior.jpg",en:"International medical service interior",zh:"同济医院国际医疗服务空间"},
+          {src:"assets/hospitals/tj-international-visit.jpg",en:"International medical services visit",zh:"同济国际医疗服务访问场景"}
+        ],
+        zn:[
+          {src:"assets/hospital-zhongnan-exterior.jpg",en:"Zhongnan Hospital exterior",zh:"武汉大学中南医院院区"},
+          {src:"assets/hospital-zhongnan-interior.jpg",en:"Zhongnan Hospital interior",zh:"武汉大学中南医院院内空间"},
+          {src:"assets/hospitals/zn-care.jpg",en:"Zhongnan Hospital care setting",zh:"武汉大学中南医院诊疗场景"}
+        ],
+        wc:[{src:"assets/city-chengdu-hospital.jpg",en:"West China Hospital campus",zh:"四川大学华西医院院区"}],
+        sysc:[{src:"assets/city-guangzhou-hospital.jpg",en:"Sun Yat-sen University Cancer Center building",zh:"中山大学肿瘤防治中心院区"}],
+        zy1:[{src:"assets/hero-international-care.jpg",en:"Official international patient story image",zh:"医院官网国际患者案例图片"}]
+      };
+      function isChinese(){return document.documentElement.lang.indexOf("zh")===0;}
+      function specialtyById(id){return filters.specialties.find(function(item){return String(item.id)===String(id);});}
+      function initials(hospital){
+        if(isChinese())return hospital.nameZh.slice(0,2);
+        return hospital.nameEn.split(/\s+/).filter(function(word){return word.length>2;}).slice(0,2).map(function(word){return word[0];}).join("").toUpperCase();
+      }
+      function logoMarkup(hospital){
+        var src=verifiedLogos[hospital.id];
+        if(src)return '<img src="'+src+'" alt="" loading="lazy">';
+        return '<span aria-hidden="true">'+initials(hospital)+'</span>';
+      }
+      function currentSpecialtyLabel(){
+        if(selectedSpecialty==="all")return isChinese()?"全部专科":"All specialties";
+        var item=specialtyById(selectedSpecialty);
+        return item?(isChinese()?item.zh:item.en):"";
+      }
+      function buildFilters(){
+        var zh=isChinese(),cityValue=city.value||"all";
+        city.innerHTML='<option value="all">'+(zh?"全部城市":"All cities")+'</option>'+Object.keys(filters.cities).map(function(key){var item=filters.cities[key];return '<option value="'+key+'">'+(zh?item.zh:item.en)+'</option>';}).join("");
+        if(Array.prototype.some.call(city.options,function(option){return option.value===cityValue;}))city.value=cityValue;
+        chips.innerHTML='<button class="hospital-specialty-chip'+(selectedSpecialty==="all"?" active":"")+'" type="button" data-specialty="all">'+(zh?"全部":"All")+'</button>'+filters.specialties.map(function(item){return '<button class="hospital-specialty-chip'+(String(item.id)===selectedSpecialty?" active":"")+'" type="button" data-specialty="'+item.id+'">'+(zh?item.zh:item.en)+'</button>';}).join("");
+        chips.querySelectorAll("[data-specialty]").forEach(function(button){button.addEventListener("click",function(){selectedSpecialty=button.dataset.specialty;visibleCount=12;buildFilters();renderHospitals();});});
+      }
+      function filteredHospitals(){
+        var q=search.value.trim().toLowerCase();
+        return hospitals.filter(function(hospital){
+          var specialties=hospital.tags.map(specialtyById).filter(Boolean);
+          var haystack=[hospital.nameEn,hospital.nameZh,hospital.cityEn,hospital.cityZh,hospital.deptEn,hospital.deptZh,hospital.special,hospital.specialZh].concat(specialties.map(function(item){return item.en;}),specialties.map(function(item){return item.zh;})).join(" ").toLowerCase();
+          return (city.value==="all"||hospital.city===city.value)&&(selectedSpecialty==="all"||hospital.tags.map(String).indexOf(selectedSpecialty)!==-1)&&(!q||haystack.indexOf(q)!==-1);
+        });
+      }
+      function hospitalCard(hospital){
+        var zh=isChinese();
+        var tags=hospital.tags.map(specialtyById).filter(Boolean).slice(0,3);
+        var rank=zh?hospital.rankZh:hospital.rank;
+        return '<button class="hospital-card" type="button" data-hospital-open="'+hospital.id+'">'+
+          '<span class="hospital-card-logo">'+logoMarkup(hospital)+'</span>'+
+          '<span class="hospital-card-copy"><small class="hospital-card-city">'+(zh?hospital.cityZh:hospital.cityEn)+'</small><strong>'+(zh?hospital.nameZh:hospital.nameEn)+'</strong>'+
+          '<span class="hospital-card-research">'+(zh?"历史研究参考 · ":"Legacy research · ")+rank+'</span>'+
+          '<span class="hospital-meta">'+tags.map(function(tag){return '<span>'+(zh?tag.zh:tag.en)+'</span>';}).join("")+'</span>'+
+          '<span class="hospital-card-dept">'+(zh?hospital.deptZh:hospital.deptEn)+'</span></span>'+
+          '<span class="hospital-card-action"><b>'+(zh?"查看简介":"View profile")+'</b><i aria-hidden="true">→</i></span></button>';
+      }
+      function renderHospitals(){
+        var zh=isChinese(),shown=filteredHospitals(),visible=shown.slice(0,visibleCount);
+        count.textContent=zh?shown.length+" 家匹配医院":shown.length+" matching hospital"+(shown.length===1?"":"s");
+        var cityLabel=city.value==="all"?(zh?"全部城市":"All cities"):(zh?filters.cities[city.value].zh:filters.cities[city.value].en);
+        context.textContent=cityLabel+" · "+currentSpecialtyLabel();
+        list.innerHTML=visible.map(hospitalCard).join("");
+        empty.style.display=shown.length?"none":"block";
+        loadMore.style.display=visible.length<shown.length?"inline-flex":"none";
+        list.querySelectorAll("[data-hospital-open]").forEach(function(button){button.addEventListener("click",function(){openHospital(button.dataset.hospitalOpen);});});
+      }
+      function openHospital(id){
+        activeHospital=hospitals.find(function(hospital){return hospital.id===id;});
+        if(!activeHospital)return;
+        var zh=isChinese();
+        document.getElementById("hospital-dialog-logo").innerHTML=logoMarkup(activeHospital);
+        document.getElementById("hospital-dialog-location").textContent=(zh?activeHospital.cityZh:activeHospital.cityEn)+" · "+(zh?"医院研究档案":"Hospital research profile");
+        document.getElementById("hospital-dialog-title").textContent=zh?activeHospital.nameZh:activeHospital.nameEn;
+        document.getElementById("hospital-dialog-rank").textContent=(zh?"历史研究标注：":"Legacy research label: ")+(zh?activeHospital.rankZh:activeHospital.rank);
+        document.getElementById("hospital-dialog-dept").textContent=zh?activeHospital.deptZh:activeHospital.deptEn;
+        document.getElementById("hospital-dialog-note").textContent=zh?activeHospital.specialZh:activeHospital.special;
+        document.getElementById("hospital-official-link").href=/^https?:\/\//.test(activeHospital.site)?activeHospital.site:"https://"+activeHospital.site;
+        var photos=verifiedPhotos[activeHospital.id]||[];
+        var gallery=document.getElementById("hospital-dialog-gallery");
+        gallery.classList.toggle("is-empty",!photos.length);
+        gallery.innerHTML=photos.length?photos.map(function(photo){return '<figure><img src="'+photo.src+'" alt="'+(zh?photo.zh:photo.en)+'"><figcaption>'+(zh?photo.zh:photo.en)+'</figcaption></figure>';}).join(""):'<div><b>'+(zh?"图片资料待核验":"Photo verification pending")+'</b><p>'+(zh?"为避免误配医院图片，本原型只展示已核对来源的实景图。":"To avoid misattribution, this prototype only shows hospital imagery with a checked source.")+'</p></div>';
+        if(!dialog.open){if(typeof dialog.showModal==="function")dialog.showModal();else dialog.setAttribute("open","");}
+        document.body.classList.add("dialog-open");
+      }
+      function closeDialog(){
+        if(dialog.open&&typeof dialog.close==="function")dialog.close();else dialog.removeAttribute("open");
+        document.body.classList.remove("dialog-open");
+      }
+      document.getElementById("hospital-total").textContent=hospitals.length;
+      document.getElementById("city-total").textContent=Object.keys(filters.cities).length;
+      document.getElementById("specialty-total").textContent=filters.specialties.length;
+      search.addEventListener("input",function(){visibleCount=12;renderHospitals();});
+      city.addEventListener("change",function(){visibleCount=12;renderHospitals();});
+      clear.addEventListener("click",function(){search.value="";city.value="all";selectedSpecialty="all";visibleCount=12;buildFilters();renderHospitals();});
+      loadMore.addEventListener("click",function(){visibleCount+=12;renderHospitals();});
+      document.querySelectorAll("[data-city-jump]").forEach(function(card){card.addEventListener("click",function(){
+        city.value=card.dataset.cityJump;selectedSpecialty="all";visibleCount=12;
+        document.querySelectorAll("[data-city-jump]").forEach(function(item){item.classList.toggle("active",item===card);});
+        buildFilters();renderHospitals();document.getElementById("hospital-finder").scrollIntoView({behavior:"smooth",block:"start"});
+      });});
+      document.getElementById("hospital-dialog-close").addEventListener("click",closeDialog);
+      dialog.addEventListener("click",function(event){if(event.target===dialog)closeDialog();});
+      dialog.addEventListener("close",function(){document.body.classList.remove("dialog-open");});
+      document.addEventListener("carechina:language",function(){buildFilters();renderHospitals();if(activeHospital&&dialog.open)openHospital(activeHospital.id);});
+      var params=new URLSearchParams(location.search);
+      var initialCity=(params.get("city")||"").toLowerCase(),initialSpecialty=params.get("specialty");
+      if(filters.cities[initialCity])city.dataset.initialValue=initialCity;
+      if(initialSpecialty){var matchingSpecialty=filters.specialties.find(function(item){return String(item.id)===initialSpecialty||item.en.toLowerCase()===initialSpecialty.toLowerCase()||item.zh===initialSpecialty;});if(matchingSpecialty)selectedSpecialty=String(matchingSpecialty.id);}
+      buildFilters();
+      if(city.dataset.initialValue)city.value=city.dataset.initialValue;
       renderHospitals();
-      document.getElementById('hospital-finder').scrollIntoView({behavior:'smooth',block:'start'});
-    }));
-    const initialParams=new URLSearchParams(location.search);
-    const initialCity=initialParams.get('city'),initialSpecialty=initialParams.get('specialty');
-    if(initialCity&&[...city.options].some(x=>x.value===initialCity))city.value=initialCity;
-    if(initialSpecialty&&[...specialty.options].some(x=>x.value===initialSpecialty))specialty.value=initialSpecialty;
-    document.addEventListener("carechina:language",renderHospitals); renderHospitals();
+    })();
   </script>
 </body>
 </html>
