@@ -526,7 +526,11 @@
     .focus-tile:focus-visible,.city-scene:focus-visible,.match-chip:focus-visible,.rank-row:focus-visible{outline:3px solid #efd49c;outline-offset:3px}
     button.city-scene{display:block;width:100%;padding:0;border:0;color:inherit;text-align:left;font:inherit;cursor:pointer}
     .city-scene.active{box-shadow:0 0 0 4px var(--gold),0 28px 65px rgba(0,74,65,.22)}
-    .match-explorer{margin-top:20px;padding:36px;scroll-margin-top:104px;color:var(--ink);background:#fff;box-shadow:0 28px 72px rgba(0,48,43,.18)}
+    .specialties.match-waiting{padding-bottom:64px}.match-explorer{margin-top:20px;padding:36px;scroll-margin-top:104px;overflow:hidden;color:var(--ink);background:#fff;box-shadow:0 28px 72px rgba(0,48,43,.18);transition:padding .35s var(--ease),box-shadow .35s var(--ease)}
+    .match-explorer.match-collapsed{padding:0;box-shadow:0 16px 42px rgba(0,48,43,.12)}
+    .match-collapsed-bar{display:grid;min-height:92px;padding:20px 26px;grid-template-columns:46px minmax(0,1fr) auto;align-items:center;gap:18px;background:linear-gradient(100deg,#fff 0%,#f1f8f6 100%)}
+    .match-collapsed-icon{display:grid;width:42px;height:42px;border-radius:50%;place-items:center;color:#fff;background:var(--green);font-size:1.25rem}.match-collapsed-bar div{display:grid;gap:4px}.match-collapsed-bar small{color:var(--gold);font-size:.62rem;font-weight:900;letter-spacing:.12em}.match-collapsed-bar b{color:var(--green);font-size:.92rem}.match-collapsed-bar em{padding:9px 12px;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);font-size:.62rem;font-style:normal;font-weight:850;letter-spacing:.06em}
+    .match-explorer:not(.match-collapsed) .match-collapsed-bar{display:none}.match-explorer-body.match-opening{animation:matchReveal .55s var(--ease) both}@keyframes matchReveal{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
     .match-explorer-head{display:flex;margin-bottom:26px;align-items:flex-start;justify-content:space-between;gap:28px}
     .match-explorer-head>div{max-width:760px}.match-kicker{display:block;margin-bottom:7px;color:var(--gold);font-size:.66rem;font-weight:900;letter-spacing:.12em}.match-explorer-head h3{margin:0;color:var(--green);font-size:clamp(1.75rem,3vw,3rem);line-height:1.2}.match-explorer-head p{margin:10px 0 0;color:var(--ink-2);font-size:.78rem;line-height:1.7}
     .match-mode{display:grid;min-width:142px;padding:13px 16px;gap:3px;border-left:3px solid var(--gold);color:var(--green);background:var(--surface)}.match-mode small{color:var(--ink-2);font-size:.6rem;font-weight:750}.match-mode b{font-size:.82rem}
@@ -541,7 +545,7 @@
     .rank-detail{display:grid;margin:0 12px 18px 81px;padding:20px 22px;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:22px;color:var(--ink-2);background:#fff;border-left:3px solid var(--gold);box-shadow:0 12px 30px rgba(0,74,65,.08)}.rank-detail p{margin:0;font-size:.72rem;line-height:1.75}.rank-detail-actions{display:flex;align-items:center;gap:12px}.rank-detail-actions small{max-width:150px;color:var(--ink-2);font-size:.6rem;line-height:1.45}
     .match-footer{display:flex;margin-top:22px;padding-top:20px;align-items:center;justify-content:space-between;gap:26px;border-top:1px solid var(--line)}.match-footer p{max-width:760px;margin:0;color:var(--ink-2);font-size:.64rem;line-height:1.65}.match-footer a:not(.btn){text-decoration:underline;text-underline-offset:3px}
     @media(max-width:820px){.match-explorer{padding:28px}.match-explorer-head{flex-direction:column}.match-mode{width:100%}.match-controls{grid-template-columns:1fr}.rank-row{grid-template-columns:48px minmax(0,1fr) 30px}.rank-position{grid-column:2;justify-items:start}.rank-expand{grid-column:3;grid-row:1/3}.rank-detail{margin-left:68px;grid-template-columns:1fr}.match-footer{align-items:flex-start;flex-direction:column}}
-    @media(max-width:520px){.match-explorer{padding:23px 18px;scroll-margin-top:82px}.match-controls{margin-inline:-2px;padding:17px}.match-list-head{align-items:flex-start;flex-direction:column;gap:4px}.rank-row{padding:17px 2px;gap:10px}.rank-row:hover{padding-right:4px;padding-left:4px}.rank-no{width:40px;height:40px}.rank-name b{font-size:.82rem}.rank-detail{margin:0 0 16px;padding:18px;grid-template-columns:1fr}.rank-detail-actions{align-items:flex-start;flex-direction:column}.rank-detail-actions .btn{width:auto}}
+    @media(max-width:520px){.specialties.match-waiting{padding-bottom:48px}.match-explorer{padding:23px 18px;scroll-margin-top:82px}.match-explorer.match-collapsed{padding:0}.match-collapsed-bar{min-height:104px;padding:18px;grid-template-columns:40px 1fr;gap:13px}.match-collapsed-icon{width:38px;height:38px}.match-collapsed-bar b{font-size:.8rem;line-height:1.5}.match-collapsed-bar em{display:none}.match-controls{margin-inline:-2px;padding:17px}.match-list-head{align-items:flex-start;flex-direction:column;gap:4px}.rank-row{padding:17px 2px;gap:10px}.rank-row:hover{padding-right:4px;padding-left:4px}.rank-no{width:40px;height:40px}.rank-name b{font-size:.82rem}.rank-detail{margin:0 0 16px;padding:18px;grid-template-columns:1fr}.rank-detail-actions{align-items:flex-start;flex-direction:column}.rank-detail-actions .btn{width:auto}}
 
   </style>
 </head>
@@ -651,7 +655,7 @@
       </div>
     </section>
 
-    <section class="section specialties matching" id="specialties">
+    <section class="section specialties matching match-waiting" id="specialties">
       <div class="shell">
         <div class="section-head reveal visual-head visual-head-light">
           <div><p class="eyebrow" data-en="Hospital match" data-zh="医院匹配中心">Hospital match</p><h2 data-en="Choose the specialty, see the top five, then narrow by city." data-zh="先选择病情对应专科，再看前五医院或按城市缩小范围。">Choose the specialty, see the top five, then narrow by city.</h2><p data-en="The specialty sets the clinical direction; city is a second-level filter. The shortlist updates below without taking you away." data-zh="专科决定临床匹配方向，城市是第二层筛选；下方名单会原位更新，不会把你带离当前页面。">The specialty sets the clinical direction; city is a second-level filter. The shortlist updates below without taking you away.</p></div>
@@ -666,7 +670,7 @@
             <img src="assets/clinical-surgery-whsyy.jpg" alt="武汉市第三医院手术团队进行临床治疗" loading="lazy" />
             <div class="stage-caption"><span data-en="Official clinical scene" data-zh="真实临床场景">Official clinical scene</span><b data-en="Complex care needs the right specialist team." data-zh="复杂治疗，关键是找到合适的专科团队。">Complex care needs the right specialist team.</b></div>
             <div class="specialty-menu">
-              <button class="focus-tile active" type="button" data-match-specialty="oncology"><span>01</span><h3 data-en="Cancer & blood" data-zh="肿瘤与血液">Cancer & blood</h3><small data-en="MDT · surgery · systemic care" data-zh="多学科 · 手术 · 综合治疗">MDT · surgery · systemic care</small></button>
+              <button class="focus-tile" type="button" data-match-specialty="oncology"><span>01</span><h3 data-en="Cancer & blood" data-zh="肿瘤与血液">Cancer & blood</h3><small data-en="MDT · surgery · systemic care" data-zh="多学科 · 手术 · 综合治疗">MDT · surgery · systemic care</small></button>
               <button class="focus-tile" type="button" data-match-specialty="cardiology"><span>02</span><h3 data-en="Heart & vascular" data-zh="心脏与血管">Heart & vascular</h3><small data-en="Intervention · surgery · review" data-zh="介入 · 外科 · 评估">Intervention · surgery · review</small></button>
               <button class="focus-tile" type="button" data-match-specialty="neurology"><span>03</span><h3 data-en="Brain & complex care" data-zh="神经与复杂疾病">Brain & complex care</h3><small data-en="Neurosurgery · rare disease" data-zh="神经外科 · 罕见病">Neurosurgery · rare disease</small></button>
               <button class="focus-tile" type="button" data-match-specialty="orthopaedics"><span>04</span><h3 data-en="Mobility & recovery" data-zh="骨科与康复">Mobility & recovery</h3><small data-en="Joint · spine · rehabilitation" data-zh="关节 · 脊柱 · 康复">Joint · spine · rehabilitation</small></button>
@@ -682,7 +686,13 @@
           </div>
           <p class="visual-source"><span data-en="Image sources: official hospital materials; Guangzhou image by SYSUCC, CC BY-SA 4.0." data-zh="图片来自医院官方公开资料；广州图片作者 SYSUCC，CC BY-SA 4.0。">Image sources: official hospital materials; Guangzhou image by SYSUCC, CC BY-SA 4.0.</span></p>
         </div>
-        <section class="match-explorer reveal" id="matchResults" aria-live="polite">
+        <section class="match-explorer match-collapsed reveal" id="matchResults" data-match-open="false" aria-live="polite">
+          <div class="match-collapsed-bar">
+            <span class="match-collapsed-icon" aria-hidden="true">↳</span>
+            <div><small data-en="MATCH RESULTS" data-zh="匹配结果">MATCH RESULTS</small><b data-en="Choose a specialty or city to open the hospital shortlist" data-zh="选择专科或城市后，展开医院候选名单">Choose a specialty or city to open the hospital shortlist</b></div>
+            <em data-en="WAITING FOR SELECTION" data-zh="等待选择">WAITING FOR SELECTION</em>
+          </div>
+          <div class="match-explorer-body" hidden>
           <div class="match-explorer-head">
             <div><span class="match-kicker" data-en="CURRENT MATCH" data-zh="当前匹配">CURRENT MATCH</span><h3 id="matchTitle"></h3><p id="matchSummary"></p></div>
             <span class="match-mode"><small data-en="LIST MODE" data-zh="列表范围">LIST MODE</small><b id="matchMode"></b></span>
@@ -694,6 +704,7 @@
           <div class="match-list-head"><strong id="matchListTitle"></strong><small data-en="Open a hospital to see why it appears—without leaving this page." data-zh="点击医院查看入选依据，不会离开本页。">Open a hospital to see why it appears—without leaving this page.</small></div>
           <div class="match-ranking" id="matchRanking"></div>
           <div class="match-footer"><p id="matchMethod"></p><a class="btn btn-primary" id="matchFullLink" href="hospitals.html" data-en="Open full hospital directory →" data-zh="查看完整医院目录 →">Open full hospital directory →</a></div>
+          </div>
         </section>
       </div>
     </section>
@@ -956,6 +967,17 @@
       if(h.tier==='nominated')return matchCopy(`该院进入同一专科榜单提名范围，页面不将其表述为全国前五。仍需根据病历核实亚专科团队、接诊条件与时间。`,`This hospital appears in the same specialty ranking's nominee group and is not presented as a national top-five centre. Subspecialty fit, acceptance and timing still require case review.`);
       return matchCopy('该院作为此城市的专科候选展示，页面不主张其全国名次。正式匹配需要结合诊断、病历、语言支持和可接诊时间。','This hospital is shown as a city-level specialty candidate, without a claimed national rank. A real match must consider diagnosis, records, language support and availability.');
     }
+    function openMatchResults(){
+      const explorer=document.getElementById('matchResults'),body=explorer?.querySelector('.match-explorer-body');
+      if(!explorer||!body||explorer.dataset.matchOpen==='true')return;
+      explorer.dataset.matchOpen='true';
+      document.getElementById('specialties')?.classList.remove('match-waiting');
+      explorer.classList.remove('match-collapsed');
+      body.hidden=false;
+      body.classList.remove('match-opening');
+      void body.offsetWidth;
+      body.classList.add('match-opening');
+    }
     function scrollToMatch(){document.getElementById('matchResults')?.scrollIntoView({behavior:'smooth',block:'start'})}
     function renderMatchResults(){
       const explorer=document.getElementById('matchResults');
@@ -989,8 +1011,9 @@
       $$('.match-source-link',method).forEach(link=>{link.href=d.source});
       const fullLink=document.getElementById('matchFullLink');
       fullLink.href=`hospitals.html?specialty=${encodeURIComponent(d.slug)}${nationwide?'':`&city=${encodeURIComponent(selectedMatchCity)}`}#hospital-finder`;
-      $$('button[data-match-specialty]').forEach(button=>button.classList.toggle('active',button.dataset.matchSpecialty===selectedMatchSpecialty));
-      $$('button[data-match-city]').forEach(button=>button.classList.toggle('active',button.dataset.matchCity===selectedMatchCity));
+      const matchIsOpen=explorer.dataset.matchOpen==='true';
+      $$('button[data-match-specialty]').forEach(button=>button.classList.toggle('active',matchIsOpen&&button.dataset.matchSpecialty===selectedMatchSpecialty));
+      $$('button[data-match-city]').forEach(button=>button.classList.toggle('active',matchIsOpen&&button.dataset.matchCity===selectedMatchCity));
       $$('[data-match-chip-specialty]').forEach(button=>button.addEventListener('click',()=>{selectedMatchSpecialty=button.dataset.matchChipSpecialty;selectedMatchCity='all';renderMatchResults()}));
       $$('[data-match-chip-city]').forEach(button=>button.addEventListener('click',()=>{selectedMatchCity=button.dataset.matchChipCity;renderMatchResults()}));
       $$('.rank-row',explorer).forEach(button=>button.addEventListener('click',()=>{
@@ -1000,8 +1023,8 @@
       }));
     }
     $$('.lang button').forEach(b=>b.addEventListener('click',()=>setLanguage(b.dataset.lang)));
-    $$('button[data-match-specialty]').forEach(button=>button.addEventListener('click',()=>{selectedMatchSpecialty=button.dataset.matchSpecialty;selectedMatchCity='all';renderMatchResults();scrollToMatch()}));
-    $$('button[data-match-city]').forEach(button=>button.addEventListener('click',()=>{selectedMatchCity=button.dataset.matchCity;renderMatchResults();scrollToMatch()}));
+    $$('button[data-match-specialty]').forEach(button=>button.addEventListener('click',()=>{selectedMatchSpecialty=button.dataset.matchSpecialty;selectedMatchCity='all';openMatchResults();renderMatchResults();requestAnimationFrame(scrollToMatch)}));
+    $$('button[data-match-city]').forEach(button=>button.addEventListener('click',()=>{selectedMatchCity=button.dataset.matchCity;openMatchResults();renderMatchResults();requestAnimationFrame(scrollToMatch)}));
     $$('.city-tab').forEach(b=>b.addEventListener('click',()=>{ $$('.city-tab').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});b.classList.add('active');b.setAttribute('aria-selected','true');renderCity(b.dataset.city)}));
     function bindPanelTabs(buttonSelector,buttonKey,panelSelector,panelKey){
       $$(buttonSelector).forEach(button=>button.addEventListener('click',()=>{

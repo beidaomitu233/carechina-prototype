@@ -76,6 +76,9 @@ const desktop = await evaluate(`(() => {
     matchCityButtons:document.querySelectorAll('button[data-match-city]').length,
     matchSpecialtyChips:document.querySelectorAll('[data-match-chip-specialty]').length,
     matchCityChips:document.querySelectorAll('[data-match-chip-city]').length,
+    matchCollapsed:document.getElementById('matchResults').classList.contains('match-collapsed'),
+    matchBodyHidden:document.querySelector('.match-explorer-body').hidden,
+    activeSpecialty:document.querySelector('button[data-match-specialty].active')?.dataset.matchSpecialty||'',
     caseCount:cases.length,
     imagesReady:imgs.every(x=>x.complete&&x.naturalWidth>0),
     hasCost:!!document.getElementById('cost-planner'),
@@ -94,6 +97,7 @@ assert(desktop.lang === 'zh-CN', 'Homepage is not Chinese-first');
 assert(desktop.overflow <= 1, 'Desktop homepage has horizontal overflow');
 assert(desktop.eligibilityCount === 4 && desktop.coordinationCount === 5 && desktop.resourceTabCount === 2, 'V03 decision controls are incomplete');
 assert(desktop.matchRows === 5 && desktop.matchSpecialtyButtons === 4 && desktop.matchCityButtons === 3 && desktop.matchSpecialtyChips === 4 && desktop.matchCityChips === 4, `Hospital matching controls or national top five are incomplete: ${JSON.stringify(desktop)}`);
+assert(desktop.matchCollapsed && desktop.matchBodyHidden && !desktop.activeSpecialty, 'Hospital matching card is not collapsed by default');
 assert(desktop.caseCount === 3 && desktop.imagesReady, 'Treatment case or care images failed to load');
 assert(desktop.hasCost && desktop.hasConsult && desktop.hasTheme && desktop.hasContactWindow && desktop.mergedJourney && !desktop.bannedComputed, 'V03 consultation, theme, merged journey, contact timing, or palette check failed');
 assert(JSON.stringify(desktop.flow) === JSON.stringify(['top','eligibility','journey','specialties','cases','assessment','faq']), 'V03 patient-flow section order is incorrect');
@@ -104,6 +108,9 @@ for (const id of ['eligibility','journey','specialties','cases','assessment']) {
   await sleep(300);
   await shot(`设计稿/qa/v03-${id}-desktop.jpg`);
 }
+await evaluate(`document.documentElement.style.scrollBehavior='auto';document.getElementById('matchResults').scrollIntoView()`);
+await sleep(300);
+await shot('设计稿/qa/v03-hospital-match-collapsed-desktop.jpg');
 
 const decisionInteractions = await evaluate(`(() => {
   const pathBefore=location.pathname;
@@ -125,6 +132,8 @@ const decisionInteractions = await evaluate(`(() => {
     matchSpecialty:document.getElementById('matchResults').dataset.matchSpecialty,
     matchCity:document.getElementById('matchResults').dataset.matchCity,
     matchRows:document.querySelectorAll('#matchRanking .rank-item').length,
+    matchOpen:document.getElementById('matchResults').dataset.matchOpen,
+    matchBodyHidden:document.querySelector('.match-explorer-body').hidden,
     detailOpen:!document.querySelector('#matchRanking .rank-detail').hidden,
     pathBefore,
     pathAfter:location.pathname
@@ -134,6 +143,7 @@ assert(decisionInteractions.eligibility === 'opinion' && !decisionInteractions.e
 assert(decisionInteractions.coordination === 'plan' && !decisionInteractions.coordinationPanel, 'Coordination-stage interaction failed');
 assert(decisionInteractions.resource === 'cities' && !decisionInteractions.resourcePanel && decisionInteractions.cityCount === 3, 'Hospital resource tabs failed');
 assert(decisionInteractions.matchSpecialty === 'cardiology' && decisionInteractions.matchCity === 'Wuhan' && decisionInteractions.matchRows === 5 && decisionInteractions.detailOpen, 'Specialty, city or inline hospital detail interaction failed');
+assert(decisionInteractions.matchOpen === 'true' && !decisionInteractions.matchBodyHidden, 'Hospital matching card did not expand after a selection');
 assert(decisionInteractions.pathBefore === decisionInteractions.pathAfter, 'Hospital matching filters unexpectedly navigated away from the homepage');
 await sleep(800);
 const cityImagesReady = await evaluate(`[...document.querySelectorAll('[data-resource-panel="cities"] img')].every(img=>img.complete&&img.naturalWidth>0)`);
@@ -265,19 +275,25 @@ const mobile = await evaluate(`(() => {
     consultColumns:getComputedStyle(document.querySelector('.consult-grid')).gridTemplateColumns,
     matchControlColumns:getComputedStyle(document.querySelector('.match-controls')).gridTemplateColumns,
     matchRows:document.querySelectorAll('#matchRanking .rank-item').length,
+    matchCollapsed:document.getElementById('matchResults').classList.contains('match-collapsed'),
+    matchBodyHidden:document.querySelector('.match-explorer-body').hidden,
     budgetWidth:budget.getBoundingClientRect().width
   };
 })()`);
 assert(mobile.overflow <= 1 && mobile.menuOpen, 'Mobile navigation or horizontal width failed');
 assert(!mobile.eligibilityColumns.includes(' ') && !mobile.coordinationColumns.includes(' ') && !mobile.resourceColumns.includes(' ') && !mobile.caseColumns.includes(' ') && !mobile.consultColumns.includes(' '), 'Mobile V03 grids did not collapse to one column');
 assert(!mobile.matchControlColumns.includes(' ') && mobile.matchRows === 5, 'Mobile hospital matching layout or list failed');
+assert(mobile.matchCollapsed && mobile.matchBodyHidden, 'Mobile hospital matching card is not collapsed by default');
+await evaluate(`closeMenu(); document.documentElement.style.scrollBehavior='auto'; document.getElementById('matchResults').scrollIntoView()`);
+await sleep(300);
+await shot('设计稿/qa/v03-hospital-match-collapsed-mobile.jpg');
 await evaluate(`closeMenu(); document.documentElement.style.scrollBehavior='auto'; document.getElementById('eligibility').scrollIntoView()`);
 await sleep(300);
 await shot('设计稿/qa/mature-home-mobile.jpg');
 await evaluate(`document.documentElement.style.scrollBehavior='auto'; document.getElementById('journey').scrollIntoView()`);
 await sleep(300);
 await shot('设计稿/qa/v03-journey-mobile.jpg');
-await evaluate(`document.documentElement.style.scrollBehavior='auto'; document.getElementById('matchResults').scrollIntoView(); document.querySelector('#matchRanking .rank-row').click()`);
+await evaluate(`document.documentElement.style.scrollBehavior='auto'; document.querySelector('button[data-match-specialty="oncology"]').click(); document.querySelector('#matchRanking .rank-row').click()`);
 await sleep(300);
 await shot('设计稿/qa/v03-hospital-match-mobile.jpg');
 
