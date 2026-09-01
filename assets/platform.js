@@ -47,8 +47,8 @@
     document.dispatchEvent(new CustomEvent("carechina:language", { detail: { lang } }));
   }
 
-  let language = "zh";
-  try { language = localStorage.getItem("carechina-language") || "zh"; } catch (_) {}
+  let language = "en";
+  try { language = localStorage.getItem("carechina-language") || "en"; } catch (_) {}
   setLanguage(language);
   if (langButton) langButton.addEventListener("click", () => setLanguage(root.lang.startsWith("zh") ? "en" : "zh"));
 

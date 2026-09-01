@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -929,7 +929,7 @@
     };
     const matchCityLabels={all:{zh:'全国',en:'Nationwide'},Wuhan:{zh:'武汉',en:'Wuhan'},Chengdu:{zh:'成都',en:'Chengdu'},Guangzhou:{zh:'广州',en:'Guangzhou'}};
     let selectedMatchSpecialty='oncology',selectedMatchCity='all';
-    let lang='zh';
+    let lang='en';
     const $$=(s,c=document)=>[...c.querySelectorAll(s)];
     function setLanguage(next){
       lang=next;document.documentElement.lang=next==='zh'?'zh-CN':'en';
@@ -1093,7 +1093,7 @@
 
     document.getElementById('year').textContent=new Date().getFullYear();
     renderCity('wuhan');
-    try{const saved=localStorage.getItem('carechina-language');setLanguage(saved==='en'?'en':'zh')}catch(e){setLanguage('zh')}
+    try{const saved=localStorage.getItem('carechina-language');setLanguage(saved==='zh'?'zh':'en')}catch(e){setLanguage('en')}
   </script>
   <script>
     const mergedLangToggle=document.querySelector('[data-lang-toggle]');
