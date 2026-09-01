@@ -594,14 +594,18 @@ html[lang="zh-CN"] .hospital-card-copy>strong{font-weight:600;letter-spacing:0}h
 
 /* V05 patient-first hospital finder */
 body[data-page="hospitals"] .hospital-page-hero {
-  min-height: 470px;
-  padding: 78px 0 64px;
-  place-items: end;
-  background-position: center 40%;
+  min-height: 680px;
+  padding: 88px 0 34px;
+  place-items: center;
+  background:
+    linear-gradient(90deg,rgba(5,28,25,.96) 0%,rgba(7,38,34,.8) 47%,rgba(6,32,29,.26) 100%),
+    linear-gradient(0deg,rgba(4,25,23,.7),transparent 58%),
+    var(--page-hero-image) center 40% / cover no-repeat;
 }
-body[data-page="hospitals"] .hospital-hero-layout { width: min(calc(100% - 48px),var(--max)); margin-inline: auto; }
+body[data-page="hospitals"] .hospital-page-hero::after { display: none; }
+body[data-page="hospitals"] .hospital-hero-layout { display: grid; width: min(calc(100% - 48px),var(--max)); min-height: 558px; margin-inline: auto; align-content: space-between; }
 body[data-page="hospitals"] .hospital-hero-copy { max-width: 720px; }
-body[data-page="hospitals"] .hospital-hero-copy h1 { max-width: 660px; font-size: clamp(44px,5.7vw,72px); line-height: .99; }
+body[data-page="hospitals"] .hospital-hero-copy h1 { max-width: 660px; font-size: clamp(44px,5.2vw,68px); font-weight: 680; line-height: 1.01; }
 body[data-page="hospitals"] .hospital-hero-copy .lead { max-width: 680px; margin-bottom: 26px; font-size: 17px; line-height: 1.72; }
 .hospital-hero-actions { display: flex; align-items: center; gap: 11px; flex-wrap: wrap; }
 .hospital-hero-actions .secondary { color: #fff; border-color: rgba(255,255,255,.38); background: rgba(255,255,255,.1); backdrop-filter: blur(10px); }
@@ -626,7 +630,7 @@ body[data-page="hospitals"] .hospital-card { min-height: 190px; }
 
 @media (max-width: 780px) {
   .button { white-space: normal; text-align: center; }
-  body[data-page="hospitals"] .hospital-page-hero { min-height: 430px; padding: 66px 0 54px; background-position: 58% center; }
+  body[data-page="hospitals"] .hospital-page-hero { min-height: 0; padding: 66px 0 32px; background-position: 58% center; }
   body[data-page="hospitals"] .hospital-hero-layout { width: min(calc(100% - 36px),var(--max)); }
   body[data-page="hospitals"] .hospital-hero-copy h1 { font-size: clamp(39px,12vw,58px); }
   body[data-page="hospitals"] .hospital-finder-section { padding-top: 64px; }
@@ -641,31 +645,17 @@ body[data-page="hospitals"] .hospital-card { min-height: 190px; }
   body[data-page="hospitals"] .finder-heading h2 { font-size: 34px; line-height: 1.08; }
 }
 
-/* V06 hospital proof, search console and result cards */
-.hospital-capability-band {
-  position: relative;
-  overflow: hidden;
-  padding: 34px 0 20px;
-  color: #fff;
-  background: linear-gradient(135deg,#064f48 0%,#007e70 100%);
-}
-.hospital-capability-band::before {
-  position: absolute;
-  inset: 0;
-  content: "";
-  opacity: .16;
-  background-image: linear-gradient(60deg,transparent 45%,rgba(255,255,255,.22) 46%,transparent 47%),linear-gradient(-60deg,transparent 45%,rgba(255,255,255,.18) 46%,transparent 47%);
-  background-size: 170px 120px;
-}
-.hospital-capability-grid { position: relative; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; }
-.hospital-capability-grid article { display: grid; min-height: 138px; padding: 23px; grid-template-columns: auto 1fr; align-items: end; gap: 18px; border: 1px solid rgba(255,255,255,.18); border-radius: 20px; background: rgba(255,255,255,.07); backdrop-filter: blur(8px); }
-.hospital-capability-grid article:last-child { border-color: rgba(200,161,94,.56); background: linear-gradient(145deg,rgba(255,255,255,.09),rgba(200,161,94,.17)); }
-.hospital-capability-grid strong { color: #eed9ad; font-family: Georgia,"Times New Roman",serif; font-size: clamp(42px,4vw,64px); font-weight: 500; line-height: .85; letter-spacing: -.045em; }
-.hospital-capability-grid sup { margin-left: 2px; font-family: Inter,sans-serif; font-size: 16px; }
-.hospital-capability-grid article div { display: grid; gap: 5px; }
-.hospital-capability-grid b { color: #fff; font-size: 13px; line-height: 1.35; }
-.hospital-capability-grid small { color: rgba(255,255,255,.62); font-size: 10px; line-height: 1.45; }
-.hospital-capability-note { position: relative; margin-top: 14px; color: rgba(255,255,255,.5); font-size: 9px; text-align: right; }
+/* V07 editorial hospital proof, search console and result cards */
+.hospital-hero-proof { display: grid; margin-top: 62px; grid-template-columns: repeat(4,minmax(0,1fr)); border-top: 1px solid rgba(255,255,255,.34); border-bottom: 1px solid rgba(255,255,255,.16); }
+.hospital-hero-proof article { display: grid; min-height: 112px; padding: 21px 22px 18px; grid-template-columns: auto 1fr; align-items: end; gap: 16px; }
+.hospital-hero-proof article:first-child { padding-left: 0; }
+.hospital-hero-proof article+article { border-left: 1px solid rgba(255,255,255,.16); }
+.hospital-hero-proof strong { color: #d7b979; font-family: Georgia,"Times New Roman",serif; font-size: clamp(42px,3.8vw,60px); font-weight: 500; line-height: .82; letter-spacing: -.045em; }
+.hospital-hero-proof sup { margin-left: 2px; font-family: Inter,sans-serif; font-size: 15px; }
+.hospital-hero-proof article span { display: grid; gap: 5px; padding-bottom: 1px; }
+.hospital-hero-proof b { color: #fff; font-size: 12px; line-height: 1.35; }
+.hospital-hero-proof small { max-width: 155px; color: rgba(255,255,255,.58); font-size: 9px; line-height: 1.45; }
+.hospital-hero-scope { margin: 11px 0 0 auto; max-width: 680px; color: rgba(255,255,255,.46); font-size: 8px; line-height: 1.55; text-align: right; }
 
 .hospital-filter-console { overflow: hidden; border: 1px solid rgba(0,126,112,.14); border-radius: 28px; background: #fff; box-shadow: 0 24px 70px rgba(5,71,52,.13); }
 .filter-console-head { display: grid; min-height: 158px; padding: 30px 32px; grid-template-columns: 60px minmax(0,1fr) auto; align-items: center; gap: 20px; color: #fff; background: linear-gradient(115deg,#064f48 0%,#007e70 72%,#018172 100%); }
@@ -702,15 +692,18 @@ body[data-page="hospitals"] .hospital-card-dept { max-width: 94%; margin-top: 14
 body[data-page="hospitals"] .hospital-card-action { position: relative; z-index: 1; }
 
 @media(max-width:980px){
-  .hospital-capability-grid { grid-template-columns: 1fr 1fr; }
-  .hospital-capability-grid article { min-height: 120px; }
+  .hospital-hero-proof { grid-template-columns: 1fr 1fr; }
+  .hospital-hero-proof article:nth-child(3) { border-left: 0; }
+  .hospital-hero-proof article:nth-child(n+3) { border-top: 1px solid rgba(255,255,255,.16); }
 }
 @media(max-width:680px){
-  .hospital-capability-band { padding-top: 22px; }
-  .hospital-capability-grid { gap: 8px; }
-  .hospital-capability-grid article { min-height: 130px; padding: 18px 15px; grid-template-columns: 1fr; align-content: end; gap: 11px; }
-  .hospital-capability-grid strong { font-size: 42px; }
-  .hospital-capability-note { text-align: left; line-height: 1.5; }
+  body[data-page="hospitals"] .hospital-hero-layout { min-height: 0; }
+  .hospital-hero-proof { margin-top: 48px; }
+  .hospital-hero-proof article { min-height: 104px; padding: 18px 12px; grid-template-columns: 1fr; align-content: end; gap: 8px; }
+  .hospital-hero-proof article:first-child { padding-left: 0; }
+  .hospital-hero-proof strong { font-size: 43px; }
+  .hospital-hero-proof small { font-size: 8px; }
+  .hospital-hero-scope { margin-top: 10px; text-align: left; }
   .filter-console-head { min-height: 0; padding: 25px 21px; grid-template-columns: 48px minmax(0,1fr); gap: 14px; }
   .filter-console-mark { width: 46px; height: 46px; border-radius: 14px; font-size: 27px; }
   .filter-console-head h3 { font-size: 25px; }
