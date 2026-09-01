@@ -1,10 +1,7 @@
-# Browser QA output (keep reusable scripts)
-设计稿/qa/*.png
-设计稿/qa/*.jpg
-设计稿/qa/edge-profile/
-设计稿/qa/*-profile/
-设计稿/qa/care-plan-inline.js
-设计稿/各版本样式截图/
+# Local-only research, design history and QA tools
+/设计稿/
+/参考资料/
+/.qa-*/
 
 # Windows metadata
 Thumbs.db
