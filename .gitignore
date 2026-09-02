@@ -13,6 +13,7 @@
 !/.nojekyll
 !/AGENTS.md
 !/README.md
+!/DESIGN_SYSTEM.md
 
 # Never publish operating-system metadata, including files inside assets/.
 **/Thumbs.db

@@ -1,4 +1,4 @@
-name: Deploy CareChina prototype
+name: Deploy HUAYIAN CARE TRIP prototype
 
 on:
   push:

@@ -1,205 +1,56 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Find a Hospital — CareChina</title>
-  <link rel="stylesheet" href="assets/platform.css">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Search HUAYIAN CARE TRIP's directory of hospitals and specialty capabilities in China.">
+  <title>Hospitals · HUAYIAN CARE TRIP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/v04.css">
 </head>
 <body data-page="hospitals">
-  <header class="site-header">
-    <div class="shell nav-wrap">
-      <a class="brand" href="index.html"><span class="brand-mark"></span><span class="brand-copy">CareChina<small data-en="International medical coordination" data-zh="国际医疗协同">International medical coordination</small></span></a>
-      <nav class="main-nav" data-main-nav aria-label="Primary navigation">
-        <a class="nav-link" data-nav="home" href="index.html" data-en="Home" data-zh="首页">Home</a>
-        <a class="nav-link" data-nav="hospitals" href="hospitals.html" data-en="Find a Hospital" data-zh="找医院">Find a Hospital</a>
-        <a class="nav-link" data-nav="case" href="case.html" data-en="Care Case" data-zh="救治案例">Care Case</a>
-        <a class="nav-link" data-nav="tcm" href="tcm-wellness.html" data-en="TCM Wellness" data-zh="中医调养">TCM Wellness</a>
-      </nav>
-      <div class="nav-actions"><button class="lang-toggle" data-lang-toggle type="button">中文</button><button class="menu-btn menu-toggle" data-menu-toggle type="button" aria-label="Open menu" aria-expanded="false"><span></span></button></div>
-    </div>
-  </header>
-
-  <main>
+  <a class="skip-link" href="#main" data-en="Skip to content" data-zh="跳至正文">Skip to content</a>
+  <header class="site-header"><div class="shell nav-wrap">
+    <a class="brand" href="index.html"><span class="brand-mark"></span><span class="brand-copy"><b data-en="HUAYIAN CARE TRIP" data-zh="华医安">HUAYIAN CARE TRIP</b><small>Your Trusted Medical Journey in China</small></span></a>
+    <nav class="main-nav" data-main-nav><a href="index.html" data-nav="home" data-en="Home" data-zh="首页">Home</a><a href="treatments.html" data-nav="treatments" data-en="Treatments" data-zh="医疗方向">Treatments</a><a href="hospitals.html" data-nav="hospitals" data-en="Hospitals" data-zh="找医院">Hospitals</a><a href="process.html" data-nav="process" data-en="How it works" data-zh="诊疗流程">How it works</a><a href="cases.html" data-nav="cases" data-en="Patient stories" data-zh="就医案例">Patient stories</a><a href="guide.html" data-nav="guide" data-en="Patient guide" data-zh="患者指南">Patient guide</a></nav>
+    <div class="nav-actions"><button class="language-button" type="button" data-lang-toggle>中文</button><a class="btn btn-primary nav-cta" href="index.html#consultation" data-en="Start consultation" data-zh="开启咨询">Start consultation</a><button class="menu-button" type="button" data-menu-toggle aria-label="Open menu"><span></span></button></div>
+  </div></header>
+  <main id="main">
     <section class="page-hero hospital-page-hero">
-      <div class="shell hospital-hero-layout">
-        <div class="hospital-hero-copy" data-reveal>
-          <h1 data-en="Hospitals in China" data-zh="中国医院目录">Hospitals in China</h1>
-          <div class="hospital-hero-actions"><a class="button" href="#hospital-finder" data-en="Search hospitals" data-zh="开始查找">Search hospitals</a><a class="button secondary" href="index.html#assessment" data-en="Ask a coordinator" data-zh="咨询协调员">Ask a coordinator</a></div>
-        </div>
-        <div class="hospital-hero-proof" aria-label="Hospital directory coverage">
-          <article><strong>103</strong><span><b data-en="Hospitals" data-zh="合作医院">Hospitals</b></span></article>
-          <article><strong>22</strong><span><b data-en="Cities" data-zh="覆盖城市">Cities</b></span></article>
-          <article><strong>40<sup>+</sup></strong><span><b data-en="Specialty areas" data-zh="专科方向">Specialty areas</b></span></article>
-          <article><strong>4</strong><span><b data-en="No. 1 specialty references" data-zh="全国第 1 专科参考">No. 1 specialty references</b></span></article>
-        </div>
+      <div class="page-hero-media"><img src="assets/hospital-zhongnan-exterior.jpg" alt="Hospital in Wuhan"></div>
+      <div class="shell page-hero-inner"><div class="page-hero-copy" data-reveal><p class="kicker" data-en="Hospitals" data-zh="找医院">Hospitals</p><h1 data-en="China hospital directory." data-zh="中国医院目录">China hospital directory.</h1><p class="lead" data-en="Search by specialty, hospital or city." data-zh="按专科、医院或城市查找。">Search by specialty, hospital or city.</p><div class="page-hero-actions"><a class="btn btn-primary" href="#directory" data-en="Search hospitals" data-zh="开始查找">Search hospitals</a><a class="btn btn-outline" href="index.html#consultation" data-en="Ask a coordinator" data-zh="咨询协调员">Ask a coordinator</a></div></div></div>
+      <div class="shell hospital-hero-proof">
+        <div><strong>103</strong><span data-en="Hospital directory" data-zh="医院资源目录">Hospital directory</span></div>
+        <div><strong>22</strong><span data-en="Medical cities" data-zh="医疗城市">Medical cities</span></div>
+        <div><strong>40<sup>+</sup></strong><span data-en="Clinical capabilities" data-zh="专科能力方向">Clinical capabilities</span></div>
+        <div><strong>4</strong><span data-en="No.1 specialty references" data-zh="全国第1专科参考">No.1 specialty references</span></div>
       </div>
     </section>
 
-    <section class="section hospital-finder-section" id="hospital-finder" aria-labelledby="hospital-filter-title">
+    <section class="section section-soft" id="directory">
       <div class="shell">
-        <h2 class="visually-hidden" id="hospital-filter-title" data-en="Hospital filters" data-zh="医院筛选">Hospital filters</h2>
-        <div class="hospital-filter-console" data-reveal>
-          <div class="hospital-filter-panel">
-            <div class="search-row hospital-search-row">
-              <div class="field hospital-query-field"><label for="hospital-search" data-en="Search" data-zh="搜索">Search</label><div class="hospital-input-wrap"><i aria-hidden="true">⌕</i><input id="hospital-search" type="search" data-placeholder-en="Hospital name or specialty" data-placeholder-zh="医院名称或专科" placeholder="Hospital name or specialty"></div></div>
-              <div class="field hospital-city-field"><label for="city-filter" data-en="City" data-zh="城市">City</label><select id="city-filter"></select></div>
-            </div>
-            <div class="specialty-filter-block"><div class="specialty-filter-label"><label data-en="Specialty" data-zh="专科">Specialty</label></div><div class="hospital-specialty-chips" id="specialty-chips" role="list"></div></div>
-          </div>
+        <div class="section-head compact" data-reveal><div><p class="kicker" data-en="Directory" data-zh="医院目录">Directory</p><h2 data-en="Find a hospital." data-zh="查找医院">Find a hospital.</h2></div></div>
+        <div class="hospital-finder">
+          <aside class="hospital-filters" data-reveal>
+            <h3 data-en="Filter" data-zh="筛选">Filter</h3>
+            <div class="field"><label for="hospital-search" data-en="Hospital or care need" data-zh="医院或医疗需求">Hospital or care need</label><input id="hospital-search" type="search" data-hospital-search data-placeholder-en="Search" data-placeholder-zh="搜索" placeholder="Search"></div>
+            <div class="field"><label for="hospital-specialty" data-en="Specialty" data-zh="专科">Specialty</label><select id="hospital-specialty" data-hospital-specialty><option value="" data-en="All specialties" data-zh="全部专科">All specialties</option></select></div>
+            <div class="field"><label for="hospital-city" data-en="City" data-zh="城市">City</label><select id="hospital-city" data-hospital-city><option value="" data-en="All cities" data-zh="全部城市">All cities</option></select></div>
+            <p class="hospital-filter-count"><strong data-hospital-count>103</strong><span data-en="matching hospitals" data-zh="家匹配医院">matching hospitals</span></p>
+          </aside>
+          <div><div class="hospital-list" data-hospital-list data-reveal></div><div class="load-more"><button class="btn btn-light" type="button" data-hospital-more data-en="Show more" data-zh="查看更多">Show more</button></div></div>
         </div>
-
-        <div class="hospital-result-toolbar"><div><strong id="result-count">0 hospitals</strong><small id="result-context"></small></div><button class="hospital-clear" id="clear-filters" type="button" data-en="Clear filters" data-zh="清除筛选">Clear filters</button></div>
-        <div class="hospital-list" id="hospital-list"></div>
-        <div class="empty-state" id="empty-state" data-en="No hospitals match these filters. Try another city, specialty or keyword." data-zh="当前没有匹配结果，请更换城市、专科或关键词。">No hospitals match these filters. Try another city, specialty or keyword.</div>
-        <div class="hospital-load-row"><button class="button secondary" id="load-more" type="button" data-en="Show 12 more" data-zh="再显示 12 家">Show 12 more</button></div>
-        <p class="hospital-research-note" data-en="Hospital departments, appointment availability and international services may change. Confirm current details on the official website or with a coordinator before booking." data-zh="医院科室、预约名额与国际患者服务可能变化；预订行程前，请通过医院官网或协调员确认最新信息。">Hospital departments, appointment availability and international services may change. Confirm current details on the official website or with a coordinator before booking.</p>
       </div>
     </section>
-    <section class="section soft"><div class="shell cta-band" data-reveal><h2 data-en="Hospital matching support" data-zh="医院匹配协助">Hospital matching support</h2><a class="button" href="index.html#assessment" style="color:var(--brand-deep);background:var(--lime)" data-en="Start consultation" data-zh="开启咨询">Start consultation</a></div></section>
   </main>
-  <dialog class="hospital-dialog" id="hospital-dialog" aria-labelledby="hospital-dialog-title">
-    <div class="hospital-dialog-shell">
-      <button class="hospital-dialog-close" id="hospital-dialog-close" type="button" aria-label="Close">×</button>
-      <div class="hospital-dialog-head"><div class="hospital-dialog-logo" id="hospital-dialog-logo"></div><div><span class="hospital-dialog-location" id="hospital-dialog-location"></span><h2 id="hospital-dialog-title"></h2></div></div>
-      <div class="hospital-dialog-gallery" id="hospital-dialog-gallery"></div>
-      <div class="hospital-dialog-body">
-        <div><small data-en="SPECIALTY PROFILE" data-zh="专科概况">SPECIALTY PROFILE</small><p id="hospital-dialog-dept"></p></div>
-        <div><small data-en="HOSPITAL HIGHLIGHTS" data-zh="医院特色">HOSPITAL HIGHLIGHTS</small><p id="hospital-dialog-note"></p></div>
-      </div>
-      <div class="hospital-dialog-notice" data-en="Departments, appointment availability, international-patient access and costs may change. Please confirm current details before booking." data-zh="科室、预约名额、国际患者接诊条件与费用可能变化，请在预订行程前核验最新信息。">Departments, appointment availability, international-patient access and costs may change. Please confirm current details before booking.</div>
-      <div class="hospital-dialog-actions"><a class="button" id="hospital-official-link" target="_blank" rel="noreferrer" data-en="Visit official hospital website ↗" data-zh="前往医院官网 ↗">Visit official hospital website ↗</a><a class="button secondary" href="index.html#assessment" data-en="Ask a coordinator" data-zh="咨询协调员">Ask a coordinator</a></div>
-    </div>
-  </dialog>
+  <footer class="site-footer"><div class="shell footer-main">
+    <div class="footer-brand"><a class="brand" href="index.html"><span class="brand-mark"></span><span class="brand-copy"><b data-en="HUAYIAN CARE TRIP" data-zh="华医安">HUAYIAN CARE TRIP</b><small>Your Trusted Medical Journey in China</small></span></a><p data-en="Medical review, hospital coordination and your stay in China—connected by one care team." data-zh="由一个团队衔接医疗评估、医院协调与在华行程。">Medical review, hospital coordination and your stay in China—connected by one care team.</p></div>
+    <div class="footer-col"><h3 data-en="Explore" data-zh="浏览">Explore</h3><a href="treatments.html" data-en="Treatments" data-zh="医疗方向">Treatments</a><a href="hospitals.html" data-en="Hospitals" data-zh="找医院">Hospitals</a><a href="cases.html" data-en="Patient stories" data-zh="就医案例">Patient stories</a></div>
+    <div class="footer-col"><h3 data-en="Plan" data-zh="准备">Plan</h3><a href="process.html" data-en="How it works" data-zh="诊疗流程">How it works</a><a href="guide.html" data-en="Patient guide" data-zh="患者指南">Patient guide</a></div>
+    <div class="footer-col"><h3 data-en="Care" data-zh="服务">Care</h3><a href="index.html#consultation" data-en="Start consultation" data-zh="开启咨询">Start consultation</a><a href="tcm-wellness.html" data-en="TCM & recovery" data-zh="中医与调养">TCM & recovery</a></div>
+  </div><div class="shell footer-bottom"><span data-en="© 2026 HUAYIAN CARE TRIP" data-zh="© 2026 华医安">© 2026 HUAYIAN CARE TRIP</span><span data-en="Directory information requires current hospital confirmation." data-zh="目录信息以医院当前确认为准。">Directory information requires current hospital confirmation.</span></div></footer>
 
-  <footer class="site-footer"><div class="shell"><div class="footer-grid"><div class="footer-brand"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-copy"><b>CareChina</b><small data-en="International medical coordination" data-zh="国际医疗协同">International medical coordination</small></span></a><p data-en="One care journey across hospitals, language, travel and follow-up." data-zh="统一协调医院、语言、行程与返程随访。">One care journey across hospitals, language, travel and follow-up.</p></div><div><h3 data-en="Pages" data-zh="页面">Pages</h3><div class="footer-links"><a href="index.html" data-en="Home" data-zh="首页">Home</a><a href="hospitals.html" data-en="Find a Hospital" data-zh="找医院">Find a Hospital</a><a href="case.html" data-en="Care Case" data-zh="救治案例">Care Case</a><a href="tcm-wellness.html" data-en="TCM Wellness" data-zh="中医调养">TCM Wellness</a></div></div><div><h3 data-en="Next step" data-zh="下一步">Next step</h3><div class="footer-links"><a href="index.html#assessment" data-en="Start consultation" data-zh="开启咨询">Start consultation</a><a href="index.html#faq" data-en="Frequently asked questions" data-zh="常见问题">Frequently asked questions</a></div></div></div><div class="footer-bottom"><span>© 2026 CareChina</span><span data-en="Planned international medical coordination" data-zh="计划性国际医疗协同">Planned international medical coordination</span></div></div></footer>
-
-  <script src="assets/hospitals-data.js"></script>
-  <script src="assets/platform.js"></script>
-  <script>
-    (function(){
-      var hospitals=window.CARECHINA_HOSPITALS||[];
-      var filters=window.CARECHINA_HOSPITAL_FILTERS||{specialties:[],cities:{}};
-      var list=document.getElementById("hospital-list");
-      var search=document.getElementById("hospital-search");
-      var city=document.getElementById("city-filter");
-      var chips=document.getElementById("specialty-chips");
-      var count=document.getElementById("result-count");
-      var context=document.getElementById("result-context");
-      var empty=document.getElementById("empty-state");
-      var loadMore=document.getElementById("load-more");
-      var clear=document.getElementById("clear-filters");
-      var dialog=document.getElementById("hospital-dialog");
-      var selectedSpecialty="all";
-      var visibleCount=12;
-      var activeHospital=null;
-      var verifiedLogos={tj:"assets/hospital-logos/tj.png",uh:"assets/hospital-logos/uh.png",wc:"assets/hospital-logos/wc.png",zy1:"assets/hospital-logos/zy1.png",nh:"assets/hospital-logos/nh.png",gp:"assets/hospital-logos/gp.png",pumch:"assets/hospital-logos/pumch.png",bjt:"assets/hospital-logos/bjt.png"};
-      var verifiedPhotos={
-        tj:[
-          {src:"assets/hospitals/tj-exterior.jpg",en:"Tongji International Medical Services exterior",zh:"同济医院国际医疗部院区"},
-          {src:"assets/hospitals/tj-interior.jpg",en:"International medical service interior",zh:"同济医院国际医疗服务空间"},
-          {src:"assets/hospitals/tj-international-visit.jpg",en:"International medical services visit",zh:"同济国际医疗服务访问场景"}
-        ],
-        zn:[
-          {src:"assets/hospital-zhongnan-exterior.jpg",en:"Zhongnan Hospital exterior",zh:"武汉大学中南医院院区"},
-          {src:"assets/hospital-zhongnan-interior.jpg",en:"Zhongnan Hospital interior",zh:"武汉大学中南医院院内空间"},
-          {src:"assets/hospitals/zn-care.jpg",en:"Zhongnan Hospital care setting",zh:"武汉大学中南医院诊疗场景"}
-        ],
-        wc:[{src:"assets/city-chengdu-hospital.jpg",en:"West China Hospital campus",zh:"四川大学华西医院院区"}],
-        sysc:[{src:"assets/city-guangzhou-hospital.jpg",en:"Sun Yat-sen University Cancer Center building",zh:"中山大学肿瘤防治中心院区"}],
-        zy1:[{src:"assets/hero-international-care.jpg",en:"Official international patient story image",zh:"医院官网国际患者案例图片"}]
-      };
-      function isChinese(){return document.documentElement.lang.indexOf("zh")===0;}
-      function specialtyById(id){return filters.specialties.find(function(item){return String(item.id)===String(id);});}
-      function initials(hospital){
-        if(isChinese())return hospital.nameZh.slice(0,2);
-        return hospital.nameEn.split(/\s+/).filter(function(word){return word.length>2;}).slice(0,2).map(function(word){return word[0];}).join("").toUpperCase();
-      }
-      function logoMarkup(hospital){
-        var src=verifiedLogos[hospital.id];
-        if(src)return '<img src="'+src+'" alt="" loading="lazy">';
-        return '<span aria-hidden="true">'+initials(hospital)+'</span>';
-      }
-      function currentSpecialtyLabel(){
-        if(selectedSpecialty==="all")return isChinese()?"全部专科":"All specialties";
-        var item=specialtyById(selectedSpecialty);
-        return item?(isChinese()?item.zh:item.en):"";
-      }
-      function buildFilters(){
-        var zh=isChinese(),cityValue=city.value||"all";
-        city.innerHTML='<option value="all">'+(zh?"全部城市":"All cities")+'</option>'+Object.keys(filters.cities).map(function(key){var item=filters.cities[key];return '<option value="'+key+'">'+(zh?item.zh:item.en)+'</option>';}).join("");
-        if(Array.prototype.some.call(city.options,function(option){return option.value===cityValue;}))city.value=cityValue;
-        chips.innerHTML='<button class="hospital-specialty-chip'+(selectedSpecialty==="all"?" active":"")+'" type="button" data-specialty="all">'+(zh?"全部":"All")+'</button>'+filters.specialties.map(function(item){return '<button class="hospital-specialty-chip'+(String(item.id)===selectedSpecialty?" active":"")+'" type="button" data-specialty="'+item.id+'">'+(zh?item.zh:item.en)+'</button>';}).join("");
-        chips.querySelectorAll("[data-specialty]").forEach(function(button){button.addEventListener("click",function(){selectedSpecialty=button.dataset.specialty;visibleCount=12;buildFilters();renderHospitals();});});
-      }
-      function filteredHospitals(){
-        var q=search.value.trim().toLowerCase();
-        return hospitals.filter(function(hospital){
-          var specialties=hospital.tags.map(specialtyById).filter(Boolean);
-          var haystack=[hospital.nameEn,hospital.nameZh,hospital.cityEn,hospital.cityZh,hospital.deptEn,hospital.deptZh,hospital.special,hospital.specialZh].concat(specialties.map(function(item){return item.en;}),specialties.map(function(item){return item.zh;})).join(" ").toLowerCase();
-          return (city.value==="all"||hospital.city===city.value)&&(selectedSpecialty==="all"||hospital.tags.map(String).indexOf(selectedSpecialty)!==-1)&&(!q||haystack.indexOf(q)!==-1);
-        });
-      }
-      function hospitalCard(hospital){
-        var zh=isChinese();
-        var tags=hospital.tags.map(specialtyById).filter(Boolean).slice(0,3);
-        return '<button class="hospital-card" type="button" data-hospital-open="'+hospital.id+'">'+
-          '<span class="hospital-card-logo">'+logoMarkup(hospital)+'</span>'+
-          '<span class="hospital-card-copy"><small class="hospital-card-city">'+(zh?hospital.cityZh:hospital.cityEn)+'</small><strong>'+(zh?hospital.nameZh:hospital.nameEn)+'</strong>'+
-          '<span class="hospital-meta">'+tags.map(function(tag){return '<span>'+(zh?tag.zh:tag.en)+'</span>';}).join("")+'</span>'+
-          '<span class="hospital-card-dept">'+(zh?hospital.deptZh:hospital.deptEn)+'</span></span>'+
-          '<span class="hospital-card-action"><b>'+(zh?"查看简介":"View profile")+'</b><i aria-hidden="true">→</i></span></button>';
-      }
-      function renderHospitals(){
-        var zh=isChinese(),shown=filteredHospitals(),visible=shown.slice(0,visibleCount);
-        count.textContent=zh?shown.length+" 家医院":shown.length+" hospital"+(shown.length===1?"":"s");
-        var activeContext=[];
-        if(city.value!=="all")activeContext.push(zh?filters.cities[city.value].zh:filters.cities[city.value].en);
-        if(selectedSpecialty!=="all")activeContext.push(currentSpecialtyLabel());
-        context.textContent=activeContext.join(" · ");
-        clear.hidden=city.value==="all"&&selectedSpecialty==="all"&&!search.value.trim();
-        list.innerHTML=visible.map(hospitalCard).join("");
-        empty.style.display=shown.length?"none":"block";
-        loadMore.style.display=visible.length<shown.length?"inline-flex":"none";
-        list.querySelectorAll("[data-hospital-open]").forEach(function(button){button.addEventListener("click",function(){openHospital(button.dataset.hospitalOpen);});});
-      }
-      function openHospital(id){
-        activeHospital=hospitals.find(function(hospital){return hospital.id===id;});
-        if(!activeHospital)return;
-        var zh=isChinese();
-        document.getElementById("hospital-dialog-logo").innerHTML=logoMarkup(activeHospital);
-        document.getElementById("hospital-dialog-location").textContent=(zh?activeHospital.cityZh:activeHospital.cityEn)+" · "+(zh?"医院简介":"Hospital profile");
-        document.getElementById("hospital-dialog-title").textContent=zh?activeHospital.nameZh:activeHospital.nameEn;
-        document.getElementById("hospital-dialog-dept").textContent=zh?activeHospital.deptZh:activeHospital.deptEn;
-        document.getElementById("hospital-dialog-note").textContent=zh?activeHospital.specialZh:activeHospital.special;
-        document.getElementById("hospital-official-link").href=/^https?:\/\//.test(activeHospital.site)?activeHospital.site:"https://"+activeHospital.site;
-        var photos=verifiedPhotos[activeHospital.id]||[];
-        var gallery=document.getElementById("hospital-dialog-gallery");
-        gallery.classList.toggle("is-empty",!photos.length);
-        gallery.innerHTML=photos.length?photos.map(function(photo){return '<figure><img src="'+photo.src+'" alt="'+(zh?photo.zh:photo.en)+'"><figcaption>'+(zh?photo.zh:photo.en)+'</figcaption></figure>';}).join(""):'<div><b>'+(zh?"暂无已核验图片":"No verified photos available")+'</b></div>';
-        if(!dialog.open){if(typeof dialog.showModal==="function")dialog.showModal();else dialog.setAttribute("open","");}
-        document.body.classList.add("dialog-open");
-      }
-      function closeDialog(){
-        if(dialog.open&&typeof dialog.close==="function")dialog.close();else dialog.removeAttribute("open");
-        document.body.classList.remove("dialog-open");
-      }
-      search.addEventListener("input",function(){visibleCount=12;renderHospitals();});
-      city.addEventListener("change",function(){visibleCount=12;renderHospitals();});
-      clear.addEventListener("click",function(){search.value="";city.value="all";selectedSpecialty="all";visibleCount=12;buildFilters();renderHospitals();});
-      loadMore.addEventListener("click",function(){visibleCount+=12;renderHospitals();});
-      document.getElementById("hospital-dialog-close").addEventListener("click",closeDialog);
-      dialog.addEventListener("click",function(event){if(event.target===dialog)closeDialog();});
-      dialog.addEventListener("close",function(){document.body.classList.remove("dialog-open");});
-      document.addEventListener("carechina:language",function(){buildFilters();renderHospitals();if(activeHospital&&dialog.open)openHospital(activeHospital.id);});
-      var params=new URLSearchParams(location.search);
-      var initialCity=(params.get("city")||"").toLowerCase(),initialSpecialty=params.get("specialty");
-      if(filters.cities[initialCity])city.dataset.initialValue=initialCity;
-      if(initialSpecialty){var matchingSpecialty=filters.specialties.find(function(item){return String(item.id)===initialSpecialty||item.en.toLowerCase()===initialSpecialty.toLowerCase()||item.zh===initialSpecialty;});if(matchingSpecialty)selectedSpecialty=String(matchingSpecialty.id);}
-      buildFilters();
-      if(city.dataset.initialValue)city.value=city.dataset.initialValue;
-      renderHospitals();
-    })();
-  </script>
-</body>
-</html>
+  <div class="modal" data-hospital-modal role="dialog" aria-modal="true" aria-labelledby="hospital-modal-title">
+    <div class="modal-dialog"><button class="modal-close" type="button" data-modal-close aria-label="Close">×</button><div class="modal-gallery" data-modal-gallery></div><div class="modal-body"><p class="kicker" data-modal-city></p><h2 id="hospital-modal-title" data-modal-title></h2><p data-modal-copy></p><div class="modal-facts"><div><small data-en="Reference" data-zh="能力参考">Reference</small><b data-modal-rank></b></div><div><small data-en="Specialties" data-zh="重点专科">Specialties</small><b data-modal-dept></b></div><div><small data-en="Current availability" data-zh="当前接诊">Current availability</small><b data-en="Confirm with hospital" data-zh="需医院确认">Confirm with hospital</b></div></div><a class="btn btn-primary" data-modal-site href="#" target="_blank" rel="noopener" data-en="Visit official website" data-zh="访问医院官网">Visit official website</a></div></div>
+  </div>
+  <script src="assets/hospitals-data.js"></script><script src="assets/platform.js"></script>
+</body></html>

@@ -1,7 +1,4 @@
-/* Migrated from the manually reviewed legacy prototype.
-   Rankings, service claims and operational details remain research references
-   and must be checked against current official hospital information before publication. */
-window.CARECHINA_HOSPITALS = [
+window.HUAYIAN_HOSPITALS = [
   {id:'tj',city:'wuhan',cityEn:'Wuhan',cityZh:'武汉',halal:4,nameEn:'Tongji Hospital',nameZh:'同济医院',rank:'#6 nationally',rankZh:'全国第6',deptEn:'Ob/Gyn · Urology · Resp · Rare Disease',deptZh:'妇产·泌尿·呼吸·罕见病',special:'Prof. Martins-led obstetrics team · Rare-disease MDT · organ transplant (liver/kidney)',specialZh:'马丁院士领衔妇产科 · 罕见病MDT · 肝肾移植',tags:[0,4,10,11,12],site:'www.tjh.com.cn',stars:'icu|transplant|halal'},
   {id:'uh',city:'wuhan',cityEn:'Wuhan',cityZh:'武汉',halal:4,nameEn:'Union Hospital',nameZh:'协和医院',rank:'#9 nationally',rankZh:'全国第9',deptEn:'Cardiovascular Surgery · Hematology · Ortho',deptZh:'心脏大血管·血液·骨科',special:'Heart transplant top-5 volume · CAR-T 90% remission · #3 cardiac surgery',specialZh:'心脏移植量全国前五 · CAR-T缓解率90% · 心外全国第3',tags:[0,1,5,9,13],top:1,site:'www.whuh.com',stars:'heart|icu|halal'},
   {id:'zn',city:'wuhan',cityEn:'Wuhan',cityZh:'武汉',halal:3,nameEn:'Zhongnan Hospital',nameZh:'中南医院',rank:'Transplant QC center',rankZh:'全国唯一移植质控中心',deptEn:'Organ Transplant · Oncology · Neuro',deptZh:'器官移植·肿瘤·神经',special:'Only full-category transplant qualification (heart/lung/liver/kidney/pancreas/intestine)',specialZh:'全国唯一全品类移植资质（心/肺/肝/肾/胰/肠）',tags:[0,3,9,4],site:'www.znhospital.cn',stars:'transplant|icu'},
@@ -108,7 +105,7 @@ window.CARECHINA_HOSPITALS = [
   {id:'szp',city:'shenzhen',cityEn:'Shenzhen',cityZh:'深圳',halal:3,nameEn:'Shenzhen People\'s Hospital',nameZh:'深圳市人民医院',rank:'#99 nationally',rankZh:'全国第99',deptEn:'Cardio · GI · Oncology · Rehab',deptZh:'心血管·消化·肿瘤·康复',special:'Comprehensive Shenzhen center · cardiology & GI',specialZh:'深圳综合医疗中心 · 心血管消化',tags:[1,12,0,8],site:'www.szhospital.com',stars:'halal'},
   {id:'bjtc',city:'beijing',cityEn:'Beijing',cityZh:'北京',halal:3,nameEn:'Beijing Chest Hospital',nameZh:'首都医科大学附属北京胸科医院',rank:'#100 nationally',rankZh:'全国第100',deptEn:'Tuberculosis · Respiratory · Thoracic',deptZh:'结核·呼吸·胸外',special:'Respiratory & TB center (national leader) · thoracic surgery',specialZh:'呼吸结核国家中心 · 胸外科',tags:[8,0],site:'www.bjxkyy.cn',stars:'halal'}
 ];
-window.CARECHINA_HOSPITAL_FILTERS = {
+window.HUAYIAN_HOSPITAL_FILTERS = {
   specialties: [
   {id:0,en:'Oncology',zh:'肿瘤',ar:'الأورام'},
   {id:1,en:'Cardiology',zh:'心血管'},
