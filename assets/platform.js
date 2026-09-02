@@ -13,6 +13,20 @@
   };
   const safeSite = (site) => String(site || "").toLowerCase().startsWith("http") ? site : "https://" + site;
 
+  function initFooterContact() {
+    const footerMain = document.querySelector(".site-footer .footer-main");
+    if (!footerMain || footerMain.querySelector(".footer-contact")) return;
+    const contact = document.createElement("div");
+    contact.className = "footer-contact";
+    contact.innerHTML = '<h3 data-en="Contact" data-zh="联系我们">Contact</h3><div class="footer-contact-list">' +
+      '<a class="footer-contact-item" href="mailto:support@cmedtrip.com"><span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6.5h18v12H3z"/><path d="m4 8 8 6 8-6"/></svg></span><span>support@cmedtrip.com</span></a>' +
+      '<div class="footer-contact-item"><span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0-7.8-4.5L3 21l4.7-1.2A9 9 0 0 0 12 21Z"/><path d="M8.8 8.2c.3 3.2 2.1 5 5.3 5.9l1.3-1.3 2.1 1c-.4 2-1.6 3-3.4 2.8-4.3-.8-6.9-3.4-7.7-7.7-.2-1.8.8-3 2.8-3.4l1 2.1-1.4.6Z"/></svg></span><span>WhatsApp: xxxx</span></div>' +
+      '<a class="footer-contact-item" href="tel:+8619987758890"><span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.2 3.5 4.6 5.8c.2 6.7 6.9 13.4 13.6 13.6l2.3-2.6-4.2-3-2 2c-2.6-1.1-5-3.5-6.1-6.1l2-2-3-4.2Z"/></svg></span><span>+86 199 8775 8890</span></a>' +
+      '<div class="footer-contact-item"><span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span data-en="Qingshan Digital Valley, Qingshan District, Wuhan, Hubei" data-zh="湖北省武汉市青山区青山数谷">Qingshan Digital Valley, Qingshan District, Wuhan, Hubei</span></div>' +
+      '</div>';
+    footerMain.appendChild(contact);
+  }
+
   function setLanguage(next) {
     language = next === "zh" ? "zh" : "en";
     root.lang = language === "zh" ? "zh-CN" : "en";
@@ -202,7 +216,8 @@
     if (!wrap || !window.HUAYIAN_HOSPITALS) return;
     const citySelect = wrap.querySelector("[data-match-city]");
     const result = wrap.querySelector("[data-match-result]");
-    let specialty = null;
+    const specialtyButtons = [...wrap.querySelectorAll("[data-specialty]")];
+    let specialty = specialtyButtons.length ? Number(specialtyButtons[0].dataset.specialty) : null;
     Object.entries(window.HUAYIAN_HOSPITAL_FILTERS.cities).forEach(([id, city]) => {
       const option = document.createElement("option");
       option.value = id;
@@ -225,9 +240,9 @@
         rows.map((hospital) => '<a class="hospital-rank-row" href="hospitals.html?specialty=' + specialty + '&city=' + encodeURIComponent(city) + '"><span><b>' + copy(hospital, "name") + '</b><small>' + copy(hospital, "city") + ' · ' + copy(hospital, "dept") + '</small></span><span class="rank-note">' + copy(hospital, "rank") + '</span></a>').join("") +
         '</div>';
     };
-    wrap.querySelectorAll("[data-specialty]").forEach((button) => button.addEventListener("click", () => {
+    specialtyButtons.forEach((button) => button.addEventListener("click", () => {
       specialty = Number(button.dataset.specialty);
-      wrap.querySelectorAll("[data-specialty]").forEach((item) => item.classList.toggle("active", item === button));
+      specialtyButtons.forEach((item) => item.classList.toggle("active", item === button));
       render();
     }));
     citySelect.addEventListener("change", render);
@@ -241,6 +256,8 @@
       });
       render();
     });
+    specialtyButtons.forEach((button, index) => button.classList.toggle("active", index === 0));
+    render();
   }
 
   function initConsultation() {
@@ -479,6 +496,7 @@
     document.addEventListener("huayian:language", () => { if (active) render(active); });
   }
 
+  initFooterContact();
   setLanguage(language);
   initJourney();
   initStageBoard();
