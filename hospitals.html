@@ -32,7 +32,6 @@
         <div class="hospital-hero-copy" data-reveal>
           <p class="eyebrow" data-en="Find care in China" data-zh="寻找在华医疗资源">Find care in China</p>
           <h1 data-en="China hospital directory" data-zh="中国医院目录">China hospital directory</h1>
-          <p class="lead" data-en="Search by specialty, hospital or city." data-zh="按专科、医院或城市检索。">Search by specialty, hospital or city.</p>
           <div class="hospital-hero-actions"><a class="button" href="#hospital-finder" data-en="Search hospitals" data-zh="开始查找">Search hospitals</a><a class="button secondary" href="index.html#assessment" data-en="Ask a coordinator" data-zh="咨询协调员">Ask a coordinator</a></div>
         </div>
         <div class="hospital-hero-proof" aria-label="Hospital directory coverage">
@@ -41,7 +40,6 @@
           <article><strong>40<sup>+</sup></strong><span><b data-en="Clinical capabilities" data-zh="专科能力方向">Clinical capabilities</b><small data-en="Across 14 searchable specialties" data-zh="归入 14 个可筛选专科">Across 14 searchable specialties</small></span></article>
           <article><strong>4</strong><span><b data-en="No.1 specialty references" data-zh="全国第 1 专科参考">No.1 specialty references</b><small data-en="Recognised reputation tables" data-zh="权威专科声誉榜参考">Recognised reputation tables</small></span></article>
         </div>
-        <p class="hospital-hero-scope" data-en="Directory and ranking references support initial research. Cooperation, access and appointments require confirmation." data-zh="目录与榜单数据用于前期研究；合作关系、接诊条件与预约名额仍需确认。">Directory and ranking references support initial research. Cooperation, access and appointments require confirmation.</p>
       </div>
     </section>
 
@@ -51,7 +49,7 @@
         <div class="hospital-filter-console" data-reveal>
           <div class="filter-console-head">
             <span class="filter-console-mark" aria-hidden="true">⌕</span>
-            <div><small data-en="SEARCH THE DIRECTORY" data-zh="检索医院目录">SEARCH THE DIRECTORY</small><h3 data-en="Tell us what care you are looking for" data-zh="告诉我们你想寻找什么医疗服务">Tell us what care you are looking for</h3><p data-en="Use everyday words or a known hospital name. No medical records are needed here." data-zh="可以使用日常描述或医院名称，此处不需要上传病历。">Use everyday words or a known hospital name. No medical records are needed here.</p></div>
+            <div><small data-en="SEARCH THE DIRECTORY" data-zh="检索医院目录">SEARCH THE DIRECTORY</small><h3 data-en="Hospital, specialty or care need" data-zh="医院、专科或医疗需求">Hospital, specialty or care need</h3></div>
             <span class="filter-console-count"><b>103</b><small data-en="hospital profiles" data-zh="家医院档案">hospital profiles</small></span>
           </div>
           <div class="hospital-filter-panel">
@@ -59,7 +57,7 @@
               <div class="field hospital-query-field"><label for="hospital-search"><span>01</span><b data-en="Hospital, specialty or care need" data-zh="医院、专科或医疗需求">Hospital, specialty or care need</b></label><div class="hospital-input-wrap"><i aria-hidden="true">⌕</i><input id="hospital-search" type="search" data-placeholder-en="Try oncology, transplant or a hospital name" data-placeholder-zh="例如：肿瘤、器官移植或医院名称" placeholder="Try oncology, transplant or a hospital name"></div></div>
               <div class="field hospital-city-field"><label for="city-filter"><span>02</span><b data-en="Preferred city" data-zh="意向城市">Preferred city</b></label><select id="city-filter"></select></div>
             </div>
-            <div class="specialty-filter-block"><div class="specialty-filter-label"><label><span>03</span><b data-en="Choose a specialty" data-zh="选择专科">Choose a specialty</b></label><small data-en="Optional—use it to make the list more relevant." data-zh="选填；可帮助结果更加相关。">Optional—use it to make the list more relevant.</small></div><div class="hospital-specialty-chips" id="specialty-chips" role="list"></div></div>
+            <div class="specialty-filter-block"><div class="specialty-filter-label"><label><span>03</span><b data-en="Specialty" data-zh="专科">Specialty</b></label></div><div class="hospital-specialty-chips" id="specialty-chips" role="list"></div></div>
           </div>
         </div>
 
@@ -70,7 +68,7 @@
         <p class="hospital-research-note" data-en="Hospital departments, appointment availability and international services may change. Confirm current details on the official website or with a coordinator before booking." data-zh="医院科室、预约名额与国际患者服务可能变化；预订行程前，请通过医院官网或协调员确认最新信息。">Hospital departments, appointment availability and international services may change. Confirm current details on the official website or with a coordinator before booking.</p>
       </div>
     </section>
-    <section class="section soft"><div class="shell cta-band" data-reveal><h2 data-en="Hospital matching support" data-zh="医院匹配协助">Hospital matching support</h2><p data-en="Submit your specialty, city and timing preferences." data-zh="提交专科、城市与时间偏好。">Submit your specialty, city and timing preferences.</p><a class="button" href="index.html#assessment" style="color:var(--brand-deep);background:var(--lime)" data-en="Start consultation" data-zh="开启咨询">Start consultation</a></div></section>
+    <section class="section soft"><div class="shell cta-band" data-reveal><h2 data-en="Hospital matching support" data-zh="医院匹配协助">Hospital matching support</h2><a class="button" href="index.html#assessment" style="color:var(--brand-deep);background:var(--lime)" data-en="Start consultation" data-zh="开启咨询">Start consultation</a></div></section>
   </main>
   <dialog class="hospital-dialog" id="hospital-dialog" aria-labelledby="hospital-dialog-title">
     <div class="hospital-dialog-shell">
@@ -86,7 +84,7 @@
     </div>
   </dialog>
 
-  <footer class="site-footer"><div class="shell"><div class="footer-grid"><div><a class="brand" href="index.html"><span class="brand-mark"></span><span class="brand-copy">CareChina</span></a><p data-en="Needs-first planning for medical care in China." data-zh="从医疗需求出发的来华就医规划。">Needs-first planning for medical care in China.</p></div><div><h3 data-en="Next step" data-zh="下一步">Next step</h3><div class="footer-links"><a href="care-plan.html" data-en="Build a care plan" data-zh="规划诊疗路径">Build a care plan</a><a href="cost-estimate.html" data-en="Estimate cost" data-zh="估算费用">Estimate cost</a></div></div><div><h3 data-en="Important" data-zh="重要说明">Important</h3><p data-en="Directory information must be independently verified before use." data-zh="目录信息在使用前必须独立核验。">Directory information must be independently verified before use.</p></div></div><div class="footer-bottom"><span>© 2026 CareChina prototype</span><span data-en="Not medical advice" data-zh="不构成医疗建议">Not medical advice</span></div></div></footer>
+  <footer class="site-footer"><div class="shell"><div class="footer-grid"><div><a class="brand" href="index.html"><span class="brand-mark"></span><span class="brand-copy">CareChina</span></a></div><div><h3 data-en="Next step" data-zh="下一步">Next step</h3><div class="footer-links"><a href="care-plan.html" data-en="Build a care plan" data-zh="规划诊疗路径">Build a care plan</a><a href="cost-estimate.html" data-en="Estimate cost" data-zh="估算费用">Estimate cost</a></div></div><div><h3 data-en="Important" data-zh="重要说明">Important</h3><p data-en="Directory information must be independently verified before use." data-zh="目录信息在使用前必须独立核验。">Directory information must be independently verified before use.</p></div></div><div class="footer-bottom"><span>© 2026 CareChina</span><span data-en="Not medical advice" data-zh="不构成医疗建议">Not medical advice</span></div></div></footer>
 
   <script src="assets/hospitals-data.js"></script>
   <script src="assets/platform.js"></script>
@@ -188,7 +186,7 @@
         var photos=verifiedPhotos[activeHospital.id]||[];
         var gallery=document.getElementById("hospital-dialog-gallery");
         gallery.classList.toggle("is-empty",!photos.length);
-        gallery.innerHTML=photos.length?photos.map(function(photo){return '<figure><img src="'+photo.src+'" alt="'+(zh?photo.zh:photo.en)+'"><figcaption>'+(zh?photo.zh:photo.en)+'</figcaption></figure>';}).join(""):'<div><b>'+(zh?"图片资料待核验":"Photo verification pending")+'</b><p>'+(zh?"为避免误配医院图片，本原型只展示已核对来源的实景图。":"To avoid misattribution, this prototype only shows hospital imagery with a checked source.")+'</p></div>';
+        gallery.innerHTML=photos.length?photos.map(function(photo){return '<figure><img src="'+photo.src+'" alt="'+(zh?photo.zh:photo.en)+'"><figcaption>'+(zh?photo.zh:photo.en)+'</figcaption></figure>';}).join(""):'<div><b>'+(zh?"暂无已核验图片":"No verified photos available")+'</b></div>';
         if(!dialog.open){if(typeof dialog.showModal==="function")dialog.showModal();else dialog.setAttribute("open","");}
         document.body.classList.add("dialog-open");
       }
