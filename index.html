@@ -246,14 +246,14 @@
     .partner-row h3{margin:0 0 5px;font-size:1.2rem}
     .partner-row p{margin:0;color:var(--ink-2);font-size:.8rem}
     .site-footer{background:#0a2423;color:rgba(255,255,255,.72);padding:62px 0 28px}
-    .footer-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr .9fr;gap:46px;padding-bottom:44px}
+    .footer-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr;gap:56px;padding-bottom:44px}
     .footer-brand .brand-copy b{color:var(--white)}
     .footer-brand p{margin:22px 0 0;max-width:350px;font-size:.76rem}
-    .site-footer h4{margin:0 0 16px;color:var(--white);font-size:.78rem;letter-spacing:.03em}
-    .site-footer ul{display:grid;gap:9px;margin:0;padding:0;list-style:none;font-size:.73rem}
+    .site-footer h3{margin:0 0 16px;color:var(--white);font-size:.78rem;letter-spacing:.03em}
+    .footer-links{display:grid;gap:9px;font-size:.73rem}
     .site-footer a:hover{color:var(--white)}
     .footer-bottom{display:flex;justify-content:space-between;gap:30px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-size:.66rem}
-    .footer-bottom p{margin:0}
+    .footer-bottom span{margin:0}
 
     .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
     .reveal.in{opacity:1;transform:none}
@@ -338,6 +338,7 @@
     .hero-kicker::before{width:7px;height:7px;content:"";border-radius:50%;background:var(--gold);box-shadow:0 0 0 6px rgba(197,155,85,.14)}
     .home-hero h1{max-width:760px;margin-bottom:25px;color:var(--white);font-size:clamp(3.2rem,6.8vw,6.2rem);line-height:.93;letter-spacing:-.065em}
     .home-hero h1 span{color:#e2c58c}
+    html[lang="zh-CN"] .home-hero h1{max-width:none;white-space:nowrap;font-size:clamp(2.3rem,6.2vw,4.75rem);letter-spacing:-.055em}
     .home-hero .lead{max-width:650px;margin-bottom:31px;color:rgba(255,255,255,.76)}
     .home-hero .hero-actions{margin-bottom:29px}
     .btn-hero{color:var(--ink);background:#e2c58c;box-shadow:0 14px 32px rgba(197,155,85,.23)}
@@ -360,9 +361,9 @@
     .task-grid-four .task-card:first-child .card-icon{color:var(--green);background:#e2c58c}
     .task-grid-four .task-no{margin-bottom:22px}
 
-    @media(max-width:1080px){.main-nav{display:none}.nav-wrap{gap:12px}.nav-actions{margin-left:auto}.task-grid-four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:1080px){.main-nav{position:absolute;top:78px;right:20px;left:20px;display:none;padding:12px;align-items:stretch;flex-direction:column;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow)}.main-nav.open{display:flex}.nav-wrap{gap:12px}.nav-actions{margin-left:auto}.task-grid-four{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:800px){.home-hero{min-height:690px;background-position:50% center}.home-hero-inner{padding:68px 0 58px;align-items:end}.home-hero h1{font-size:clamp(3rem,13.5vw,5rem)}.task-grid-four{grid-template-columns:1fr}.task-grid-four .task-card{min-height:255px}}
-    @media(max-width:560px){.nav-wrap{min-height:70px}.brand-copy{font-size:.88rem}.lang-toggle{min-width:42px;height:38px;padding-inline:8px}.home-hero{min-height:690px}.home-hero .hero-actions .btn{width:100%;white-space:normal;text-align:center}.home-hero .hero-proof{display:grid}.photo-credit{display:none}}
+    @media(max-width:560px){.nav-wrap{min-height:70px}.main-nav{top:70px}.brand-copy{font-size:.88rem}.lang-toggle{min-width:42px;height:38px;padding-inline:8px}html[lang="zh-CN"] .home-hero h1{font-size:clamp(2.1rem,10vw,2.75rem)}.home-hero{min-height:690px}.home-hero .hero-actions .btn{width:100%;white-space:normal;text-align:center}.home-hero .hero-proof{display:grid}.photo-credit{display:none}}
 
     /* Chinese-first hierarchy, official imagery and task-led interaction */
     .task-card{display:block;color:inherit;outline:none}
@@ -674,7 +675,7 @@
       .concierge-panel{right:16px;bottom:82px;max-height:calc(100vh - 104px)}
     }
 
-    @media(max-width:560px){.nav-wrap{width:calc(100% - 28px);gap:7px}.brand{gap:8px}.nav-actions{gap:6px}.menu-btn{width:40px;height:40px}.mobile-panel{inset:70px 0 0}}
+    @media(max-width:560px){.nav-wrap{width:calc(100% - 28px);gap:7px}.site-header .brand{min-width:0;flex:1 1 auto;gap:8px}.brand-copy small{display:none}.nav-actions{margin-left:auto;flex:0 0 auto;gap:5px}.lang-toggle{min-width:36px;width:36px;padding:0}.menu-btn{width:40px;height:40px;flex:0 0 40px}.mobile-panel{inset:70px 0 0}html[lang="zh-CN"] .home-hero h1{max-width:none;white-space:nowrap;font-size:clamp(1.9rem,9vw,2.3rem);letter-spacing:-.03em}}
 
   </style>
 </head>
@@ -687,48 +688,24 @@
         <span class="brand-mark" aria-hidden="true"></span>
         <span class="brand-copy">CareChina<small data-en="International medical coordination" data-zh="国际医疗协同">International medical coordination</small></span>
       </a>
-      <nav class="main-nav" aria-label="Primary navigation">
-        <a class="nav-link active" href="#top" data-en="Home" data-zh="首页">Home</a>
-        <a class="nav-link" href="#specialties" data-en="Specialties" data-zh="重点专科">Specialties</a>
-        <a class="nav-link" href="#journey" data-en="Coordinated Care" data-zh="全程服务">Coordinated Care</a>
-        <a class="nav-link" href="hospitals.html" data-en="Find a Hospital" data-zh="找医院">Find a Hospital</a>
-        <a class="nav-link" href="care-plan.html" data-en="Care Path" data-zh="诊疗路径">Care Path</a>
-        <details class="nav-dropdown">
-          <summary class="nav-link" data-en="More Services" data-zh="更多服务">More Services</summary>
-          <div class="nav-dropdown-menu">
-            <a href="cost-estimate.html"><span data-en="Cost Estimate" data-zh="费用估算">Cost Estimate</span><small data-en="Plan the full journey budget" data-zh="规划完整来华预算">Plan the full journey budget</small></a>
-            <a href="tcm-wellness.html"><span data-en="TCM Wellness" data-zh="中医调养">TCM Wellness</span><small data-en="Safety-first consultation guide" data-zh="安全优先的面诊指南">Safety-first consultation guide</small></a>
-            <a href="consultation.html"><span data-en="Consultation Guide" data-zh="咨询说明">Consultation Guide</span><small data-en="Prepare the right first contact" data-zh="了解首次沟通需要什么">Prepare the right first contact</small></a>
-          </div>
-        </details>
+      <nav class="main-nav" data-main-nav aria-label="Primary navigation">
+        <a class="nav-link active" data-nav="home" href="index.html" data-en="Home" data-zh="首页">Home</a>
+        <a class="nav-link" data-nav="hospitals" href="hospitals.html" data-en="Find a Hospital" data-zh="找医院">Find a Hospital</a>
+        <a class="nav-link" data-nav="case" href="case.html" data-en="Care Case" data-zh="救治案例">Care Case</a>
+        <a class="nav-link" data-nav="tcm" href="tcm-wellness.html" data-en="TCM Wellness" data-zh="中医调养">TCM Wellness</a>
       </nav>
       <div class="nav-actions">
         <button class="lang-toggle" type="button" data-lang-toggle aria-label="Switch language">中文</button>
-        <a class="btn btn-primary nav-cta" href="#assessment"><span data-en="Consult now" data-zh="立即咨询">Consult now</span><span class="arrow">→</span></a>
-        <button class="menu-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+        <button class="menu-btn menu-toggle" data-menu-toggle type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
       </div>
     </div>
   </header>
-  <div class="mobile-panel" aria-hidden="true">
-    <nav aria-label="Mobile navigation">
-      <a href="#top" data-en="Home" data-zh="首页">Home</a>
-      <a href="#specialties" data-en="Specialties" data-zh="重点专科">Specialties</a>
-      <a href="#journey" data-en="Coordinated Care" data-zh="全程服务">Coordinated Care</a>
-      <a href="#cases" data-en="Care Cases" data-zh="救治案例">Care Cases</a>
-      <a href="hospitals.html" data-en="Find a Hospital" data-zh="找医院">Find a Hospital</a>
-      <a href="care-plan.html" data-en="Care Path" data-zh="诊疗路径">Care Path</a>
-      <a href="cost-estimate.html" data-en="Cost Estimate" data-zh="费用估算">Cost Estimate</a>
-      <a href="tcm-wellness.html" data-en="TCM Wellness" data-zh="中医调养">TCM Wellness</a>
-      <a href="consultation.html" data-en="Consultation Guide" data-zh="咨询说明">Consultation Guide</a>
-    </nav>
-    <a class="btn btn-primary" href="#assessment" data-en="Start a consultation" data-zh="开始咨询">Start a consultation</a>
-  </div>
 
   <main id="main">
     <section class="home-hero" id="top">
       <div class="shell home-hero-inner">
         <div class="hero-copy reveal">
-          <h1 data-html-en="Care in China, &lt;span&gt;coordinated throughout.&lt;/span&gt;" data-html-zh="来华就医，&lt;span&gt;一路协同。&lt;/span&gt;">Care in China, <span>coordinated throughout.</span></h1>
+          <h1 data-html-en="Care in China, &lt;span&gt;coordinated throughout.&lt;/span&gt;" data-html-zh="来华就医 &lt;span&gt;一路协同&lt;/span&gt;">Care in China, <span>coordinated throughout.</span></h1>
           <p class="lead" data-en="From specialty and hospital matching to appointments, costs and travel planning, one coordinator connects every step before you set out." data-zh="从专科与医院匹配，到预约、费用与来华安排，一名协调员为您衔接，让每一步都提前看得见。">From specialty and hospital matching to appointments, costs and travel planning, one coordinator connects every step before you set out.</p>
           <p class="mobile-hero-lead" data-en="Hospital matching, appointments, costs and travel—coordinated before departure." data-zh="医院匹配、预约、费用与来华安排，出发前统一协调。">Hospital matching, appointments, costs and travel—coordinated before departure.</p>
           <div class="hero-actions">
@@ -764,7 +741,7 @@
       <div class="shell">
         <div class="section-head reveal visual-head"><div><p class="eyebrow" data-en="CARE JOURNEY" data-zh="就医流程">CARE JOURNEY</p><h2 data-en="Six-step care journey" data-zh="六步医疗协同流程">Six-step care journey</h2></div></div>
         <div class="coordination-board reveal">
-          <div class="coordination-nav" role="tablist" aria-label="Care journey stages">
+          <div class="coordination-nav" data-auto-rotate="5000" role="tablist" aria-label="Care journey stages">
             <button class="coordination-step active" type="button" role="tab" aria-selected="true" data-coordination-target="contact"><span>01</span><b data-en="Start consultation" data-zh="开启咨询">Start consultation</b><small data-en="Basic details only" data-zh="先提供基本信息">Basic details only</small></button>
             <button class="coordination-step" type="button" role="tab" aria-selected="false" data-coordination-target="records"><span>02</span><b data-en="Organise records" data-zh="整理资料">Organise records</b><small data-en="After consent" data-zh="授权后进行">After consent</small></button>
             <button class="coordination-step" type="button" role="tab" aria-selected="false" data-coordination-target="matching"><span>03</span><b data-en="Match hospitals" data-zh="匹配医院">Match hospitals</b><small data-en="Specialty + city + fit" data-zh="专科、城市与适配">Specialty + city + fit</small></button>
@@ -880,8 +857,8 @@
       <div class="shell">
         <div class="section-head reveal"><div><p class="eyebrow" data-en="CASES" data-zh="案例">CASES</p><h2 data-en="Published hospital cases" data-zh="医院公开救治案例">Published hospital cases</h2></div></div>
         <div class="case-grid">
-          <a class="case-card case-card-wide reveal" href="https://www.zy91.com/content/default/64/9445" target="_blank" rel="noreferrer"><img src="assets/hero-international-care.jpg" alt="跨境就医场景中的医疗服务沟通" loading="lazy" /><span class="case-overlay"><span class="source-pill" data-en="CARDIAC CARE · ZHEJIANG" data-zh="心脏治疗 · 浙江">CARDIAC CARE · ZHEJIANG</span><strong data-en="A cross-border cardiac care journey from the Netherlands" data-zh="跨越山海的心脏治疗">A cross-border cardiac care journey from the Netherlands</strong><small data-en="Official story · The First Affiliated Hospital, Zhejiang University" data-zh="案例来源 · 浙江大学医学院附属第一医院官网">Official story · The First Affiliated Hospital, Zhejiang University</small></span></a>
-          <a class="case-card reveal" href="https://www.tjh.com.cn/TjhNews/20151231_16333.html" target="_blank" rel="noreferrer"><img src="assets/hospital-tongji-international.jpg" alt="同济医院国际医疗服务空间" loading="lazy" /><span class="case-overlay"><span class="source-pill" data-en="CARDIAC INTERVENTION · WUHAN" data-zh="心脏介入 · 武汉">CARDIAC INTERVENTION · WUHAN</span><strong data-en="Cross-border review and cardiac intervention" data-zh="从跨境评估到心脏介入治疗">Cross-border review and cardiac intervention</strong><small data-en="Official story · Tongji Hospital" data-zh="案例来源 · 同济医院官网">Official story · Tongji Hospital</small></span></a>
+          <a class="case-card case-card-wide reveal" href="case.html"><img src="assets/hospital-tongji-international.jpg" alt="同济医院国际医疗服务空间" loading="lazy" /><span class="case-overlay"><span class="source-pill" data-en="CARDIAC INTERVENTION · WUHAN" data-zh="心脏介入 · 武汉">CARDIAC INTERVENTION · WUHAN</span><strong data-en="From emergency admission to cardiac intervention" data-zh="从入院评估到心脏介入治疗">From emergency admission to cardiac intervention</strong><small data-en="Full care journey · Tongji Hospital case" data-zh="完整诊疗行程 · 同济医院公开案例">Full care journey · Tongji Hospital case</small></span></a>
+          <a class="case-card reveal" href="https://www.zy91.com/content/default/64/9445" target="_blank" rel="noreferrer"><img src="assets/hero-international-care.jpg" alt="跨境就医场景中的医疗服务沟通" loading="lazy" /><span class="case-overlay"><span class="source-pill" data-en="CARDIAC CARE · ZHEJIANG" data-zh="心脏治疗 · 浙江">CARDIAC CARE · ZHEJIANG</span><strong data-en="A cross-border cardiac care journey from the Netherlands" data-zh="跨越山海的心脏治疗">A cross-border cardiac care journey from the Netherlands</strong><small data-en="Official story · The First Affiliated Hospital, Zhejiang University" data-zh="案例来源 · 浙江大学医学院附属第一医院官网">Official story · The First Affiliated Hospital, Zhejiang University</small></span></a>
           <a class="case-card reveal" href="https://www.whsyy.net/view_11849.html" target="_blank" rel="noreferrer"><img src="assets/case-rehab-care.jpg" alt="护理人员协助开展康复训练" loading="lazy" /><span class="case-overlay"><span class="source-pill" data-en="REHABILITATION · WUHAN" data-zh="康复照护 · 武汉">REHABILITATION · WUHAN</span><strong data-en="Care continues through rehabilitation" data-zh="治疗之后，康复照护继续发生">Care continues through rehabilitation</strong><small data-en="Official story · Wuhan Third Hospital" data-zh="案例来源 · 武汉市第三医院官网">Official story · Wuhan Third Hospital</small></span></a>
         </div>
       </div>
@@ -907,12 +884,11 @@
   <footer class="site-footer">
     <div class="shell">
       <div class="footer-grid">
-        <div class="footer-brand"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span class="brand-copy"><b data-en="CareChina" data-zh="CareChina">CareChina</b><small data-en="International medical coordination" data-zh="国际医疗协同">International medical coordination</small></span></a></div>
-        <div><h4 data-en="Find care" data-zh="找到医疗">Find care</h4><ul><li><a href="#specialties" data-en="Specialties, cities & hospitals" data-zh="专科、城市与医院">Specialties, cities & hospitals</a></li><li><a href="hospitals.html" data-en="Hospital directory" data-zh="医院目录">Hospital directory</a></li><li><a href="#cases" data-en="Treatment cases" data-zh="救治案例">Treatment cases</a></li></ul></div>
-        <div><h4 data-en="Care support" data-zh="就医支持">Care support</h4><ul><li><a href="#journey" data-en="Coordinated journey" data-zh="全程协调服务链">Coordinated journey</a></li><li><a href="#assessment" data-en="Appointment & timing" data-zh="预约与服务时间">Appointment & timing</a></li><li><a href="#cost-planner" data-en="Cost clarity" data-zh="费用说明">Cost clarity</a></li></ul></div>
-        <div><h4 data-en="Important" data-zh="重要说明">Important</h4><ul><li><a href="#faq" data-en="Medical disclaimer" data-zh="医疗免责声明">Medical disclaimer</a></li><li><a href="#faq" data-en="Privacy principles" data-zh="隐私原则">Privacy principles</a></li><li><a href="#assessment" data-en="Start consultation" data-zh="开启咨询">Start consultation</a></li></ul></div>
+        <div class="footer-brand"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-copy"><b>CareChina</b><small data-en="International medical coordination" data-zh="国际医疗协同">International medical coordination</small></span></a><p data-en="One care journey across hospitals, language, travel and follow-up." data-zh="统一协调医院、语言、行程与返程随访。">One care journey across hospitals, language, travel and follow-up.</p></div>
+        <div><h3 data-en="Pages" data-zh="页面">Pages</h3><div class="footer-links"><a href="index.html" data-en="Home" data-zh="首页">Home</a><a href="hospitals.html" data-en="Find a Hospital" data-zh="找医院">Find a Hospital</a><a href="case.html" data-en="Care Case" data-zh="救治案例">Care Case</a><a href="tcm-wellness.html" data-en="TCM Wellness" data-zh="中医调养">TCM Wellness</a></div></div>
+        <div><h3 data-en="Next step" data-zh="下一步">Next step</h3><div class="footer-links"><a href="index.html#assessment" data-en="Start consultation" data-zh="开启咨询">Start consultation</a><a href="index.html#faq" data-en="Frequently asked questions" data-zh="常见问题">Frequently asked questions</a></div></div>
       </div>
-      <div class="footer-bottom"><p>© <span id="year"></span> CareChina.</p></div>
+      <div class="footer-bottom"><span>© <span id="year"></span> CareChina</span><span data-en="Planned international medical coordination" data-zh="计划性国际医疗协同">Planned international medical coordination</span></div>
     </div>
   </footer>
 
@@ -1175,16 +1151,31 @@
         $$(panelSelector).forEach(panel=>{panel.hidden=panel.dataset[panelKey]!==target});
       }));
     }
-    bindPanelTabs('.coordination-step','coordinationTarget','[data-coordination-panel]','coordinationPanel');
     bindPanelTabs('.resource-tab','resourceTarget','[data-resource-panel]','resourcePanel');
-    $$('.coordination-step').forEach(button=>button.addEventListener('click',()=>renderCoordinationVisual(button.dataset.coordinationTarget)));
+    const journeyTabs=$$('.coordination-step');
+    let journeyTimer;
+    function activateJourney(button){
+      journeyTabs.forEach(item=>{item.classList.toggle('active',item===button);item.setAttribute('aria-selected',String(item===button))});
+      $$('[data-coordination-panel]').forEach(panel=>{panel.hidden=panel.dataset.coordinationPanel!==button.dataset.coordinationTarget});
+      renderCoordinationVisual(button.dataset.coordinationTarget);
+    }
+    function scheduleJourneyRotation(){
+      clearTimeout(journeyTimer);
+      const delay=Number(document.querySelector('[data-auto-rotate]')?.dataset.autoRotate)||5000;
+      journeyTimer=setTimeout(()=>{
+        const activeIndex=journeyTabs.findIndex(button=>button.classList.contains('active'));
+        activateJourney(journeyTabs[(activeIndex+1)%journeyTabs.length]);
+        scheduleJourneyRotation();
+      },delay);
+    }
+    journeyTabs.forEach(button=>button.addEventListener('click',()=>{activateJourney(button);scheduleJourneyRotation()}));
+    scheduleJourneyRotation();
     const casesSection=document.getElementById('cases'),assessmentSection=document.getElementById('assessment');
     if(casesSection&&assessmentSection)casesSection.after(assessmentSection);
-    const menuBtn=document.querySelector('.menu-btn'),mobilePanel=document.querySelector('.mobile-panel');
-    function closeMenu(){document.body.classList.remove('menu-open');mobilePanel.classList.remove('open');mobilePanel.setAttribute('aria-hidden','true');menuBtn.setAttribute('aria-expanded','false')}
-    menuBtn.addEventListener('click',()=>{const open=!mobilePanel.classList.contains('open');document.body.classList.toggle('menu-open',open);mobilePanel.classList.toggle('open',open);mobilePanel.setAttribute('aria-hidden',String(!open));menuBtn.setAttribute('aria-expanded',String(open))});
-    $$('.mobile-panel a').forEach(a=>a.addEventListener('click',closeMenu));
-    document.addEventListener('click',event=>{$$('.nav-dropdown[open]').forEach(dropdown=>{if(!dropdown.contains(event.target))dropdown.removeAttribute('open')})});
+    const menuBtn=document.querySelector('[data-menu-toggle]'),mobileNav=document.querySelector('[data-main-nav]');
+    function closeMenu(){document.body.classList.remove('menu-open');mobileNav.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}
+    menuBtn.addEventListener('click',()=>{const open=mobileNav.classList.toggle('open');document.body.classList.toggle('menu-open',open);menuBtn.setAttribute('aria-expanded',String(open))});
+    $$('.main-nav a').forEach(a=>a.addEventListener('click',closeMenu));
     document.getElementById('assessmentForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('formMessage').classList.add('show')});
     const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
     $$('.reveal').forEach(el=>io.observe(el));

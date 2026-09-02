@@ -10,10 +10,8 @@ CareChina 是面向计划性来华医疗的国际患者协调服务原型。
 
 - `index.html`：首页
 - `hospitals.html`：医院目录
-- `care-plan.html`：诊疗路径
-- `cost-estimate.html`：费用估算
+- `case.html`：救治案例详情
 - `tcm-wellness.html`：中医调养
-- `consultation.html`：咨询说明
 - `assets/`：公共样式、脚本和图片
 - `.github/workflows/pages.yml`：GitHub Pages 自动发布配置
 - `.nojekyll`：让 GitHub Pages 按原始静态文件发布
