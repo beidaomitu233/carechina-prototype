@@ -61,6 +61,7 @@
     if (!journey) return;
     const tabs = [...journey.querySelectorAll("[data-journey-tab]")];
     const panels = [...journey.querySelectorAll("[data-journey-panel]")];
+    const companionSteps = [...journey.querySelectorAll("[data-companion-step]")];
     const stage = journey.querySelector(".journey-stage");
     let index = 0;
     let timer;
@@ -68,6 +69,7 @@
       index = (next + tabs.length) % tabs.length;
       tabs.forEach((tab, i) => tab.classList.toggle("active", i === index));
       panels.forEach((panel, i) => panel.classList.toggle("active", i === index));
+      companionSteps.forEach((step, i) => step.classList.toggle("active", i === index));
       const progress = stage.querySelector(".journey-progress span");
       if (progress) {
         progress.style.animation = "none";
