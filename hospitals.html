@@ -30,34 +30,28 @@
     <section class="page-hero hospital-page-hero">
       <div class="shell hospital-hero-layout">
         <div class="hospital-hero-copy" data-reveal>
-          <p class="eyebrow" data-en="Find care in China" data-zh="寻找在华医疗资源">Find care in China</p>
-          <h1 data-en="China hospital directory" data-zh="中国医院目录">China hospital directory</h1>
+          <h1 data-en="Hospitals in China" data-zh="中国医院目录">Hospitals in China</h1>
           <div class="hospital-hero-actions"><a class="button" href="#hospital-finder" data-en="Search hospitals" data-zh="开始查找">Search hospitals</a><a class="button secondary" href="index.html#assessment" data-en="Ask a coordinator" data-zh="咨询协调员">Ask a coordinator</a></div>
         </div>
         <div class="hospital-hero-proof" aria-label="Hospital directory coverage">
-          <article><strong>103</strong><span><b data-en="Hospital resources" data-zh="医院资源">Hospital resources</b><small data-en="Top-tier institutions represented" data-zh="覆盖多家全国百强医院">Top-tier institutions represented</small></span></article>
-          <article><strong>22</strong><span><b data-en="Medical cities" data-zh="医疗城市">Medical cities</b><small data-en="Directory coverage across China" data-zh="覆盖全国 22 座城市">Directory coverage across China</small></span></article>
-          <article><strong>40<sup>+</sup></strong><span><b data-en="Clinical capabilities" data-zh="专科能力方向">Clinical capabilities</b><small data-en="Across 14 searchable specialties" data-zh="归入 14 个可筛选专科">Across 14 searchable specialties</small></span></article>
-          <article><strong>4</strong><span><b data-en="No.1 specialty references" data-zh="全国第 1 专科参考">No.1 specialty references</b><small data-en="Recognised reputation tables" data-zh="权威专科声誉榜参考">Recognised reputation tables</small></span></article>
+          <article><strong>103</strong><span><b data-en="Hospitals" data-zh="合作医院">Hospitals</b></span></article>
+          <article><strong>22</strong><span><b data-en="Cities" data-zh="覆盖城市">Cities</b></span></article>
+          <article><strong>40<sup>+</sup></strong><span><b data-en="Specialty areas" data-zh="专科方向">Specialty areas</b></span></article>
+          <article><strong>4</strong><span><b data-en="No. 1 specialty references" data-zh="全国第 1 专科参考">No. 1 specialty references</b></span></article>
         </div>
       </div>
     </section>
 
-    <section class="section hospital-finder-section" id="hospital-finder">
+    <section class="section hospital-finder-section" id="hospital-finder" aria-labelledby="hospital-filter-title">
       <div class="shell">
-        <div class="finder-heading" data-reveal><div><p class="eyebrow" data-en="SEARCH" data-zh="检索">SEARCH</p><h2 data-en="Hospital search and filters" data-zh="医院检索与筛选">Hospital search and filters</h2></div><a class="button secondary small" href="index.html#assessment" data-en="Matching support" data-zh="匹配协助">Matching support</a></div>
+        <h2 class="visually-hidden" id="hospital-filter-title" data-en="Hospital filters" data-zh="医院筛选">Hospital filters</h2>
         <div class="hospital-filter-console" data-reveal>
-          <div class="filter-console-head">
-            <span class="filter-console-mark" aria-hidden="true">⌕</span>
-            <div><small data-en="SEARCH THE DIRECTORY" data-zh="检索医院目录">SEARCH THE DIRECTORY</small><h3 data-en="Hospital, specialty or care need" data-zh="医院、专科或医疗需求">Hospital, specialty or care need</h3></div>
-            <span class="filter-console-count"><b>103</b><small data-en="hospital profiles" data-zh="家医院档案">hospital profiles</small></span>
-          </div>
           <div class="hospital-filter-panel">
             <div class="search-row hospital-search-row">
-              <div class="field hospital-query-field"><label for="hospital-search"><span>01</span><b data-en="Hospital, specialty or care need" data-zh="医院、专科或医疗需求">Hospital, specialty or care need</b></label><div class="hospital-input-wrap"><i aria-hidden="true">⌕</i><input id="hospital-search" type="search" data-placeholder-en="Try oncology, transplant or a hospital name" data-placeholder-zh="例如：肿瘤、器官移植或医院名称" placeholder="Try oncology, transplant or a hospital name"></div></div>
-              <div class="field hospital-city-field"><label for="city-filter"><span>02</span><b data-en="Preferred city" data-zh="意向城市">Preferred city</b></label><select id="city-filter"></select></div>
+              <div class="field hospital-query-field"><label for="hospital-search" data-en="Search" data-zh="搜索">Search</label><div class="hospital-input-wrap"><i aria-hidden="true">⌕</i><input id="hospital-search" type="search" data-placeholder-en="Hospital name or specialty" data-placeholder-zh="医院名称或专科" placeholder="Hospital name or specialty"></div></div>
+              <div class="field hospital-city-field"><label for="city-filter" data-en="City" data-zh="城市">City</label><select id="city-filter"></select></div>
             </div>
-            <div class="specialty-filter-block"><div class="specialty-filter-label"><label><span>03</span><b data-en="Specialty" data-zh="专科">Specialty</b></label></div><div class="hospital-specialty-chips" id="specialty-chips" role="list"></div></div>
+            <div class="specialty-filter-block"><div class="specialty-filter-label"><label data-en="Specialty" data-zh="专科">Specialty</label></div><div class="hospital-specialty-chips" id="specialty-chips" role="list"></div></div>
           </div>
         </div>
 
@@ -152,11 +146,10 @@
           return (city.value==="all"||hospital.city===city.value)&&(selectedSpecialty==="all"||hospital.tags.map(String).indexOf(selectedSpecialty)!==-1)&&(!q||haystack.indexOf(q)!==-1);
         });
       }
-      function hospitalCard(hospital,index){
+      function hospitalCard(hospital){
         var zh=isChinese();
         var tags=hospital.tags.map(specialtyById).filter(Boolean).slice(0,3);
         return '<button class="hospital-card" type="button" data-hospital-open="'+hospital.id+'">'+
-          '<span class="hospital-card-index">'+String(index+1).padStart(2,"0")+'</span>'+
           '<span class="hospital-card-logo">'+logoMarkup(hospital)+'</span>'+
           '<span class="hospital-card-copy"><small class="hospital-card-city">'+(zh?hospital.cityZh:hospital.cityEn)+'</small><strong>'+(zh?hospital.nameZh:hospital.nameEn)+'</strong>'+
           '<span class="hospital-meta">'+tags.map(function(tag){return '<span>'+(zh?tag.zh:tag.en)+'</span>';}).join("")+'</span>'+
@@ -165,9 +158,12 @@
       }
       function renderHospitals(){
         var zh=isChinese(),shown=filteredHospitals(),visible=shown.slice(0,visibleCount);
-        count.textContent=zh?shown.length+" 家匹配医院":shown.length+" matching hospital"+(shown.length===1?"":"s");
-        var cityLabel=city.value==="all"?(zh?"全部城市":"All cities"):(zh?filters.cities[city.value].zh:filters.cities[city.value].en);
-        context.textContent=cityLabel+" · "+currentSpecialtyLabel();
+        count.textContent=zh?shown.length+" 家医院":shown.length+" hospital"+(shown.length===1?"":"s");
+        var activeContext=[];
+        if(city.value!=="all")activeContext.push(zh?filters.cities[city.value].zh:filters.cities[city.value].en);
+        if(selectedSpecialty!=="all")activeContext.push(currentSpecialtyLabel());
+        context.textContent=activeContext.join(" · ");
+        clear.hidden=city.value==="all"&&selectedSpecialty==="all"&&!search.value.trim();
         list.innerHTML=visible.map(hospitalCard).join("");
         empty.style.display=shown.length?"none":"block";
         loadMore.style.display=visible.length<shown.length?"inline-flex":"none";
