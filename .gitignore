@@ -11,6 +11,7 @@
 !/.github/
 !/.gitignore
 !/.nojekyll
+!/AGENTS.md
 !/README.md
 
 # Never publish operating-system metadata, including files inside assets/.
