@@ -6,12 +6,13 @@
   let language = "en";
   try { language = localStorage.getItem("huayian-language-v04") || "en"; } catch (_) {}
 
-  const copy = (item, key) => item[key + (language === "zh" ? "Zh" : "En")] || "";
+  const copy = (item, key) => item[key + (language === "zh" ? "Zh" : "En")] || item[key] || "";
   const setText = (selector, value) => {
     const node = document.querySelector(selector);
     if (node) node.textContent = value;
   };
   const safeSite = (site) => String(site || "").toLowerCase().startsWith("http") ? site : "https://" + site;
+  const technologySlug = (value) => String(value || "").toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").replace(/-and-/g, "-");
 
   function initFooterContact() {
     const footerMain = document.querySelector(".site-footer .footer-main");
@@ -25,6 +26,31 @@
       '<div class="footer-contact-item"><span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span data-en="Qingshan Digital Valley, Qingshan District, Wuhan, Hubei" data-zh="湖北省武汉市青山区青山数谷">Qingshan Digital Valley, Qingshan District, Wuhan, Hubei</span></div>' +
       '</div>';
     footerMain.appendChild(contact);
+  }
+
+  function initSiteLinks() {
+    document.querySelectorAll("[data-main-nav]").forEach((nav) => {
+      if (!nav.querySelector('[data-nav="tcm"]')) {
+        const link = document.createElement("a");
+        link.href = "tcm-wellness.html";
+        link.dataset.nav = "tcm";
+        link.dataset.en = "TCM & recovery";
+        link.dataset.zh = "中医与调养";
+        link.textContent = "TCM & recovery";
+        const treatments = nav.querySelector('[data-nav="treatments"]');
+        if (treatments) treatments.insertAdjacentElement("afterend", link);
+        else nav.appendChild(link);
+      }
+      if (!nav.querySelector('[data-nav="partner"]')) {
+        const link = document.createElement("a");
+        link.href = "partner.html";
+        link.dataset.nav = "partner";
+        link.dataset.en = "Partner with us";
+        link.dataset.zh = "加入我们";
+        link.textContent = "Partner with us";
+        nav.appendChild(link);
+      }
+    });
   }
 
   function setLanguage(next) {
@@ -42,6 +68,7 @@
     document.dispatchEvent(new CustomEvent("huayian:language", { detail: { lang: language } }));
   }
 
+  initSiteLinks();
   document.querySelectorAll('[data-nav="' + page + '"]').forEach((link) => link.classList.add("active"));
   const menuButton = document.querySelector("[data-menu-toggle]");
   const nav = document.querySelector("[data-main-nav]");
@@ -235,9 +262,13 @@
       const rows = window.HUAYIAN_HOSPITALS
         .filter((hospital) => hospital.tags.includes(specialty) && (!city || hospital.city === city))
         .sort((a, b) => rankScore(a) - rankScore(b))
-        .slice(0, 5);
-      result.innerHTML = '<div class="match-result-head"><div><small>' + (language === "zh" ? "当前匹配" : "Current match") + '</small><h3>' + (language === "zh" ? specialtyMeta.zh : specialtyMeta.en) + '</h3></div><strong>' + rows.length + '/5</strong></div><div class="hospital-rank-list">' +
-        rows.map((hospital) => '<a class="hospital-rank-row" href="hospitals.html?specialty=' + specialty + '&city=' + encodeURIComponent(city) + '"><span><b>' + copy(hospital, "name") + '</b><small>' + copy(hospital, "city") + ' · ' + copy(hospital, "dept") + '</small></span><span class="rank-note">' + copy(hospital, "rank") + '</span></a>').join("") +
+        .slice(0, 3);
+      result.innerHTML = '<div class="match-result-head"><div><small>' + (language === "zh" ? "医院参考" : "Hospital references") + '</small><h3>' + (language === "zh" ? specialtyMeta.zh : specialtyMeta.en) + '</h3></div><strong>' + rows.length + '/3</strong></div><div class="home-hospital-grid">' +
+        rows.map((hospital) => {
+          const initials = copy(hospital, "name").split(/\s+/).slice(0, 2).map((part) => part[0]).join("");
+          const logo = logoMap[hospital.id] ? '<img src="' + logoMap[hospital.id] + '" alt="">' : '<span>' + initials + '</span>';
+          return '<a class="home-hospital-card" href="hospitals.html?specialty=' + specialty + '&city=' + encodeURIComponent(city) + '"><span class="home-hospital-visual">' + logo + '</span><span class="home-hospital-body"><small>' + copy(hospital, "city") + '</small><h3>' + copy(hospital, "name") + '</h3><p>' + copy(hospital, "dept") + '</p><b>' + copy(hospital, "rank") + '</b></span></a>';
+        }).join("") +
         '</div>';
     };
     specialtyButtons.forEach((button) => button.addEventListener("click", () => {
@@ -331,6 +362,11 @@
       const list = document.querySelector("[data-detail-includes]");
       const includes = language === "zh" ? item.includesZh : item.includesEn;
       if (list) list.innerHTML = includes.map((value) => "<li>" + value + "</li>").join("");
+      const technologyGrid = document.querySelector("[data-technology-grid]");
+      const technologySet = window.HUAYIAN_TECHNOLOGIES && window.HUAYIAN_TECHNOLOGIES[item.id];
+      if (technologyGrid && technologySet) {
+        technologyGrid.innerHTML = technologySet.map((technology, index) => '<a class="technology-card" href="technology.html?category=' + item.id + '&tech=' + technologySlug(technology.nameEn) + '"><span>0' + (index + 1) + '</span><h3>' + copy(technology, "name") + '</h3><p>' + copy(technology, "summary") + '</p><small>' + copy(technology, "note") + '</small><b class="technology-card-link">' + (language === "zh" ? "查看技术详情" : "View treatment details") + ' →</b></a>').join("");
+      }
       document.querySelectorAll("[data-specialty-link]").forEach((link) => link.href = "hospitals.html?specialty=" + item.specialtyId);
     };
     document.addEventListener("huayian:language", render);
@@ -481,6 +517,34 @@
       sleep:{
         en:["Sleep and stress","A physician assesses sleep, stress and overall health before preparing a combined plan."],
         zh:["睡眠与压力","医生综合评估睡眠、压力与整体健康后制定方案。"]
+      },
+      digestion:{
+        en:["Digestive wellbeing","A TCM physician reviews appetite, digestion, medication and recent examinations before selecting supportive therapies."],
+        zh:["脾胃调养","中医师结合饮食、消化、用药与近期检查制定辅助调养方案。"]
+      },
+      womens:{
+        en:["Women's health","Cycle history, current treatment and wellbeing goals are reviewed before a physician-led program is prepared."],
+        zh:["女性调养","结合生理周期、既往治疗与调养目标，由医生制定个体方案。"]
+      },
+      vitality:{
+        en:["Vitality and balance","A personalized program combines consultation, daily therapies and progress review around your stay in China."],
+        zh:["体质调养","围绕在华时间安排问诊、日常理疗与阶段复评。"]
+      },
+      respiratory:{
+        en:["Respiratory recovery","A physician reviews respiratory symptoms, current treatment and exercise tolerance before preparing supportive care."],
+        zh:["呼吸调养","医生结合呼吸症状、当前治疗与运动耐力制定辅助调养方案。"]
+      },
+      metabolic:{
+        en:["Metabolic health","Nutrition, sleep, activity and current medication are reviewed together for a physician-led program."],
+        zh:["代谢管理","结合营养、睡眠、活动与现有用药制定医生指导方案。"]
+      },
+      oncology:{
+        en:["Cancer supportive care","Support for appetite, fatigue, sleep and recovery is coordinated with the oncology treatment team."],
+        zh:["肿瘤辅助调养","围绕食欲、疲劳、睡眠与恢复进行辅助调养，并与肿瘤治疗团队协同。"]
+      },
+      senior:{
+        en:["Healthy ageing","Function, medication, sleep and nutrition are reviewed to build a safe daily wellbeing plan."],
+        zh:["银龄调养","综合功能、用药、睡眠与营养制定安全的日常调养方案。"]
       }
     };
     let active = null;
@@ -494,6 +558,169 @@
     };
     choices.forEach((choice) => choice.addEventListener("click", () => render(choice)));
     document.addEventListener("huayian:language", () => { if (active) render(active); });
+    render(choices[0]);
+  }
+
+  function initContactActions() {
+    const state = document.querySelector("[data-contact-state]");
+    document.querySelectorAll("[data-contact-action]").forEach((button) => button.addEventListener("click", async () => {
+      const action = button.dataset.contactAction;
+      if (action === "chat") {
+        const panel = document.querySelector("[data-support-panel]");
+        if (panel) {
+          panel.classList.add("open");
+          const input = panel.querySelector("input");
+          if (input) input.focus();
+        }
+        if (state) state.textContent = language === "zh" ? "客服窗口已打开" : "Care chat opened";
+      }
+      if (action === "location") {
+        const address = language === "zh" ? "湖北省武汉市青山区青山数谷" : "Qingshan Digital Valley, Qingshan District, Wuhan, Hubei";
+        try { await navigator.clipboard.writeText(address); } catch (_) {}
+        if (state) state.textContent = language === "zh" ? "地址已复制" : "Address copied";
+      }
+    }));
+  }
+
+  function initGuideDetail() {
+    const container = document.querySelector("[data-guide-detail]");
+    if (!container || !window.HUAYIAN_GUIDES) return;
+    const id = new URLSearchParams(location.search).get("id") || window.HUAYIAN_GUIDES[0].id;
+    const item = window.HUAYIAN_GUIDES.find((guide) => guide.id === id) || window.HUAYIAN_GUIDES[0];
+    const render = () => {
+      document.title = copy(item, "title") + " · HUAYIAN CARE TRIP";
+      setText("[data-guide-title]", copy(item, "title"));
+      setText("[data-guide-summary]", copy(item, "summary"));
+      setText("[data-guide-reading]", copy(item, "reading"));
+      const detailSet = window.HUAYIAN_GUIDE_DETAILS && window.HUAYIAN_GUIDE_DETAILS[item.id];
+      const sections = detailSet ? detailSet.sections : item.sections;
+      const content = document.querySelector("[data-guide-content]");
+      if (content) content.innerHTML = sections.map((section) => '<section class="guide-article-section"><span>' + section.number + '</span><h2>' + copy(section, "title") + '</h2><p>' + copy(section, "body") + '</p>' + (section.points ? '<ul>' + section.points.map((point) => '<li>' + copy(point, "text") + '</li>').join("") + '</ul>' : '') + '</section>').join("");
+      const alert = document.querySelector("[data-guide-alert]");
+      if (alert) {
+        alert.hidden = !(detailSet && detailSet.alertEn);
+        if (detailSet && detailSet.alertEn) alert.textContent = copy(detailSet, "alert");
+      }
+      setText("[data-guide-updated]", detailSet ? copy(detailSet, "updated") : "");
+      const sources = document.querySelector("[data-guide-sources]");
+      if (sources) {
+        const rows = detailSet && detailSet.sources ? detailSet.sources : [{url:item.source,nameEn:"Official information",nameZh:"官方信息"}];
+        sources.innerHTML = rows.map((source) => '<a href="' + source.url + '" target="_blank" rel="noopener">' + copy(source, "name") + '</a>').join("");
+      }
+    };
+    document.addEventListener("huayian:language", render);
+    render();
+  }
+
+  function initTechnologyDetail() {
+    const container = document.querySelector("[data-technology-detail]");
+    if (!container || !window.HUAYIAN_TREATMENTS || !window.HUAYIAN_TECHNOLOGY_DETAILS) return;
+    const query = new URLSearchParams(location.search);
+    const categoryId = query.get("category") || "oncology";
+    const treatment = window.HUAYIAN_TREATMENTS.find((item) => item.id === categoryId) || window.HUAYIAN_TREATMENTS[0];
+    const technologySet = window.HUAYIAN_TECHNOLOGIES[treatment.id] || [];
+    const requested = query.get("tech") || technologySlug(technologySet[0] && technologySet[0].nameEn);
+    const technology = technologySet.find((item) => technologySlug(item.nameEn) === requested) || technologySet[0];
+    const id = technologySlug(technology && technology.nameEn);
+    const detail = window.HUAYIAN_TECHNOLOGY_DETAILS[id];
+    const category = window.HUAYIAN_TECHNOLOGY_CATEGORIES && window.HUAYIAN_TECHNOLOGY_CATEGORIES[treatment.id];
+    if (!technology || !detail || !category) return;
+    const list = (selector, values) => {
+      const node = document.querySelector(selector);
+      if (node) node.innerHTML = values.map((value) => "<li>" + value + "</li>").join("");
+    };
+    const render = () => {
+      document.title = copy(technology, "name") + " · HUAYIAN CARE TRIP";
+      setText("[data-tech-title]", copy(technology, "name"));
+      setText("[data-tech-category]", copy(treatment, "name"));
+      setText("[data-tech-overview]", copy(technology, "summary"));
+      setText("[data-tech-mechanism]", copy(detail, "mechanism"));
+      setText("[data-tech-note]", copy(technology, "note"));
+      setText("[data-tech-setting]", copy(detail, "setting"));
+      setText("[data-tech-timing]", copy(detail, "timing"));
+      setText("[data-tech-team]", copy(detail, "team"));
+      const image = document.querySelector("[data-tech-image]");
+      if (image) image.src = treatment.image;
+      const back = document.querySelector("[data-tech-back]");
+      if (back) back.href = "treatment.html?id=" + treatment.id;
+      list("[data-tech-candidates]", language === "zh" ? detail.candidatesZh : detail.candidatesEn);
+      list("[data-tech-assessment]", language === "zh" ? detail.assessmentZh : detail.assessmentEn);
+      list("[data-tech-benefits]", language === "zh" ? detail.benefitsZh : detail.benefitsEn);
+      list("[data-tech-limits]", language === "zh" ? detail.limitsZh : detail.limitsEn);
+      list("[data-tech-risks]", language === "zh" ? detail.risksZh : detail.risksEn);
+      list("[data-tech-records]", language === "zh" ? category.recordsZh : category.recordsEn);
+      const pathway = language === "zh" ? category.pathZh : category.pathEn;
+      const pathwayNode = document.querySelector("[data-tech-pathway]");
+      if (pathwayNode) pathwayNode.innerHTML = pathway.map((step, index) => '<article><span>0' + (index + 1) + '</span><h3>' + step.title + '</h3><p>' + step.body + '</p></article>').join("");
+      const coordination = language === "zh"
+        ? [["资料准备", "按医院要求整理病历、影像与翻译件。"], ["医院评估", "协调对应专科复核、补充检查与线上会诊。"], ["在华诊疗", "衔接预约、医疗翻译、接送、住宿与家属安排。"], ["返程交接", "整理双语资料、用药说明与复诊时间。"]]
+        : [["Case preparation", "Organize records, images and medical translations for the hospital."], ["Hospital review", "Coordinate specialty review, additional tests and online consultation."], ["Care in China", "Connect appointments, interpretation, transfers, stay and family arrangements."], ["Home handover", "Organize bilingual records, medicine instructions and follow-up dates."]];
+      const coordinationNode = document.querySelector("[data-tech-coordination]");
+      if (coordinationNode) coordinationNode.innerHTML = coordination.map((item, index) => '<article><span>0' + (index + 1) + '</span><div><b>' + item[0] + '</b><p>' + item[1] + '</p></div></article>').join("");
+      const faqs = language === "zh" ? [
+        ["这项技术适合我吗？", "是否适用需由医院结合诊断、既往治疗和检查结果判断。页面列出的是可能进入评估的人群，不代表治疗建议。"],
+        ["出发前需要确认什么？", "医院需要完成资料复核，并确认适用性、所需补充检查、预计时间、风险与个案费用。"],
+        ["需要在中国停留多久？", detail.timingZh + "。实际时间取决于检查、治疗反应与医院安排。"],
+        ["主要风险是什么？", detail.risksZh.join("；") + "。医生会结合个体情况说明发生概率与处理方案。"]
+      ] : [
+        ["Could this treatment be suitable for me?", "Only the hospital can decide after reviewing the diagnosis, previous treatment and test results. The listed groups are assessment references, not a treatment recommendation."],
+        ["What must be confirmed before travel?", "The hospital must confirm clinical suitability, additional tests, expected timing, risks and a case-specific estimate."],
+        ["How long would I stay in China?", detail.timingEn + ". The actual schedule depends on testing, treatment response and hospital availability."],
+        ["What risks should I discuss?", detail.risksEn.join("; ") + ". Your physician will explain individual likelihood and management options."]
+      ];
+      const faqNode = document.querySelector("[data-tech-faq]");
+      if (faqNode) {
+        faqNode.innerHTML = faqs.map((item, index) => '<article class="faq-item' + (index === 0 ? " open" : "") + '"><button class="faq-question" type="button"><span class="faq-num">0' + (index + 1) + '</span><b>' + item[0] + '</b><span class="faq-plus">＋</span></button><div class="faq-answer"><p>' + item[1] + '</p></div></article>').join("");
+        faqNode.querySelectorAll(".faq-question").forEach((button) => button.addEventListener("click", () => {
+          const item = button.closest(".faq-item");
+          faqNode.querySelectorAll(".faq-item").forEach((row) => row.classList.toggle("open", row === item && !item.classList.contains("open")));
+        }));
+      }
+    };
+    document.addEventListener("huayian:language", render);
+    render();
+  }
+
+  function initProcessBoard() {
+    const board = document.querySelector("[data-process-board]");
+    const detail = document.querySelector("[data-process-detail]");
+    if (!board || !detail) return;
+    const steps = [...board.querySelectorAll("[data-process-step]")];
+    const content = {
+      understand:{en:["Private intake","A care director confirms the medical goal, preferred timing, privacy needs and family arrangements.","A concise case brief","Arabic or English communication"],zh:["私密受理","专属负责人确认医疗目标、计划时间、隐私需求与家属安排。","个案需求摘要","支持阿拉伯语或英语沟通"]},
+      organize:{en:["Record preparation","We issue a case-specific checklist, organize scans and coordinate medical translation.","A structured medical dossier","Secure submission after contact"],zh:["病历准备","按个案出具资料清单，整理扫描件并协调医学翻译。","结构化病历资料包","联系后通过安全渠道提交"]},
+      review:{en:["Specialist review","The relevant hospital team reviews the file and may request an online consultation or additional tests.","A preliminary hospital opinion","Clinical decisions remain with the hospital"],zh:["专科评估","对应医院团队评估资料，并可要求线上问诊或补充检查。","医院初步评估意见","医疗判断由医院作出"]},
+      match:{en:["Hospital shortlist","Specialty strength, current access, international service and family preferences are compared together.","Up to three relevant references","No single ranking decides the match"],zh:["医院匹配","综合专科实力、当前接诊、国际服务与家庭偏好进行比较。","不超过三家相关医院参考","不以单一排名决定匹配"]},
+      submit:{en:["Hospital coordination","One case owner sends the agreed file, consolidates specialist questions and follows every response.","A traceable hospital submission","One contact across institutions"],zh:["院方协调","由同一负责人提交确认资料、汇总专科问题并跟进回复。","可追踪的医院提交记录","跨医院统一联系人"]},
+      schedule:{en:["Decision package","We align the hospital plan, physician availability, expected stay and case estimate before any booking.","Plan, timing and estimate","You approve before travel is booked"],zh:["方案确认","预订前统一核对医院方案、医生档期、预计停留与个案费用。","方案、时间与费用文件","患者确认后再预订行程"]},
+      arrive:{en:["Private arrival","Visa documentation, flights, VIP transfer, suitable accommodation, halal dining and companion needs are placed on one itinerary.","A door-to-hospital itinerary","Arrival contact throughout the transfer"],zh:["抵达接应","将签证材料、航班、贵宾接送、适配住宿、清真餐饮与家属需求纳入同一行程。","从抵达到医院的完整日程","接送期间保持专人联络"]},
+      accompany:{en:["Care-day support","We coordinate admission, medical interpretation, private-room requests, daily logistics and family updates.","A daily care brief","Hospital availability is confirmed case by case"],zh:["陪同诊疗","协调入院、医疗翻译、私密病房需求、每日行程与家属进度同步。","每日诊疗简报","病房与服务以医院确认为准"]},
+      continue:{en:["Return-home handover","Discharge records, medication instructions, translated summaries and follow-up appointments are organized before departure.","A bilingual handover file","Follow-up connected to the treating hospital"],zh:["返程交接","返程前整理出院记录、用药说明、翻译摘要与复诊安排。","双语医疗交接资料","后续复诊继续衔接原医院"]}
+    };
+    let active = steps[0];
+    const render = (step) => {
+      active = step;
+      steps.forEach((item) => item.classList.toggle("active", item === step));
+      const values = content[step.dataset.processStep][language];
+      setText("[data-process-detail-title]", values[0]);
+      setText("[data-process-detail-action]", values[1]);
+      setText("[data-process-detail-deliverable]", values[2]);
+      setText("[data-process-detail-standard]", values[3]);
+    };
+    steps.forEach((step) => step.addEventListener("click", () => render(step)));
+    document.addEventListener("huayian:language", () => render(active));
+    render(active);
+  }
+
+  function initPartnerForm() {
+    const form = document.querySelector("[data-partner-form]");
+    if (!form) return;
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const state = form.querySelector("[data-partner-state]");
+      if (state) state.textContent = language === "zh" ? "合作申请已提交" : "Partnership inquiry submitted";
+    });
   }
 
   initFooterContact();
@@ -505,8 +732,13 @@
   initConsultation();
   initTreatmentDirectory();
   initTreatmentDetail();
+  initTechnologyDetail();
+  initProcessBoard();
   initHospitalDirectory();
   initCases();
   initCaseDetail();
   initTcm();
+  initContactActions();
+  initGuideDetail();
+  initPartnerForm();
 })();
