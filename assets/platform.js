@@ -41,14 +41,17 @@
         if (treatments) treatments.insertAdjacentElement("afterend", link);
         else nav.appendChild(link);
       }
-      if (!nav.querySelector('[data-nav="partner"]')) {
+      nav.querySelectorAll('[data-nav="partner"]').forEach((link) => link.remove());
+      if (!nav.querySelector('[data-nav="costs"]')) {
         const link = document.createElement("a");
-        link.href = "partner.html";
-        link.dataset.nav = "partner";
-        link.dataset.en = "Partner with us";
-        link.dataset.zh = "加入我们";
-        link.textContent = "Partner with us";
-        nav.appendChild(link);
+        link.href = "costs.html";
+        link.dataset.nav = "costs";
+        link.dataset.en = "Cost calculator";
+        link.dataset.zh = "费用计算";
+        link.textContent = "Cost calculator";
+        const hospitals = nav.querySelector('[data-nav="hospitals"]');
+        if (hospitals) hospitals.insertAdjacentElement("afterend", link);
+        else nav.appendChild(link);
       }
     });
   }
@@ -73,19 +76,37 @@
   const menuButton = document.querySelector("[data-menu-toggle]");
   const nav = document.querySelector("[data-main-nav]");
   if (menuButton && nav) {
+    const closeMenu = () => {
+      nav.classList.remove("open");
+      body.classList.toggle("menu-open", !!document.querySelector(".modal.open"));
+      menuButton.setAttribute("aria-expanded", "false");
+    };
     menuButton.addEventListener("click", () => {
       const open = nav.classList.toggle("open");
       body.classList.toggle("menu-open", open);
       menuButton.setAttribute("aria-expanded", String(open));
     });
-    nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
-      nav.classList.remove("open");
-      body.classList.remove("menu-open");
-      menuButton.setAttribute("aria-expanded", "false");
-    }));
+    nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && nav.classList.contains("open")) { closeMenu(); menuButton.focus(); }
+    });
+    window.matchMedia("(max-width: 980px)").addEventListener("change", closeMenu);
   }
   const langButton = document.querySelector("[data-lang-toggle]");
   if (langButton) langButton.addEventListener("click", () => setLanguage(language === "zh" ? "en" : "zh"));
+
+  if (window.visualViewport) {
+    const syncViewport = () => {
+      root.style.setProperty("--visual-height", window.visualViewport.height + "px");
+      root.style.setProperty("--visual-top", window.visualViewport.offsetTop + "px");
+      body.classList.toggle("keyboard-open", window.innerHeight - window.visualViewport.height > 150 && document.activeElement.matches("input,textarea,select"));
+    };
+    window.visualViewport.addEventListener("resize", syncViewport);
+    window.visualViewport.addEventListener("scroll", syncViewport);
+    document.addEventListener("focusin", syncViewport);
+    document.addEventListener("focusout", () => requestAnimationFrame(syncViewport));
+    syncViewport();
+  }
 
   const observer = "IntersectionObserver" in window
     ? new IntersectionObserver((entries) => entries.forEach((entry) => {
@@ -120,6 +141,7 @@
     };
     const start = () => {
       clearInterval(timer);
+      if (window.matchMedia("(max-width: 980px), (prefers-reduced-motion: reduce)").matches) return;
       timer = setInterval(() => select(index + 1), 5000);
     };
     tabs.forEach((tab, i) => tab.addEventListener("click", () => { select(i); start(); }));
@@ -127,6 +149,7 @@
     stage.addEventListener("mouseleave", () => { stage.classList.remove("paused"); start(); });
     stage.addEventListener("focusin", () => { clearInterval(timer); stage.classList.add("paused"); });
     stage.addEventListener("focusout", () => { stage.classList.remove("paused"); start(); });
+    window.matchMedia("(max-width: 980px), (prefers-reduced-motion: reduce)").addEventListener("change", start);
     start();
   }
 
@@ -184,19 +207,37 @@
   function initFloatingPanels() {
     const support = document.querySelector("[data-support-panel]");
     const theme = document.querySelector("[data-theme-panel]");
-    const closeAll = () => [support, theme].forEach((panel) => panel && panel.classList.remove("open"));
+    const toggles = [...document.querySelectorAll("[data-support-toggle],[data-theme-toggle]")];
+    if (toggles.length) {
+      const tools = document.createElement("div");
+      tools.className = "mobile-tools";
+      toggles[0].before(tools);
+      toggles.forEach((button) => tools.appendChild(button));
+    }
+    let activeToggle;
+    const closeAll = () => {
+      [support, theme].forEach((panel) => panel && panel.classList.remove("open"));
+      toggles.forEach((button) => button.setAttribute("aria-expanded", "false"));
+    };
     const bind = (buttonSelector, panel) => {
       const button = document.querySelector(buttonSelector);
       if (!button || !panel) return;
+      button.setAttribute("aria-expanded", "false");
       button.addEventListener("click", () => {
         const wasOpen = panel.classList.contains("open");
         closeAll();
         panel.classList.toggle("open", !wasOpen);
+        button.setAttribute("aria-expanded", String(!wasOpen));
+        activeToggle = button;
+        if (!wasOpen) panel.querySelector("button,input")?.focus({preventScroll:true});
       });
     };
     bind("[data-support-toggle]", support);
     bind("[data-theme-toggle]", theme);
-    document.querySelectorAll("[data-panel-close]").forEach((button) => button.addEventListener("click", closeAll));
+    document.querySelectorAll("[data-panel-close]").forEach((button) => button.addEventListener("click", () => { closeAll(); activeToggle?.focus({preventScroll:true}); }));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && document.querySelector(".floating-panel.open")) { closeAll(); activeToggle?.focus({preventScroll:true}); }
+    });
 
     let themeName = "clinic";
     try { themeName = localStorage.getItem("huayian-theme") || "clinic"; } catch (_) {}
@@ -267,7 +308,7 @@
         rows.map((hospital) => {
           const initials = copy(hospital, "name").split(/\s+/).slice(0, 2).map((part) => part[0]).join("");
           const logo = logoMap[hospital.id] ? '<img src="' + logoMap[hospital.id] + '" alt="">' : '<span>' + initials + '</span>';
-          return '<a class="home-hospital-card" href="hospitals.html?specialty=' + specialty + '&city=' + encodeURIComponent(city) + '"><span class="home-hospital-visual">' + logo + '</span><span class="home-hospital-body"><small>' + copy(hospital, "city") + '</small><h3>' + copy(hospital, "name") + '</h3><p>' + copy(hospital, "dept") + '</p><b>' + copy(hospital, "rank") + '</b></span></a>';
+          return '<a class="home-hospital-card" href="hospitals.html?specialty=' + specialty + '&city=' + encodeURIComponent(city) + '"><span class="home-hospital-visual">' + logo + '</span><span class="home-hospital-body"><small>' + copy(hospital, "city") + '</small><h3>' + copy(hospital, "name") + '</h3><p class="home-hospital-summary">' + copy(hospital, "special") + '</p></span></a>';
         }).join("") +
         '</div>';
     };
@@ -295,6 +336,15 @@
     const form = document.querySelector("[data-consult-form]");
     if (!form) return;
     const care = form.querySelector('[name="care"]');
+    if (new URLSearchParams(location.search).get("estimate") === "1") {
+      try {
+        const estimate = JSON.parse(sessionStorage.getItem("huayian-cost-plan"));
+        if (estimate) {
+          care.value = [...care.options].some((option) => option.value === estimate.care) ? estimate.care : "other";
+          form.querySelector('[name="need"]').value = estimate.text;
+        }
+      } catch (_) {}
+    }
     const result = form.querySelector("[data-budget-result]");
     const ranges = {
       oncology:["US$25,000–80,000","4–8 weeks / 4–8周"],
@@ -388,7 +438,7 @@
   function hospitalCard(item) {
     const initials = copy(item, "name").split(/\s+/).slice(0,2).map((word) => word[0]).join("");
     const logo = logoMap[item.id] ? '<img src="' + logoMap[item.id] + '" alt="">' : '<span class="hospital-logo-fallback">' + initials + '</span>';
-    return '<button class="hospital-card" type="button" data-hospital-id="' + item.id + '"><span class="hospital-logo">' + logo + '</span><span class="hospital-copy"><small>' + copy(item, "city") + '</small><h3>' + copy(item, "name") + '</h3><p>' + copy(item, "dept") + '</p></span><span class="hospital-rank">' + copy(item, "rank") + '</span></button>';
+    return '<button class="hospital-card" type="button" data-hospital-id="' + item.id + '"><span class="hospital-logo">' + logo + '</span><span class="hospital-copy"><small>' + copy(item, "city") + '</small><span class="hospital-name">' + copy(item, "name") + '</span><span class="hospital-summary">' + copy(item, "special") + '</span></span><span class="hospital-card-arrow" aria-hidden="true">↗</span></button>';
   }
 
   function initHospitalDirectory() {
@@ -401,6 +451,8 @@
     const query = new URLSearchParams(location.search);
     let limit = 12;
     const filters = window.HUAYIAN_HOSPITAL_FILTERS;
+    setText("[data-directory-total]", String(window.HUAYIAN_HOSPITALS.length));
+    setText("[data-directory-cities]", String(new Set(window.HUAYIAN_HOSPITALS.map((item) => item.city)).size));
     Object.entries(filters.cities).forEach(([id, item]) => city.add(new Option(language === "zh" ? item.zh : item.en, id)));
     filters.specialties.forEach((item) => specialty.add(new Option(language === "zh" ? item.zh : item.en, String(item.id))));
     city.value = query.get("city") || "";
@@ -443,6 +495,7 @@
     const item = window.HUAYIAN_HOSPITALS.find((row) => row.id === id);
     if (!modal || !item) return;
     const photos = photoMap[id] || ["assets/hero-international-care.jpg","assets/hospital-tongji-international.jpg"];
+    modal.querySelector('[data-modal-gallery]').hidden = Boolean(item.source && !photoMap[id]);
     modal.querySelector("[data-modal-gallery]").innerHTML = photos.slice(0,3).map((path) => '<img src="' + path + '" alt="">').join("");
     modal.querySelector("[data-modal-title]").textContent = copy(item, "name");
     modal.querySelector("[data-modal-copy]").textContent = copy(item, "special");
@@ -450,20 +503,49 @@
     modal.querySelector("[data-modal-rank]").textContent = copy(item, "rank");
     modal.querySelector("[data-modal-dept]").textContent = copy(item, "dept");
     modal.querySelector("[data-modal-site]").href = safeSite(item.site);
+    let source = modal.querySelector('[data-modal-source]');
+    if (!source) {
+      source = document.createElement('a');
+      source.dataset.modalSource = '';
+      source.className = 'hospital-source-link';
+      source.target = '_blank';
+      source.rel = 'noopener';
+      modal.querySelector('[data-modal-site]').insertAdjacentElement('afterend', source);
+    }
+    source.hidden = !item.source;
+    if (item.source) {
+      source.href = item.source;
+      source.textContent = language === 'zh' ? '资料来源 ↗' : 'Source information ↗';
+    }
+    modal.returnFocus = document.activeElement;
     modal.classList.add("open");
     body.classList.add("menu-open");
+    modal.querySelector(".modal-dialog").scrollTop = 0;
+    modal.querySelector("[data-modal-close]").focus({preventScroll:true});
   }
 
-  document.querySelectorAll("[data-modal-close]").forEach((button) => button.addEventListener("click", () => {
-    button.closest(".modal").classList.remove("open");
-    body.classList.remove("menu-open");
-  }));
+  const closeModal = (modal) => {
+    modal.classList.remove("open");
+    body.classList.toggle("menu-open", !!nav?.classList.contains("open"));
+    modal.returnFocus?.focus({preventScroll:true});
+  };
+  document.querySelectorAll("[data-modal-close]").forEach((button) => button.addEventListener("click", () => closeModal(button.closest(".modal"))));
   document.querySelectorAll(".modal").forEach((modal) => modal.addEventListener("click", (event) => {
     if (event.target === modal) {
-      modal.classList.remove("open");
-      body.classList.remove("menu-open");
+      closeModal(modal);
     }
   }));
+  document.addEventListener("keydown", (event) => {
+    const modal = document.querySelector(".modal.open");
+    if (!modal) return;
+    if (event.key === "Escape") closeModal(modal);
+    if (event.key === "Tab") {
+      const controls = [...modal.querySelectorAll("a[href],button")].filter((node) => !node.hidden && node.getClientRects().length);
+      const first = controls[0], last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
+  });
 
   function initCases() {
     const list = document.querySelector("[data-case-list]");
