@@ -41,14 +41,17 @@
         if (treatments) treatments.insertAdjacentElement("afterend", link);
         else nav.appendChild(link);
       }
-      if (!nav.querySelector('[data-nav="partner"]')) {
+      nav.querySelectorAll('[data-nav="partner"]').forEach((link) => link.remove());
+      if (!nav.querySelector('[data-nav="costs"]')) {
         const link = document.createElement("a");
-        link.href = "partner.html";
-        link.dataset.nav = "partner";
-        link.dataset.en = "Partner with us";
-        link.dataset.zh = "加入我们";
-        link.textContent = "Partner with us";
-        nav.appendChild(link);
+        link.href = "costs.html";
+        link.dataset.nav = "costs";
+        link.dataset.en = "Cost calculator";
+        link.dataset.zh = "费用计算";
+        link.textContent = "Cost calculator";
+        const hospitals = nav.querySelector('[data-nav="hospitals"]');
+        if (hospitals) hospitals.insertAdjacentElement("afterend", link);
+        else nav.appendChild(link);
       }
     });
   }
@@ -267,7 +270,7 @@
         rows.map((hospital) => {
           const initials = copy(hospital, "name").split(/\s+/).slice(0, 2).map((part) => part[0]).join("");
           const logo = logoMap[hospital.id] ? '<img src="' + logoMap[hospital.id] + '" alt="">' : '<span>' + initials + '</span>';
-          return '<a class="home-hospital-card" href="hospitals.html?specialty=' + specialty + '&city=' + encodeURIComponent(city) + '"><span class="home-hospital-visual">' + logo + '</span><span class="home-hospital-body"><small>' + copy(hospital, "city") + '</small><h3>' + copy(hospital, "name") + '</h3><p>' + copy(hospital, "dept") + '</p><b>' + copy(hospital, "rank") + '</b></span></a>';
+          return '<a class="home-hospital-card" href="hospitals.html?specialty=' + specialty + '&city=' + encodeURIComponent(city) + '"><span class="home-hospital-visual">' + logo + '</span><span class="home-hospital-body"><small>' + copy(hospital, "city") + '</small><h3>' + copy(hospital, "name") + '</h3><p class="home-hospital-summary">' + copy(hospital, "special") + '</p></span></a>';
         }).join("") +
         '</div>';
     };
@@ -295,6 +298,15 @@
     const form = document.querySelector("[data-consult-form]");
     if (!form) return;
     const care = form.querySelector('[name="care"]');
+    if (new URLSearchParams(location.search).get("estimate") === "1") {
+      try {
+        const estimate = JSON.parse(sessionStorage.getItem("huayian-cost-plan"));
+        if (estimate) {
+          care.value = [...care.options].some((option) => option.value === estimate.care) ? estimate.care : "other";
+          form.querySelector('[name="need"]').value = estimate.text;
+        }
+      } catch (_) {}
+    }
     const result = form.querySelector("[data-budget-result]");
     const ranges = {
       oncology:["US$25,000–80,000","4–8 weeks / 4–8周"],
@@ -388,7 +400,7 @@
   function hospitalCard(item) {
     const initials = copy(item, "name").split(/\s+/).slice(0,2).map((word) => word[0]).join("");
     const logo = logoMap[item.id] ? '<img src="' + logoMap[item.id] + '" alt="">' : '<span class="hospital-logo-fallback">' + initials + '</span>';
-    return '<button class="hospital-card" type="button" data-hospital-id="' + item.id + '"><span class="hospital-logo">' + logo + '</span><span class="hospital-copy"><small>' + copy(item, "city") + '</small><h3>' + copy(item, "name") + '</h3><p>' + copy(item, "dept") + '</p></span><span class="hospital-rank">' + copy(item, "rank") + '</span></button>';
+    return '<button class="hospital-card" type="button" data-hospital-id="' + item.id + '"><span class="hospital-logo">' + logo + '</span><span class="hospital-copy"><small>' + copy(item, "city") + '</small><span class="hospital-name">' + copy(item, "name") + '</span><span class="hospital-summary">' + copy(item, "special") + '</span></span><span class="hospital-card-arrow" aria-hidden="true">↗</span></button>';
   }
 
   function initHospitalDirectory() {
@@ -401,6 +413,8 @@
     const query = new URLSearchParams(location.search);
     let limit = 12;
     const filters = window.HUAYIAN_HOSPITAL_FILTERS;
+    setText("[data-directory-total]", String(window.HUAYIAN_HOSPITALS.length));
+    setText("[data-directory-cities]", String(new Set(window.HUAYIAN_HOSPITALS.map((item) => item.city)).size));
     Object.entries(filters.cities).forEach(([id, item]) => city.add(new Option(language === "zh" ? item.zh : item.en, id)));
     filters.specialties.forEach((item) => specialty.add(new Option(language === "zh" ? item.zh : item.en, String(item.id))));
     city.value = query.get("city") || "";
@@ -443,6 +457,7 @@
     const item = window.HUAYIAN_HOSPITALS.find((row) => row.id === id);
     if (!modal || !item) return;
     const photos = photoMap[id] || ["assets/hero-international-care.jpg","assets/hospital-tongji-international.jpg"];
+    modal.querySelector('[data-modal-gallery]').hidden = Boolean(item.source && !photoMap[id]);
     modal.querySelector("[data-modal-gallery]").innerHTML = photos.slice(0,3).map((path) => '<img src="' + path + '" alt="">').join("");
     modal.querySelector("[data-modal-title]").textContent = copy(item, "name");
     modal.querySelector("[data-modal-copy]").textContent = copy(item, "special");
@@ -450,6 +465,20 @@
     modal.querySelector("[data-modal-rank]").textContent = copy(item, "rank");
     modal.querySelector("[data-modal-dept]").textContent = copy(item, "dept");
     modal.querySelector("[data-modal-site]").href = safeSite(item.site);
+    let source = modal.querySelector('[data-modal-source]');
+    if (!source) {
+      source = document.createElement('a');
+      source.dataset.modalSource = '';
+      source.className = 'hospital-source-link';
+      source.target = '_blank';
+      source.rel = 'noopener';
+      modal.querySelector('[data-modal-site]').insertAdjacentElement('afterend', source);
+    }
+    source.hidden = !item.source;
+    if (item.source) {
+      source.href = item.source;
+      source.textContent = language === 'zh' ? '资料来源 ↗' : 'Source information ↗';
+    }
     modal.classList.add("open");
     body.classList.add("menu-open");
   }
