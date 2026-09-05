@@ -93,6 +93,11 @@
     $('[data-cost-download]').href = 'data:text/plain;charset=utf-8,' + encodeURIComponent('\uFEFF' + plan.text);
   }
   form.addEventListener('submit', (event) => event.preventDefault());
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      document.body.classList.toggle('cost-summary-visible', entry.isIntersecting);
+    }, {rootMargin:'-80px 0px -80px 0px'}).observe($('#cost-summary'));
+  }
   form.addEventListener('input', render);
   form.addEventListener('change', render);
   document.addEventListener('huayian:language', render);
